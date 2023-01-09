@@ -1,9 +1,5 @@
-//import { useSelector } from 'react-redux';
 import "./SplashPage.css"
-//import background from "./background.jpg";
 import logo from '../SplashPage/homer.png';
-
-
 
 function SplashPage() {
     return (
@@ -11,9 +7,9 @@ function SplashPage() {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        whatup
-                    </p>
+                    <button>
+                       Enter Game
+                    </button>
                 </header>
             </div>
         </>
