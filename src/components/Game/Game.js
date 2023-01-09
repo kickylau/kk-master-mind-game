@@ -13,6 +13,10 @@ function Game() {
     const [guess, setGuess] = useState()
     const isMounted = useRef(false);
 
+    const turnCounter = () => {
+
+    }
+
     const colorMap = {
         "blue": 0,
         "red": 1,
@@ -114,7 +118,6 @@ function Game() {
     return (
         <>
             <div className="Game">
-                {/* <div> data = {randomCode} </div> */}
                 <h1>Master Mind Game</h1>
                 <h1>Result = {randomCode}</h1>
                 <h1>Your Answer:{answer}  </h1>
@@ -132,23 +135,16 @@ function Game() {
                     </div>
                 </div>
                 <div className="colorBoard">
-                    <div className="color" id="blue" onClick={e => addToGuess(e.target.id)} value={colorMap["blue"]}></div>
-                    <div className="color" id="red" onClick={e => addToGuess(e.target.id)} value={colorMap["red"]}></div>
-                    <div className="color" id="purple" onClick={e => addToGuess(e.target.id)} value={colorMap["purple"]}></div>
-                    <div className="color" id="yellow" onClick={e => addToGuess(e.target.id)} value={colorMap["yellow"]}></div>
-                    <div className="color" id="green" onClick={e => addToGuess(e.target.id)} value={colorMap["green"]}></div>
-                    <div className="color" id="pink" onClick={e => addToGuess(e.target.id)} value={colorMap["pink"]}></div>
-                    <div className="color" id="gold" onClick={e => addToGuess(e.target.id)} value={colorMap["gold"]}></div>
-                    <div className="color" id="orange" onClick={e => addToGuess(e.target.id)} value={colorMap["orange"]}></div>
+                    {Object.keys(colorMap).map((color) =>
+                        <div key={color} className="color" id={color} onClick={e => addToGuess(e.target.id)}>{colorMap[color]}</div>
+                        // each child in a list should have a unique key prop
+                    )}
                 </div>
                 <div>
-                    <button className="newGame" type="submit" onClick={() => fetchData()}
-                    > New Game</button>
+                    <button className="newGame" type="submit" onClick={() => fetchData()}> New Game</button>
                 </div>
                 <div><button className="check" type="submit" onClick={() => numberGuess({ randomCode }.randomCode, { guess }.guess)}>
                     Check </button></div>
-                {/* <InfoPanel />
-                    <Board /> */}
             </div>
         </>
     )
