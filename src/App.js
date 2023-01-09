@@ -1,5 +1,6 @@
 import logo from './homer.png';
 import './App.css';
+//import { Modal } from "./Modal";
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //import { useDispatch } from 'react-redux';

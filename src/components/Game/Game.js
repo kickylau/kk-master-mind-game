@@ -1,5 +1,6 @@
 import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
+import logo from '../SplashPage/homer.png';
 //import { useDispatch } from 'react-redux';
 
 
@@ -11,10 +12,23 @@ function Game() {
     const [randomCode, setRandomCode] = useState([]);
     const [answer, setAnswer] = useState("")
     const [guess, setGuess] = useState()
+    const [counter, setCounter] = useState(10)
     const isMounted = useRef(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const turnCounter = () => {
+    // //increase counter
+    // const increase = () => {
+    //     setCounter(counter => counter + 1)
+    // }
 
+    //decrease counter
+    const decrease = () => {
+        setCounter(counter => counter - 1)
+    }
+
+    //reset counter
+    const reset = () => {
+        setCounter(10)
     }
 
     const colorMap = {
@@ -39,6 +53,7 @@ function Game() {
         7: "orange"
     }
 
+
     function addToGuess(color) {
         //console.log("curr guess initially", { guess })
         //console.log("choosing ", color)
@@ -47,10 +62,11 @@ function Game() {
         if (newGuess.length > sizeLimit) newGuess.splice(0, 1)
         //console.log(newGuess)
         setGuess(newGuess)
+        //setCounter(counter)
     }
 
     function numberGuess(code, guess) {
-        console.log("code:", code, "guess:", guess)
+        //console.log("code:", code, "guess:", guess)
         //console.log(answer[randomCode])
         // console.log(answer.randomCode)
         let correctPosAndColor = 0;
@@ -60,7 +76,6 @@ function Game() {
             if (map[num] != null) map[num]++
             else map[num] = 1
         }
-
         //console.log(map)
         for (let i = 0; i < guess.length; i++) {
             if (guess[i] == code[i]) {
@@ -115,12 +130,14 @@ function Game() {
         setGuess([])
     }, [])
 
+
     return (
         <>
             <div className="Game">
                 <h1>Master Mind Game</h1>
                 <h1>Result = {randomCode}</h1>
                 <h1>Your Answer:{answer}  </h1>
+                <h1>Your Counts Left: {counter}</h1>
                 <h1>You Are Guessing: {guess}</h1>
                 <div className="fullBoard">
                     <div className="board"></div>
@@ -141,10 +158,34 @@ function Game() {
                     )}
                 </div>
                 <div>
-                    <button className="newGame" type="submit" onClick={() => fetchData()}> New Game</button>
+                    <button className="newGame" type="submit" onClick={() => {
+                        fetchData()
+                        reset()
+                    }
+                    }> New Game</button>
                 </div>
-                <div><button className="check" type="submit" onClick={() => numberGuess({ randomCode }.randomCode, { guess }.guess)}>
-                    Check </button></div>
+                <div><button className="check" type="submit" onClick={() => {
+                    if (counter > 0) {
+                        numberGuess({ randomCode }.randomCode, { guess }.guess)
+                        decrease()
+                        console.log(counter)
+                    }
+                    if (counter == 1) setShowModal(true)
+                    if (counter == 0) setShowModal(false)
+                }
+                }> Check </button></div>
+                {showModal &&
+                    <div id="modalWrapper" onClick={e =>
+                        console.log(e)
+                        // console.log("CLICKED!")
+                        // setShowModal(false)
+                    }>
+                        <div id="modal">
+                            <img src={logo} className="App-logo" alt="logo" />
+                        </div>
+                    </div>
+                }
+
             </div>
         </>
     )
