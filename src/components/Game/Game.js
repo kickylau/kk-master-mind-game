@@ -16,9 +16,9 @@ function Game() {
     const [showModal, setShowModal] = useState(false);
     const [showWinningModal, setShowWinningModal] = useState(false);
     const [showResult, setShowResult] = useState(false);
-    const [showAnswer,setShowAnswer] = useState(false)
-    const [pegWhite,setPegWhite] = useState(0)
-    const [pegBlack,setPegBlack] = useState(0)
+    const [showAnswer, setShowAnswer] = useState(false)
+    const [pegWhite, setPegWhite] = useState(0)
+    const [pegBlack, setPegBlack] = useState(0)
 
 
 
@@ -27,10 +27,11 @@ function Game() {
     //create a state to manage the data
 
     const [data, setData] = useState(new Array(10).fill([]))
+    const [pegData, setPegData] = useState(new Array(10).fill([]))
 
     const passDataToRow = (guessArray) => {
-        //console.log("guessArray", guessArray)
-        //console.log("data", data)
+        // console.log("guessArray", guessArray)
+        // console.log("data", data)
         // let currBoardGuesses = [...{data}]
         //[[y,y,y,y],[r,r,r,r]]
         data[10 - counter] = guessArray
@@ -38,6 +39,10 @@ function Game() {
 
     }
 
+    const passAnswerToRow = (pegArray) => {
+        pegData[10 - counter] = pegArray
+        // console.log("pegArray", pegArray)
+    }
 
 
     //decrease counter
@@ -75,12 +80,6 @@ function Game() {
         6: "gold",
         7: "orange"
     }
-
-    // const answerMap = {
-    //     "black":
-    //     "white":
-    // }
-
 
     //function to enter guess
     function addToGuess(color) {
@@ -124,8 +123,7 @@ function Game() {
         let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
         setAnswer(res)
         setShowAnswer(true)
-        setPegWhite(correctColorWrongPos)
-        setPegBlack(correctPosAndColor)
+        passAnswerToRow([correctPosAndColor, correctColorWrongPos])
 
         if (correctPosAndColor == 4) {
             setShowWinningModal(true)
@@ -175,7 +173,7 @@ function Game() {
         setShowResult()
     }, [])
 
-    console.log("parent",showAnswer)
+    // console.log("parent", showAnswer)
 
 
     return (
@@ -186,16 +184,19 @@ function Game() {
                 <h1>Your Answer:{answer}  </h1>
                 <h1>Your Counts Left: {counter}</h1>
                 <h1>You Are Guessing: {guess}</h1>
+
                 <div className="board">
+
                     {[...Array(10)].map((x, idx) =>
                         <Row key={`row-${idx}`}
                             showAnswer={showAnswer}
                             pegWhite={pegWhite}
                             pegBlack={pegBlack}
                             passDataToRow={data}
+                            passAnswerToRow={pegData}
                             numberMap={numberMap}
                             rowIdx={idx}
-                            />
+                        />
                     )}
                 </div>
 
@@ -208,6 +209,8 @@ function Game() {
                         )}
                     </div>
                 </div>
+
+
                 <div className="colorBoard">
                     {Object.keys(colorMap).map((color) =>
                         <div key={`code-${color}`} className="color" id={color} onClick={e =>
@@ -217,6 +220,10 @@ function Game() {
                         // each child in a list should have a unique key prop
                     )}
                 </div>
+
+
+
+
                 <div>
                     <button className="newGame" type="submit" onClick={() => {
                         fetchData()

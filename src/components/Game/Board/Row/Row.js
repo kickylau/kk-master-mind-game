@@ -2,12 +2,16 @@ import React, { useEffect, useState, useRef } from 'react'
 
 
 
-function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer, pegWhite, pegBlack }) {
-    console.log("child", showAnswer)
+function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer }) {
+    // console.log("child", showAnswer)
 
-    console.log(pegWhite)
-    console.log(pegBlack)
+    // console.log(pegWhite)
+    // console.log(pegBlack)
 
+    //console.log(passAnswerToRow)
+    // console.log("row",rowIdx)
+    //console.log("peg result",passAnswerToRow[rowIdx])
+    // console.log("data", passDataToRow[rowIdx], [rowIdx])
     //const [showAnswer,setShowAnswer] = useState(false)
 
 
@@ -16,8 +20,31 @@ function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer, pe
     //         if({guess})
     //     }
 
-    //if (newGuess) setShowRow(true)
 
+    //    const rows = [];
+    // for (let i = 0; i < numrows; i++) {
+    //     // note: we are adding a key prop here to allow react to uniquely identify each
+    //     // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
+    //     rows.push(<ObjectRow key={i} />);
+    // }
+    // return <tbody>{rows}</tbody>;
+
+    const pegDivs = [];
+    // function pegDiv() {
+
+    if (passAnswerToRow[rowIdx]) {
+        console.log("PEG ROW DETECTED!")
+        for (let i = 0; i < passAnswerToRow[rowIdx][0]; i++) {
+            console.log("ADD BLACK PEG!")
+            pegDivs.push(<div className="blackPeg" key={i} />)
+        }
+        for (let i = 0; i < passAnswerToRow[rowIdx][1]; i++) {
+            console.log("ADD BLACK PEG!")
+            pegDivs.push(<div className="whitePeg" s key={i} />)
+        }
+
+    }
+    // }
 
     return (
 
@@ -28,11 +55,10 @@ function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer, pe
                     <div key={`row-${idx}`} className="row-tile" id={numberMap[number]}>
                     </div>)}
                 <div className="pegs" >
-                    
-                    <div  className="peg-rows" style={{ display: showAnswer ? "block" : "none" }}>
-                    </div>
+                    {pegDivs}
                 </div>
             </div>
+
 
 
         </>

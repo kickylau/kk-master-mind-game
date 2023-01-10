@@ -33,7 +33,7 @@
     width: 120px;
     float: right;
     margin-top: 0px;
-    grid-template-columns: repeat(2, 60px);
+    grid-template-columns: repeat(4, 30px);
     grid-template-rows: repeat(10, 80px);
 }
 
@@ -41,6 +41,24 @@
     width:100%;
     /* background-image: url("bart.png");
     background-size: 100% 100%; */
+
+
+}
+
+.blackPeg{
+    width:100%;
+    background-image: url("bart.png");
+    background-size: 100% 100%;
+
+
+
+}
+
+.whitePeg{
+    width:100%;
+    background-image: url("lisa.png");
+    background-size: 100% 100%;
+
 
 
 }
