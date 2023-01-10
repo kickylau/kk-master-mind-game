@@ -2,9 +2,13 @@ import React, { useEffect, useState, useRef } from 'react'
 
 
 
-function Row({ passDataToRow, numberMap, rowIdx }) {
+function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer, pegWhite, pegBlack }) {
+    console.log("child", showAnswer)
 
-    //const [showRow,setShowRow] = useState(false)
+    console.log(pegWhite)
+    console.log(pegBlack)
+
+    //const [showAnswer,setShowAnswer] = useState(false)
 
 
     //     function showRow(){
@@ -20,17 +24,13 @@ function Row({ passDataToRow, numberMap, rowIdx }) {
         <>
 
             <div className="row">
-                {/*
-                <div className="board"> */}
-
                 {passDataToRow[rowIdx]?.map((number, idx) =>
                     <div key={`row-${idx}`} className="row-tile" id={numberMap[number]}>
                     </div>)}
-
-                {/* </div> */}
-
-                <div className="pegs">
-                    <div className="peg-rows"></div>
+                <div className="pegs" >
+                    
+                    <div  className="peg-rows" style={{ display: showAnswer ? "block" : "none" }}>
+                    </div>
                 </div>
             </div>
 

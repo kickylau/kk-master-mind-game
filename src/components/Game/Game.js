@@ -16,7 +16,11 @@ function Game() {
     const [showModal, setShowModal] = useState(false);
     const [showWinningModal, setShowWinningModal] = useState(false);
     const [showResult, setShowResult] = useState(false);
-    //const [showRow,setShowRow] = useState(false)
+    const [showAnswer,setShowAnswer] = useState(false)
+    const [pegWhite,setPegWhite] = useState(0)
+    const [pegBlack,setPegBlack] = useState(0)
+
+
 
 
     //create a function and a button to trigger so that pass data to child
@@ -72,6 +76,11 @@ function Game() {
         7: "orange"
     }
 
+    // const answerMap = {
+    //     "black":
+    //     "white":
+    // }
+
 
     //function to enter guess
     function addToGuess(color) {
@@ -114,6 +123,10 @@ function Game() {
         correctColorWrongPos = correctColorWrongPos - correctPosAndColor
         let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
         setAnswer(res)
+        setShowAnswer(true)
+        setPegWhite(correctColorWrongPos)
+        setPegBlack(correctPosAndColor)
+
         if (correctPosAndColor == 4) {
             setShowWinningModal(true)
             setShowResult(true)
@@ -162,6 +175,8 @@ function Game() {
         setShowResult()
     }, [])
 
+    console.log("parent",showAnswer)
+
 
     return (
         <>
@@ -171,16 +186,19 @@ function Game() {
                 <h1>Your Answer:{answer}  </h1>
                 <h1>Your Counts Left: {counter}</h1>
                 <h1>You Are Guessing: {guess}</h1>
-                {/* <div className="outside-board"> */}
                 <div className="board">
                     {[...Array(10)].map((x, idx) =>
                         <Row key={`row-${idx}`}
+                            showAnswer={showAnswer}
+                            pegWhite={pegWhite}
+                            pegBlack={pegBlack}
                             passDataToRow={data}
                             numberMap={numberMap}
-                            rowIdx={idx} />
+                            rowIdx={idx}
+                            />
                     )}
                 </div>
-                {/* </div> */}
+
 
 
                 <div className="other" style={{ display: showResult ? "block" : "none" }}>

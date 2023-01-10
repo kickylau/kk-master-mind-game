@@ -23,17 +23,32 @@
 }
 
 .row-tile {
-    width: 80px;
+    width: 70px;
 }
 
 
 .pegs {
     display: grid;
     height: 100%;
-    width: 107.28px;
+    width: 120px;
     float: right;
     margin-top: 0px;
+    grid-template-columns: repeat(2, 60px);
     grid-template-rows: repeat(10, 80px);
+}
+
+.peg-rows{
+    width:100%;
+    /* background-image: url("bart.png");
+    background-size: 100% 100%; */
+
+
+}
+
+#correctColorWrongPost{
+    background-image: url("bart.png");
+    background-size: 100% 100%;
+
 }
 
 .colorBoard {
@@ -45,6 +60,7 @@
     border: 5px solid black;
     margin: 0 auto;
     margin-top: 10px;
+
 }
 
 
