@@ -1,11 +1,6 @@
 import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import logo from '../SplashPage/homer.png';
-//import { useDispatch } from 'react-redux';
-//import { Modal } from "../../Modal";
-//import Modal from "react-native-modal";
-
-
 
 
 function Game() {
@@ -18,13 +13,9 @@ function Game() {
     const [counter, setCounter] = useState(10)
     const isMounted = useRef(false);
     const [showModal, setShowModal] = useState(false);
+    const [showWinningModal, setShowWinningModal] = useState(false);
+    const [showResult, setShowResult] = useState(false);
 
-    //const handleModal = () => setShowModal(() => !showModal);
-
-    // //increase counter
-    // const increase = () => {
-    //     setCounter(counter => counter + 1)
-    // }
 
     //decrease counter
     const decrease = () => {
@@ -34,8 +25,12 @@ function Game() {
     //reset counter
     const reset = () => {
         setCounter(10)
+        setGuess([])
+        setAnswer("")
+        setShowResult(false)
     }
 
+    //create map color vs. number
     const colorMap = {
         "blue": 0,
         "red": 1,
@@ -59,21 +54,22 @@ function Game() {
     }
 
 
+    //function to enter guess
     function addToGuess(color) {
         //console.log("curr guess initially", { guess })
         //console.log("choosing ", color)
-        let num = colorMap[color]
-        let newGuess = { guess }.guess.concat(num)
-        if (newGuess.length > sizeLimit) newGuess.splice(0, 1)
-        //console.log(newGuess)
-        setGuess(newGuess)
+        if (counter > 0) {
+            let num = colorMap[color]
+            let newGuess = { guess }.guess.concat(num)
+            if (newGuess.length > sizeLimit) newGuess.splice(0, 1)
+            setGuess(newGuess)
+        }
         //setCounter(counter)
     }
 
+    //function to match the guess vs. result
     function numberGuess(code, guess) {
-        //console.log("code:", code, "guess:", guess)
-        //console.log(answer[randomCode])
-        // console.log(answer.randomCode)
+        //console.log({ randomCode }.randomCode)
         let correctPosAndColor = 0;
         let correctColorWrongPos = 0;
         let map = {};
@@ -81,26 +77,28 @@ function Game() {
             if (map[num] != null) map[num]++
             else map[num] = 1
         }
-        //console.log(map)
+
         for (let i = 0; i < guess.length; i++) {
             if (guess[i] == code[i]) {
                 correctPosAndColor++
-                map[guess[i]]--
-            } else if (map[guess[i]] && guess[i] !== code[i]) {
+            }
+            if (guess[i] in map && map[guess[i]] > 0) {
                 correctColorWrongPos++
                 map[guess[i]]--
-                //console.log(guess[i])
-                //console.log(map)
             }
-
         }
-        let res = "You have " + correctPosAndColor + "blacks and " + correctColorWrongPos + "whites."
+        correctColorWrongPos = correctColorWrongPos - correctPosAndColor
+        let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
         setAnswer(res)
+        if (correctPosAndColor == 4) {
+            setShowWinningModal(true)
+            setShowResult(true)
+        }
         return res
     }
 
 
-
+    //fetch random number API
     const fetchData = async () => {
         const url = 'https://www.random.org/integers/?num=4&min=1&max=6&col=1&base=10&format=plain&rnd=new'
 
@@ -110,13 +108,14 @@ function Game() {
             //randomCode = data.split("\n")
             // console.log(randomCode)
             // console.log(answer)
-            setRandomCode(data.split("\n").filter(e => e.length > 0))  //to only extract the 4 random number without empty string at the end of the array
+            setRandomCode(data.split("\n").filter(e => e.length > 0).map(e => parseInt(e)))  //to only extract the 4 random number without empty string at the end of the array
             //console.log("i fire here")
         } catch (error) {
             console.log("error", error);
         }
     }
 
+    //to only fire result once
     useEffect(() => {
         if (isMounted.current) return;
         isMounted.current = true;
@@ -126,13 +125,17 @@ function Game() {
     }, [])
 
 
+    //??are those below necessary?? any way to simplify?
     useEffect(() => {
         setAnswer()
     }, [])
 
     useEffect(() => {
-        //console.log(setGuess())
         setGuess([])
+    }, [])
+
+    useEffect(() => {
+        setShowResult()
     }, [])
 
 
@@ -146,19 +149,20 @@ function Game() {
                 <h1>You Are Guessing: {guess}</h1>
                 <div className="fullBoard">
                     <div className="board"></div>
+                    
+
                     <div className="pegs"></div>
                 </div>
-                <div className="other">
+                <div className="other" style={{ display: showResult ? "block" : "none" }}>
                     <div className="code">
-                        <div className="secretColor"></div>
-                        <div className="secretColor"></div>
-                        <div className="secretColor"></div>
-                        <div className="secretColor"></div>
+                        {randomCode.map((number, idx) =>
+                            <div key={`code-${idx}`} className="secretColor" id={numberMap[number]}></div>
+                        )}
                     </div>
                 </div>
                 <div className="colorBoard">
                     {Object.keys(colorMap).map((color) =>
-                        <div key={color} className="color" id={color} onClick={e => addToGuess(e.target.id)}>{colorMap[color]}</div>
+                        <div key={`code-${color}`} className="color" id={color} onClick={e => addToGuess(e.target.id)}>{colorMap[color]}</div>
                         // each child in a list should have a unique key prop
                     )}
                 </div>
@@ -166,6 +170,7 @@ function Game() {
                     <button className="newGame" type="submit" onClick={() => {
                         fetchData()
                         reset()
+                        setShowResult(false)
                     }
                     }> New Game</button>
                 </div>
@@ -173,22 +178,47 @@ function Game() {
                     if (counter > 0) {
                         numberGuess({ randomCode }.randomCode, { guess }.guess)
                         decrease()
-                        console.log(counter)
                     }
-                    if (counter == 1) setShowModal(true)
+                    if (counter == 1) {
+                        setShowModal(true)
+                        setShowResult(true)
+                    }
+
                 }
-                }> Check </button></div>
+                }> Check </button>
+                </div>
 
                 {
-                    showModal &&
-                    <div id="modalWrapper" onClick={() => { setShowModal(false) }}>
+                    showWinningModal &&
+                    <div id="modalWrapper" onClick={() => {
+                        setShowModal(false)
+                        setShowWinningModal(false)
+                        fetchData()
+                        reset()
+                    }}>
                         <div id="modal" >
                             <img src={logo} className="App-logo" alt="logo" />
                         </div>
                     </div>
                 }
-            </div>
 
+                {
+                    showModal &&
+                    <div id="modalWrapper" onClick={() => {
+                        setShowModal(false)
+                        fetchData()
+                        reset()
+                    }}>
+                        <div id="modal" >
+                            <img src={logo} className="App-logo" alt="logo" />
+                        </div>
+                    </div>
+                }
+
+
+
+
+            </div>
         </>
     )
 }
