@@ -33,17 +33,18 @@ function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer }) 
     // function pegDiv() {
 
     if (passAnswerToRow[rowIdx]) {
-        console.log("PEG ROW DETECTED!")
+        //console.log("PEG ROW DETECTED!")
         for (let i = 0; i < passAnswerToRow[rowIdx][0]; i++) {
-            console.log("ADD BLACK PEG!")
-            pegDivs.push(<div className="blackPeg" key={i} />)
+            //console.log("ADD BLACK PEG!")
+            pegDivs.push(<div className="blackPeg" key={`blacks-${i}`} />)
         }
         for (let i = 0; i < passAnswerToRow[rowIdx][1]; i++) {
-            console.log("ADD BLACK PEG!")
-            pegDivs.push(<div className="whitePeg" s key={i} />)
+            //console.log("ADD BLACK PEG!")
+            pegDivs.push(<div className="whitePeg" s key={`whites-${i}`} />)
         }
 
     }
+    //console.log(pegDivs)
     // }
 
     return (
