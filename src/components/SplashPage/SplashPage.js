@@ -9,14 +9,11 @@ function SplashPage() {
             <div className="App">
                 <header className="App-header">
                     <h1 id="simpson"> THE  SIMPSONS  MASTERMIND</h1>
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h1 id="enterGame">Enter Game</h1>
                 </header>
             </div>
-            <div>
-                <div id="enterGame">Enter Game</div>
-            </div>
-            <div>
-                <img src={logo} className="App-logo" alt="logo" />
-            </div>
+
         </>
     )
 }

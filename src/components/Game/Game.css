@@ -1,28 +1,39 @@
-.fullBoard {
+.board {
+    /* border: #61dafb;
+    border-radius: 10px; */
+    /* display: flex;
+    width: 292.72px;
+    height: 100%;
+    float: left; */
     border: 5px solid black;
-    background-color: black;
+    /* background-color: black; */
     height: 805px;
     width: 400px;
     position: absolute;
+    /* display: grid;
+    grid-template-columns: repeat(4, 73.18px);
+    grid-template-rows: repeat(10, 80px); */
 }
 
 
-
-.board {
-    display: grid;
-    width: 292.72px;
-    height: 100%;
-    float: left;
+.row {
+    display: flex;
+    width: 100%;
+    height: 80px;
 }
 
+.row-tile {
+    width: 80px;
+}
 
 
 .pegs {
     display: grid;
     height: 100%;
-    width: 20%;
+    width: 107.28px;
     float: right;
     margin-top: 0px;
+    grid-template-rows: repeat(10, 80px);
 }
 
 .colorBoard {
@@ -84,64 +95,56 @@
 }
 
 #blue {
-    width: 100%;
-    height: 100%;
+
     background-image: url("11.png");
     background-size: 100% 100%;
     border: 1px solid white;
 }
 
 #red {
-    width: 100%;
-    height: 100%;
+
     background-size: 100% 100%;
     border: 1px solid white;
     background-image: url("22.png");
 }
 
 #purple {
-    width: 100%;
-    height: 100%;
+
     background-image: url("3.png");
     background-size: 100% 100%;
     border: 1px solid white;
 }
 
 #yellow {
-    width: 100%;
-    height: 100%;
+
     background-image: url("4.png");
     background-size: 100% 100%;
     border: 1px solid white;
 }
 
 #green {
-    width: 100%;
-    height: 100%;
+
     background-image: url("5.png");
     background-size: 100% 100%;
     border: 1px solid white;
 }
 
 #pink {
-    width: 100%;
-    height: 100%;
+
     background-image: url("6.png");
     background-size: 100% 100%;
     border: 1px solid white;
 }
 
 #gold {
-    width: 100%;
-    height: 100%;
+
     background-image: url("7.png");
     background-size: 100% 100%;
     border: 1px solid white;
 }
 
 #orange {
-    width: 100%;
-    height: 100%;
+
     background-image: url("8.png");
     background-size: 100% 100%;
     border: 1px solid white;

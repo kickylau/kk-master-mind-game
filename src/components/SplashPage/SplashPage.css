@@ -63,8 +63,8 @@
     background: repeating-linear-gradient(to bottom, #0f0a1e,#0f0a1e 2px,
     lighten(#0f0a1e, 3%) 2px,
     lighten(#0f0a1e, 3%) 4px);
-    position:absolute;
-    top:0;
+    position:fixed;
+    top:70%;
     left:0;
     bottom:0;
     right:0;

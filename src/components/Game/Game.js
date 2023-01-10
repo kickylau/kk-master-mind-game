@@ -1,6 +1,7 @@
 import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import logo from '../SplashPage/homer.png';
+import Row from "./Board/Row/Row.js"
 
 
 function Game() {
@@ -15,6 +16,24 @@ function Game() {
     const [showModal, setShowModal] = useState(false);
     const [showWinningModal, setShowWinningModal] = useState(false);
     const [showResult, setShowResult] = useState(false);
+    //const [showRow,setShowRow] = useState(false)
+
+
+    //create a function and a button to trigger so that pass data to child
+    //create a state to manage the data
+
+    const [data, setData] = useState(new Array(10).fill([]))
+
+    const passDataToRow = (guessArray) => {
+        //console.log("guessArray", guessArray)
+        //console.log("data", data)
+        // let currBoardGuesses = [...{data}]
+        //[[y,y,y,y],[r,r,r,r]]
+        data[10 - counter] = guessArray
+        //console.log("newData", data)
+
+    }
+
 
 
     //decrease counter
@@ -58,14 +77,19 @@ function Game() {
     function addToGuess(color) {
         //console.log("curr guess initially", { guess })
         //console.log("choosing ", color)
+        let newGuess;
         if (counter > 0) {
             let num = colorMap[color]
-            let newGuess = { guess }.guess.concat(num)
+            newGuess = { guess }.guess.concat(num)
             if (newGuess.length > sizeLimit) newGuess.splice(0, 1)
             setGuess(newGuess)
         }
-        //setCounter(counter)
+        //pass data to row
+        passDataToRow(newGuess)
+        return newGuess;
     }
+
+
 
     //function to match the guess vs. result
     function numberGuess(code, guess) {
@@ -147,12 +171,18 @@ function Game() {
                 <h1>Your Answer:{answer}  </h1>
                 <h1>Your Counts Left: {counter}</h1>
                 <h1>You Are Guessing: {guess}</h1>
-                <div className="fullBoard">
-                    <div className="board"></div>
-                    
-
-                    <div className="pegs"></div>
+                {/* <div className="outside-board"> */}
+                <div className="board">
+                    {[...Array(10)].map((x, idx) =>
+                        <Row key={`row-${idx}`}
+                            passDataToRow={data}
+                            numberMap={numberMap}
+                            rowIdx={idx} />
+                    )}
                 </div>
+                {/* </div> */}
+
+
                 <div className="other" style={{ display: showResult ? "block" : "none" }}>
                     <div className="code">
                         {randomCode.map((number, idx) =>
@@ -162,7 +192,10 @@ function Game() {
                 </div>
                 <div className="colorBoard">
                     {Object.keys(colorMap).map((color) =>
-                        <div key={`code-${color}`} className="color" id={color} onClick={e => addToGuess(e.target.id)}>{colorMap[color]}</div>
+                        <div key={`code-${color}`} className="color" id={color} onClick={e =>
+                            addToGuess(e.target.id)
+
+                        }>{colorMap[color]}</div>
                         // each child in a list should have a unique key prop
                     )}
                 </div>
@@ -183,7 +216,7 @@ function Game() {
                         setShowModal(true)
                         setShowResult(true)
                     }
-
+                    setGuess([])
                 }
                 }> Check </button>
                 </div>
