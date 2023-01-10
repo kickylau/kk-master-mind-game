@@ -8,9 +8,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //import ProtectedRoute from './components/auth/ProtectedRoute';
 import Game from './components/Game/Game';
 import SplashPage from './components/SplashPage/SplashPage';
+//import { Modal } from "./Modal";
 
 
 function App() {
+
+
+
   return (
     <BrowserRouter>
       <Switch>
