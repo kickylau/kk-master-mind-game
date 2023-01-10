@@ -88,14 +88,14 @@
     height: 100%;
     background-image: url("11.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 #red {
     width: 100%;
     height: 100%;
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
     background-image: url("22.png");
 }
 
@@ -104,7 +104,7 @@
     height: 100%;
     background-image: url("3.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 #yellow {
@@ -112,7 +112,7 @@
     height: 100%;
     background-image: url("4.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 #green {
@@ -120,7 +120,7 @@
     height: 100%;
     background-image: url("5.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 #pink {
@@ -128,7 +128,7 @@
     height: 100%;
     background-image: url("6.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 #gold {
@@ -136,7 +136,7 @@
     height: 100%;
     background-image: url("7.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 #orange {
@@ -144,7 +144,7 @@
     height: 100%;
     background-image: url("8.png");
     background-size: 100% 100%;
-    border:1px solid white;
+    border: 1px solid white;
 }
 
 
@@ -167,13 +167,28 @@
     text-align: center;
 }
 
-.App-logo {
-    height: 50px;
-    pointer-events: none;
+#modalWrapper {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#modal {
     z-index: 1000;
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.App-logo {
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {

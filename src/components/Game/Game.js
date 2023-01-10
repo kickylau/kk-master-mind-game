@@ -19,7 +19,7 @@ function Game() {
     const isMounted = useRef(false);
     const [showModal, setShowModal] = useState(false);
 
-    const handleModal = () => setShowModal(() => !showModal);
+    //const handleModal = () => setShowModal(() => !showModal);
 
     // //increase counter
     // const increase = () => {
@@ -176,25 +176,17 @@ function Game() {
                         console.log(counter)
                     }
                     if (counter == 1) setShowModal(true)
-                    if (counter == 0) setShowModal(false)
                 }
                 }> Check </button></div>
 
-                {/* {
-                    showModal
-
-                        //     {/* <div id="modalWrapper" onClick={e =>
-                        //     console.log(e)
-                        //     // console.log("CLICKED!")
-                        //      // setShowModal(false)
-                        //     }> */}
-                        //     // <div id="modal">
-                        //     //     <img src={logo} className="App-logo" alt="logo" />
-                        //     // </div>
-
-
-                {/* } */}
-
+                {
+                    showModal &&
+                    <div id="modalWrapper" onClick={() => { setShowModal(false) }}>
+                        <div id="modal" >
+                            <img src={logo} className="App-logo" alt="logo" />
+                        </div>
+                    </div>
+                }
             </div>
 
         </>
