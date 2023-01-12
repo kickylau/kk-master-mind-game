@@ -1,5 +1,5 @@
 .game-container {
-    overflow: scroll;
+    /* overflow: scroll; */
     box-shadow: rgb(0 0 0 /40%) 0px 3px 16px 3px;
     position: absolute;
     top: 50%;
@@ -39,9 +39,11 @@
     height: 100vh;
 }
 
+.game-boady{
+    float: left;
+}
 
-
-.krusty-header {
+/* .krusty-header {
     background-image: url("header.png");
     background-position: 50% 45%;
     background-repeat: no-repeat;
@@ -52,7 +54,7 @@
     transform: translate(-50%, -50%);
     height:7vw;
     width: 40%;
-}
+} */
 
 .container {
     min-height: 100%;
@@ -126,8 +128,8 @@
 }
 
 .donut-board {
-    display: inline-flex;
-
+    /* display: inline-flex; */
+float:right;
     /* grid-template-columns: repeat(2, 100px);
     grid-template-rows: repeat(4, 100px); */
     border-top: solid 1px #666;

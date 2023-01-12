@@ -2,7 +2,28 @@
 2. splash + home page set up / front end
 
 npm start
+npm install
+npm install react-router-dom --save
+npm start
 
+In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to update the import from
+
+import { Switch, Route } from "react-router-dom";
+to
+
+import { Routes ,Route } from 'react-router-dom';
+
+In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to update the import from
+
+
+
+<Route path="/" component={Home} />
+to
+
+<Route path='/' element={<Home/>} />
+In react-router-dom, you also do not need to use the exact in the Route declaration.
+
+https://www.moreonfew.com/attempted-import-error-switch-is-not-exported-from-react-router-dom/
 
 
 1. Connect API to generate random 4 numbers
