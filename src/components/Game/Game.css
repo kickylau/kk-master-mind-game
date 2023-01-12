@@ -1,97 +1,160 @@
-.board {
-    /* border: #61dafb;
-    border-radius: 10px; */
-    /* display: flex;
-    width: 292.72px;
-    height: 100%;
-    float: left; */
-    border: 5px solid black;
-    /* background-color: black; */
-    height: 805px;
-    width: 400px;
+.game-container {
+    overflow: scroll;
+    box-shadow: rgb(0 0 0 /40%) 0px 3px 16px 3px;
     position: absolute;
-    /* display: grid;
-    grid-template-columns: repeat(4, 73.18px);
-    grid-template-rows: repeat(10, 80px); */
+    top: 50%;
+    left: 50%;
+    /* display:flex; */
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    transform: translate(-50%, -50%);
+    /* top: 50%; */
+    background-color: #333;
+    /* display: flex;
+    flex-direction: column; */
+
+    /* margin-left: auto;
+    margin-right:auto;
+    margin-top: 5%;
+    margin-bottom: auto; */
+    /* margin:auto auto; */
+    /* padding: 15px; */
+    /* margin-bottom: 30px; */
+    border-radius: 8px;
+    /* text-align: left; */
+    /* background-position: center 50%;
+    /* display:flex; */
+    height: 35vw;
+    width: 40%;
+    /* max-height: 310px; */
+    /* min-height: auto; */
+
+
+
+
+}
+
+.body {
+    height: 100vh;
 }
 
 
+
+.krusty-header {
+    background-image: url("header.png");
+    background-position: 50% 45%;
+    background-repeat: no-repeat;
+    background-size: 55%;
+    position: relative;
+    top:3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height:7vw;
+    width: 40%;
+}
+
+.container {
+    min-height: 100%;
+    position: relative;
+    background-image: url("background.png");
+}
+
+.arcade-container {
+    background-image: url("background-arcade2.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center 50%;
+    /* min-height: 100%; */
+    position: relative;
+
+}
+
 .row {
-    display: flex;
-    width: 100%;
+    /* display: inline-block; */
+    display: inline-flex;
+    width: 260px;
     height: 80px;
+    /* padding:10px 0 10px 10px; */
+    border: #F4F4F4 1px solid;
+    /* margin:-1px 4px 0 0; */
 }
 
 .row-tile {
-    width: 70px;
+    width: 100px;
+    height: 60%;
+    float: left;
 }
 
 
 .pegs {
     display: grid;
     height: 100%;
-    width: 120px;
+    width: 100%;
     float: right;
     margin-top: 0px;
-    grid-template-columns: repeat(4, 30px);
-    grid-template-rows: repeat(10, 80px);
+    grid-template-columns: repeat(2, 30px);
+    grid-template-rows: repeat(2, 30px);
 }
 
-.peg-rows{
-    width:100%;
-    /* background-image: url("bart.png");
-    background-size: 100% 100%; */
 
-
-}
-
-.blackPeg{
-    width:100%;
+.blackPeg {
+    width: 100%;
     background-image: url("bart.png");
     background-size: 100% 100%;
-
-
-
+    /* background-color: red; */
+    grid-template-columns: repeat(2, 30px);
+    grid-template-rows: repeat(10, 0px);
 }
 
-.whitePeg{
-    width:100%;
+.whitePeg {
+    width: 100%;
     background-image: url("lisa.png");
     background-size: 100% 100%;
+    /* background-color: red;
+    grid-template-columns: repeat(2, 30px); */
+    grid-template-rows: repeat(10, 0px);
 
 
 
 }
 
-#correctColorWrongPost{
+#correctColorWrongPost {
     background-image: url("bart.png");
     background-size: 100% 100%;
 
 }
 
-.colorBoard {
-    display: grid;
-    grid-template-columns: repeat(2, 100px);
-    grid-template-rows: repeat(4, 100px);
-    width: 200px;
-    height: 400px;
-    border: 5px solid black;
+.donut-board {
+    display: inline-flex;
+
+    /* grid-template-columns: repeat(2, 100px);
+    grid-template-rows: repeat(4, 100px); */
+    border-top: solid 1px #666;
+    width: 260px;
+    height: 100px;
+    /* border:  solid black; */
     margin: 0 auto;
     margin-top: 10px;
+    padding-top: 10px;
+}
 
+.donut-board-tile {
+    width: 30%;
+    height: 60%;
 }
 
 
-
+/*
 .currentColor {
     width: 200px;
     height: 50px;
     border: 5px solid black;
     margin: 0 auto;
     margin-top: 10px;
-}
+} */
 
-.code {
+/* .code {
     display: grid;
     grid-template-columns: repeat(4, 50px);
     grid-template-rows: repeat(1, 50px);
@@ -100,7 +163,7 @@
     border: 5px solid black;
     margin: 0 auto;
     margin-top: 10px;
-}
+} */
 
 .secretColor {
     background-color: black;
@@ -129,59 +192,67 @@
 }
 
 #blue {
-
+    margin: -1px 4px 0 0;
     background-image: url("11.png");
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+
 }
 
 #red {
-
+    margin: -1px 4px 0 0;
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     background-image: url("22.png");
+
 }
 
 #purple {
-
+    margin: -1px 4px 0 0;
     background-image: url("3.png");
-    background-size: 100% 100%;
-    border: 1px solid white;
+    /* background-size: 100% 100%;
+    border: 1px solid white; */
+
 }
 
 #yellow {
-
+    margin: -1px 4px 0 0;
     background-image: url("4.png");
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+
 }
 
 #green {
-
+    margin: -1px 4px 0 0;
     background-image: url("5.png");
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+
 }
 
 #pink {
-
+    margin: -1px 4px 0 0;
     background-image: url("6.png");
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+
 }
 
 #gold {
-
+    margin: -1px 4px 0 0;
     background-image: url("7.png");
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+
 }
 
 #orange {
-
+    margin: -1px 4px 0 0;
     background-image: url("8.png");
     background-size: 100% 100%;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+
 }
 
 

@@ -9,10 +9,11 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+  //if deployed to heroku it wont affect
   <React.StrictMode>
 
       <App />
-   
+
   </React.StrictMode>
 );
 

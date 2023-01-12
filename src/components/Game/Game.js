@@ -2,6 +2,8 @@ import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import logo from '../SplashPage/homer.png';
 import Row from "./Board/Row/Row.js"
+import background from "./background.png";
+
 
 
 function Game() {
@@ -56,6 +58,8 @@ function Game() {
         setGuess([])
         setAnswer("")
         setShowResult(false)
+        setData(new Array(10).fill([]))
+        setPegData(new Array(10).fill([]))
     }
 
     //create map color vs. number
@@ -178,104 +182,112 @@ function Game() {
 
     return (
         <>
-            <div className="Game">
-                <h1>Master Mind Game</h1>
-                <h1>Result = {randomCode}</h1>
-                <h1>Your Answer:{answer}  </h1>
-                <h1>Your Counts Left: {counter}</h1>
-                <h1>You Are Guessing: {guess}</h1>
 
-                <div className="board">
+            <div className="container">
+                <div className="arcade-container">
 
-                    {[...Array(10)].map((x, idx) =>
-                        <Row key={`row-${idx}`}
-                            showAnswer={showAnswer}
-                            pegWhite={pegWhite}
-                            pegBlack={pegBlack}
-                            passDataToRow={data}
-                            passAnswerToRow={pegData}
-                            numberMap={numberMap}
-                            rowIdx={idx}
-                        />
-                    )}
-                </div>
+
+                    <div className="body">
+
+
+                        <h1>Master Mind Game</h1>
+                        <h1>Result = {randomCode}</h1>
+                        <h1>Your Answer:{answer}  </h1>
+                        <h1>Your Counts Left: {counter}</h1>
+                        <h1>You Are Guessing: {guess}</h1>
 
 
 
-                <div className="other" style={{ display: showResult ? "block" : "none" }}>
-                    <div className="code">
-                        {randomCode.map((number, idx) =>
-                            <div key={`code-${idx}`} className="secretColor" id={numberMap[number]}></div>
-                        )}
-                    </div>
-                </div>
+                        <div className="game-container">
+                            <div className="game-body">
+                                {[...Array(10)].map((x, idx) =>
+                                    <Row key={`row-${idx}`}
+                                        showAnswer={showAnswer}
+                                        pegWhite={pegWhite}
+                                        pegBlack={pegBlack}
+                                        passDataToRow={data}
+                                        passAnswerToRow={pegData}
+                                        numberMap={numberMap}
+                                        rowIdx={idx}
+                                    />
+                                )}
+                            </div>
+                            <div className="donut-board">
+                                {Object.keys(colorMap).map((color) =>
+                                    <div key={`code-${color}`} className="donut-board-tile" id={color} onClick={e =>
+                                        addToGuess(e.target.id)
 
-
-                <div className="colorBoard">
-                    {Object.keys(colorMap).map((color) =>
-                        <div key={`code-${color}`} className="color" id={color} onClick={e =>
-                            addToGuess(e.target.id)
-
-                        }>{colorMap[color]}</div>
-                        // each child in a list should have a unique key prop
-                    )}
-                </div>
-
-
-
-
-                <div>
-                    <button className="newGame" type="submit" onClick={() => {
-                        fetchData()
-                        reset()
-                        setShowResult(false)
-                    }
-                    }> New Game</button>
-                </div>
-                <div><button className="check" type="submit" onClick={() => {
-                    if (counter > 0) {
-                        numberGuess({ randomCode }.randomCode, { guess }.guess)
-                        decrease()
-                    }
-                    if (counter == 1) {
-                        setShowModal(true)
-                        setShowResult(true)
-                    }
-                    setGuess([])
-                }
-                }> Check </button>
-                </div>
-
-                {
-                    showWinningModal &&
-                    <div id="modalWrapper" onClick={() => {
-                        setShowModal(false)
-                        setShowWinningModal(false)
-                        fetchData()
-                        reset()
-                    }}>
-                        <div id="modal" >
-                            <img src={logo} className="App-logo" alt="logo" />
+                                    }>{colorMap[color]}</div>
+                                    // each child in a list should have a unique key prop
+                                )}
+                            </div>
                         </div>
-                    </div>
-                }
 
-                {
-                    showModal &&
-                    <div id="modalWrapper" onClick={() => {
-                        setShowModal(false)
-                        fetchData()
-                        reset()
-                    }}>
-                        <div id="modal" >
-                            <img src={logo} className="App-logo" alt="logo" />
+                        <div className="krusty-header"></div>
+
+                        <div className="other" style={{ display: showResult ? "block" : "none" }}>
+                            <div className="code">
+                                {randomCode.map((number, idx) =>
+                                    <div key={`code-${idx}`} className="secretColor" id={numberMap[number]}></div>
+                                )}
+                            </div>
                         </div>
+
+
+                        <div>
+                            <button className="newGame" type="submit" onClick={() => {
+                                fetchData()
+                                reset()
+                                setShowResult(false)
+                            }
+                            }> New Game</button>
+                        </div>
+
+
+                        <div><button className="check" type="submit" onClick={() => {
+
+                            // disabled={data[10 - counter].length < 4 ? "true" : ""}
+                            if (counter > 0) {
+                                numberGuess({ randomCode }.randomCode, { guess }.guess)
+                                decrease()
+                            }
+                            if (counter == 1) {
+                                setShowModal(true)
+                                setShowResult(true)
+                            }
+                            setGuess([])
+                        }
+                        }> Check </button>
+                        </div>
+
+                        {
+                            showWinningModal &&
+                            <div id="modalWrapper" onClick={() => {
+                                setShowModal(false)
+                                setShowWinningModal(false)
+                                fetchData()
+                                reset()
+                            }}>
+                                <div id="modal" >
+                                    <img src={logo} className="App-logo" alt="logo" />
+                                </div>
+                            </div>
+                        }
+
+                        {
+                            showModal &&
+                            <div id="modalWrapper" onClick={() => {
+                                setShowModal(false)
+                                fetchData()
+                                reset()
+                            }}>
+                                <div id="modal" >
+                                    <img src={logo} className="App-logo" alt="logo" />
+                                </div>
+                            </div>
+                        }
                     </div>
-                }
-
-
-
-
+                </div>
             </div>
         </>
     )
