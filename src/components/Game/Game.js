@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import logo from '../SplashPage/homer.png';
 import Row from "./Board/Row/Row.js"
 import background from "./background.png";
+import donut3 from "./3.png";
 
 
 
@@ -214,11 +215,13 @@ function Game() {
                             </div>
                             <div className="donut-board">
                                 {Object.keys(colorMap).map((color) =>
-                                    <div key={`code-${color}`} className="donut-board-tile" id={color} onClick={e =>
+                                    <div key={`code-${color}`} className="donut-board-tile" onClick={e =>
                                         addToGuess(e.target.id)
 
-                                    }>{colorMap[color]}</div>
-                                    // each child in a list should have a unique key prop
+                                    }>{colorMap[color]}
+                                        <img src={donut3} />
+                                    </div>
+                                    // each child in a list should have a unique key prop id={color}
                                 )}
                             </div>
                         </div>

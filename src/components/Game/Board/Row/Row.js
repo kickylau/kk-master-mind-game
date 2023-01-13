@@ -27,7 +27,7 @@ function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer }) 
                     <div className="row-tile" id={passDataToRow[rowIdx] ? numberMap[passDataToRow[rowIdx][idx]] : ""}>
                     </div>)}
                 <div className="pegs" >
-                    
+
                     {pegDivs}
                 </div>
             </div>
