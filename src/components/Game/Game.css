@@ -29,7 +29,7 @@
     width: 40%;
     /* max-height: 310px; */
     /* min-height: auto; */
-    display:flex;
+    display: flex;
 
 
 
@@ -40,9 +40,9 @@
     height: 100vh;
 }
 
-.game-boady{
-    float:left;
-    width:auto;
+.game-body {
+    float: left;
+    width: auto;
     height: auto;
 }
 
@@ -53,14 +53,14 @@
     grid-template-rows: repeat(4, 100px); */
     /* border-top: solid 1px #666; */
     width: 30vw;
-    height:15vh;
+    height: 15vh;
     min-height: auto;
     /* border:  solid black; */
     /* margin: 0 auto; */
     /* margin-top: 10px;
     padding-top: 10px; */
-    float:right;
-    margin-right: -17%;
+    /* float:right;
+    margin-right: -17%; */
 
 
 
@@ -150,10 +150,14 @@
 
 }
 
+img {
+    max-width: 100%;
+    max-height: 100%
+}
 
 .donut-board-tile {
-    width: 30%;
-    height: 60%;
+    /* width: 30%;
+    height: 60%; */
 }
 
 
