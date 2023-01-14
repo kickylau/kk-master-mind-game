@@ -9,13 +9,13 @@ function Row({ passDataToRow, numberMap, rowIdx, passAnswerToRow, showAnswer, si
 
     if (passAnswerToRow[rowIdx]) {
         for (let i = 0; i < passAnswerToRow[rowIdx][0]; i++) {
-            pegDivs.push(<div className="black-peg black-circle" key={`blacks-${i}`} >
-                <circle><img src={require(`./../../bart.png`)} /></circle>
+            pegDivs.push(<div className="black-pegs" key={`blacks-${i}`} >
+                <img src={require(`./../../bart.png`)} />
             </div>)
         }
         for (let i = 0; i < passAnswerToRow[rowIdx][1]; i++) {
-            pegDivs.push(<div className="white-peg white-circle" key={`whites-${i}`}>
-                <circle><img src={require(`./../../lisa.png`)} /></circle>
+            pegDivs.push(<div className="white-pegs" key={`whites-${i}`}>
+                <img src={require(`./../../lisa.png`)} />
             </div>)
         }
 

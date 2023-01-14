@@ -1,11 +1,14 @@
 import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
+import useSound from "use-sound";
 import logo from '../SplashPage/homer.png';
 import Row from "./Board/Row/Row.js"
-import background from "./background.png";
 import backgroundVideo from "./background-video.mp4";
+import backgroundMusic from "./background-music.mp3";
+
 
 function Game() {
+
 
     const sizeLimit = 4
 
@@ -20,15 +23,32 @@ function Game() {
     const [showAnswer, setShowAnswer] = useState(false)
     const [pegWhite, setPegWhite] = useState(0)
     const [pegBlack, setPegBlack] = useState(0)
-
-
-
+    const [play, { stop, pause }] = useSound(backgroundMusic);
+    const [isPlaying, setIsplaying] = useState(false);
 
     //create a function and a button to trigger so that pass data to child
     //create a state to manage the data
 
     const [data, setData] = useState(new Array(10).fill([]))
     const [pegData, setPegData] = useState(new Array(10).fill([]))
+
+
+
+    const playSong = () => {
+        setIsplaying(true);
+        play()
+    }
+
+    const stopSong = () => {
+        setIsplaying(false);
+        stop()
+    }
+
+    const pauseSong = () => {
+        setIsplaying(false);
+        pause()
+    }
+
 
     const passDataToRow = (guessArray) => {
         // console.log("guessArray", guessArray)
@@ -176,20 +196,24 @@ function Game() {
         setShowResult()
     }, [])
 
-    // console.log("parent", showAnswer)
-
 
     return (
         <>
 
             <div className="container">
-                <video autoPlay loop muted id="video"><source src={backgroundVideo} type="video/mp4"/>
-                </video>
+                <video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
+                <div className="fa-solid fa-circle-pause"
+                    onClick={isPlaying ? pauseSong : playSong}></div>
+
+
+                <div className="fa-solid fa-circle-stop"
+                    onClick={isPlaying ? stopSong : playSong}></div>
+
 
                 <div className="controls">
                     <h1>Result = {randomCode}</h1>
                     <h1>Your Answer:{answer}</h1>
-                    <p>  Your Counts Left: {counter}</p>
+                    <p> Your Counts Left: {counter}</p>
                     <p>You Are Guessing: {guess}</p>
 
                     <div className="krusty-header"></div>
@@ -204,6 +228,7 @@ function Game() {
 
                     <div>
                         <button className="new-game" type="submit" onClick={() => {
+                            if (!isPlaying) playSong()
                             fetchData()
                             reset()
                             setShowResult(false)
@@ -249,9 +274,10 @@ function Game() {
                             </div>
                             <div className="donut-board">
                                 {Object.keys(colorMap).map((color) =>
-                                    <div key={`code-${color}`} className="donut-board-tile" onClick={e =>
+                                    <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
                                         addToGuess(color)
-                                    }>
+
+                                    }}>
                                         {colorMap[color]}
                                         <img src={require(`./${colorMap[color]}.png`)} />
                                     </div>

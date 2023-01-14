@@ -15,7 +15,7 @@ import { Routes ,Route } from 'react-router-dom';
 
 In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to update the import from
 
-
+npm install use-sound
 
 <Route path="/" component={Home} />
 to

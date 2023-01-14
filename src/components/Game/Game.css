@@ -123,14 +123,14 @@
     /* background-color: white; */
 }
 
-.black-circle {
+.black-pegs {
     border-radius: 50%;
     width: 20px;
     height: 20px;
     background-color:black;
 }
 
-.white-circle {
+.white-pegs {
     border-radius: 50%;
     width: 20px;
     height: 20px;
