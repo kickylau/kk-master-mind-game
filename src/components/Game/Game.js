@@ -245,7 +245,7 @@ function Game() {
                     </div>
                     <div><button className="check" type="submit" onClick={() => {
 
-                        // disabled={data[10 - counter].length < 4 ? "true" : ""}
+                        //disabled={data[10 - counter]?.length < 4 ? true : ""}
                         if (counter > 0) {
                             numberGuess({ randomCode }.randomCode, { guess }.guess)
                             decrease()
@@ -277,6 +277,8 @@ function Game() {
                                         numberMap={numberMap}
                                         rowIdx={idx}
                                         sizeLimit={sizeLimit}
+                                        isBlue={10 - counter == idx ? "blue" : ""}
+                                        isGrey={10 - counter > idx ? " grey" : ""}
                                     />
                                 )}
                             </div>
@@ -314,7 +316,7 @@ function Game() {
 
                         {
                             showLosingModal &&
-                            <div id="modalWrapper" onClick={() => {
+                            <div id="modal-wrapper" onClick={() => {
                                 setShowLosingModal(false)
                                 fetchData()
                                 reset()

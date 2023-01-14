@@ -283,6 +283,22 @@ img {
 }
 
 
+.fa-angles-right {
+    color: white;
+}
+
+.blue {
+    color: lightskyblue
+}
+
+.grey {
+    color: darkgray
+}
+
+.hidden {
+    display: none;
+}
+
 .App {
     text-align: center;
 }
@@ -302,9 +318,10 @@ img {
 
 #modal {
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .logo {
