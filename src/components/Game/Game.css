@@ -30,11 +30,18 @@
     /* max-height: 310px; */
     /* min-height: auto; */
     display: flex;
-
-
-
-
+    overflow: auto;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.game-container::-webkit-scrollbar {
+    display: none;
+}
+
 
 .body {
     height: 100vh;
@@ -42,8 +49,8 @@
 
 .game-body {
     float: left;
-    width: auto;
-    height: auto;
+    width: 90%;
+    /* height: 100%; */
 }
 
 .donut-board {
@@ -52,15 +59,15 @@
     /* grid-template-columns: repeat(2, 100px);
     grid-template-rows: repeat(4, 100px); */
     /* border-top: solid 1px #666; */
-    width: 30vw;
-    height: 15vh;
-    min-height: auto;
+    width: 10%;
+    /* height:100%; */
     /* border:  solid black; */
     /* margin: 0 auto; */
     /* margin-top: 10px;
     padding-top: 10px; */
     /* float:right;
     margin-right: -17%; */
+    background-color: #333;
 
 
 
@@ -80,9 +87,19 @@
 } */
 
 .container {
-    min-height: 100%;
+    /* min-height: 100%;
     position: relative;
-    background-image: url("background.png");
+    background-image: url("background.png"); */
+}
+
+#video{
+    object-fit: cover;
+    position:fixed;
+    z-index:-1;
+    width: 100vw;
+    height:100vh;
+    top:0;
+    left:0;
 }
 
 .arcade-container {
@@ -98,17 +115,33 @@
 .row {
     /* display: inline-block; */
     display: inline-flex;
-    width: 260px;
-    height: 80px;
+    width: 100%;
+    height: 9%;
     /* padding:10px 0 10px 10px; */
-    border: #F4F4F4 1px solid;
+    /* border: green 1px solid; */
     /* margin:-1px 4px 0 0; */
+    /* background-color: white; */
+}
+
+.black-circle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color:black;
+}
+
+.white-circle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color:white;
 }
 
 .row-tile {
-    width: 100px;
-    height: 60%;
+    width: 100%;
+    height: 100%;
     float: left;
+    text-align: center;
 }
 
 
@@ -118,70 +151,24 @@
     width: 100%;
     float: right;
     margin-top: 0px;
-    grid-template-columns: repeat(2, 30px);
-    grid-template-rows: repeat(2, 30px);
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+    grid-auto-rows: minmax(50%, 50%)
 }
 
 
-.blackPeg {
-    width: 100%;
-    background-image: url("bart.png");
-    background-size: 100% 100%;
-    /* background-color: red; */
-    grid-template-columns: repeat(2, 30px);
-    grid-template-rows: repeat(10, 0px);
-}
-
-.whitePeg {
-    width: 100%;
-    background-image: url("lisa.png");
-    background-size: 100% 100%;
-    /* background-color: red;
-    grid-template-columns: repeat(2, 30px); */
-    grid-template-rows: repeat(10, 0px);
-
-
-
-}
-
-#correctColorWrongPost {
-    background-image: url("bart.png");
-    background-size: 100% 100%;
-
-}
 
 img {
-    max-width: 100%;
-    max-height: 100%
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+
+
 }
 
-.donut-board-tile {
-    /* width: 30%;
-    height: 60%; */
-}
 
 
-/*
-.currentColor {
-    width: 200px;
-    height: 50px;
-    border: 5px solid black;
-    margin: 0 auto;
-    margin-top: 10px;
-} */
-
-/* .code {
-    display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(1, 50px);
-    width: 200px;
-    height: 50px;
-    border: 5px solid black;
-    margin: 0 auto;
-    margin-top: 10px;
-} */
-
-.secretColor {
+.secret-color {
     background-color: black;
 }
 
@@ -209,55 +196,7 @@ img {
 
 #blue {
     margin: -1px 4px 0 0;
-    background-image: url("11.png");
-    background-size: 100% 100%;
-    /* border: 1px solid white; */
-
-}
-
-#red {
-    margin: -1px 4px 0 0;
-    background-size: 100% 100%;
-    /* border: 1px solid white; */
-    background-image: url("22.png");
-
-}
-
-#purple {
-    margin: -1px 4px 0 0;
-    background-image: url("3.png");
-    /* background-size: 100% 100%;
-    border: 1px solid white; */
-
-}
-
-#yellow {
-    margin: -1px 4px 0 0;
-    background-image: url("4.png");
-    background-size: 100% 100%;
-    /* border: 1px solid white; */
-
-}
-
-#green {
-    margin: -1px 4px 0 0;
-    background-image: url("5.png");
-    background-size: 100% 100%;
-    /* border: 1px solid white; */
-
-}
-
-#pink {
-    margin: -1px 4px 0 0;
-    background-image: url("6.png");
-    background-size: 100% 100%;
-    /* border: 1px solid white; */
-
-}
-
-#gold {
-    margin: -1px 4px 0 0;
-    background-image: url("7.png");
+    background-image: url("0.png");
     background-size: 100% 100%;
     /* border: 1px solid white; */
 
@@ -265,14 +204,62 @@ img {
 
 #orange {
     margin: -1px 4px 0 0;
-    background-image: url("8.png");
+    background-size: 100% 100%;
+    /* border: 1px solid white; */
+    background-image: url("1.png");
+
+}
+
+#purple {
+    margin: -1px 4px 0 0;
+    background-image: url("2.png");
+    background-size: 100% 100%;
+    /* border: 1px solid white; */
+
+}
+
+#yellow {
+    margin: -1px 4px 0 0;
+    background-image: url("3.png");
+    background-size: 100% 100%;
+    /* border: 1px solid white; */
+
+}
+
+#green {
+    margin: -1px 4px 0 0;
+    background-image: url("4.png");
+    background-size: 100% 100%;
+    /* border: 1px solid white; */
+
+}
+
+#pink {
+    margin: -1px 4px 0 0;
+    background-image: url("5.png");
+    background-size: 100% 100%;
+    /* border: 1px solid white; */
+
+}
+
+#caramel {
+    margin: -1px 4px 0 0;
+    background-image: url("6.png");
+    background-size: 100% 100%;
+    /* border: 1px solid white; */
+
+}
+
+#brown {
+    margin: -1px 4px 0 0;
+    background-image: url("7.png");
     background-size: 100% 100%;
     /* border: 1px solid white; */
 
 }
 
 
-.newGame {
+.new-game {
     text-align: center;
     color: black;
     margin: 0 auto;
@@ -291,7 +278,7 @@ img {
     text-align: center;
 }
 
-#modalWrapper {
+#modal-wrapper {
     position: fixed;
     padding: 0;
     margin: 0;

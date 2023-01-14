@@ -3,9 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import logo from '../SplashPage/homer.png';
 import Row from "./Board/Row/Row.js"
 import background from "./background.png";
-import donut3 from "./3.png";
-
-
+import backgroundVideo from "./background-video.mp4";
 
 function Game() {
 
@@ -66,24 +64,24 @@ function Game() {
     //create map color vs. number
     const colorMap = {
         "blue": 0,
-        "red": 1,
+        "orange": 1,
         "purple": 2,
         "yellow": 3,
         "green": 4,
         "pink": 5,
-        "gold": 6,
-        "orange": 7
+        "caremel": 6,
+        "brown": 7
     }
 
     const numberMap = {
         0: "blue",
-        1: "red",
+        1: "orange",
         2: "purple",
         3: "yellow",
         4: "green",
         5: "pink",
-        6: "gold",
-        7: "orange"
+        6: "caramel",
+        7: "brown"
     }
 
     //function to enter guess
@@ -130,7 +128,7 @@ function Game() {
         setShowAnswer(true)
         passAnswerToRow([correctPosAndColor, correctColorWrongPos])
 
-        if (correctPosAndColor == 4) {
+        if (correctPosAndColor == sizeLimit) {
             setShowWinningModal(true)
             setShowResult(true)
         }
@@ -140,7 +138,7 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        const url = 'https://www.random.org/integers/?num=4&min=1&max=6&col=1&base=10&format=plain&rnd=new'
+        const url = `https://www.random.org/integers/?num=${sizeLimit}&min=1&max=6&col=1&base=10&format=plain&rnd=new`
 
         try {
             const response = await fetch(url);
@@ -185,18 +183,53 @@ function Game() {
         <>
 
             <div className="container">
+                <video autoPlay loop muted id="video"><source src={backgroundVideo} type="video/mp4"/>
+                </video>
+
+                <div className="controls">
+                    <h1>Result = {randomCode}</h1>
+                    <h1>Your Answer:{answer}</h1>
+                    <p>  Your Counts Left: {counter}</p>
+                    <p>You Are Guessing: {guess}</p>
+
+                    <div className="krusty-header"></div>
+
+                    <div className="other" style={{ display: showResult ? "block" : "none" }}>
+                        <div className="code">
+                            {randomCode.map((number, idx) =>
+                                <div key={`code-${idx}`} className="secret-color" id={numberMap[number]}></div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div>
+                        <button className="new-game" type="submit" onClick={() => {
+                            fetchData()
+                            reset()
+                            setShowResult(false)
+                        }
+                        }> New Game</button>
+                    </div>
+                    <div><button className="check" type="submit" onClick={() => {
+
+                        // disabled={data[10 - counter].length < 4 ? "true" : ""}
+                        if (counter > 0) {
+                            numberGuess({ randomCode }.randomCode, { guess }.guess)
+                            decrease()
+                        }
+                        if (counter == 1) {
+                            setShowModal(true)
+                            setShowResult(true)
+                        }
+                        setGuess([])
+                    }
+                    }> Check </button>
+                    </div>
+                </div>
                 <div className="arcade-container">
 
 
                     <div className="body">
-
-
-                        <h1>Master Mind Game</h1>
-                        <h1>Result = {randomCode}</h1>
-                        <h1>Your Answer:{answer}  </h1>
-                        <h1>Your Counts Left: {counter}</h1>
-                        <h1>You Are Guessing: {guess}</h1>
-
 
 
                         <div className="game-container">
@@ -210,62 +243,27 @@ function Game() {
                                         passAnswerToRow={pegData}
                                         numberMap={numberMap}
                                         rowIdx={idx}
+                                        sizeLimit={sizeLimit}
                                     />
                                 )}
                             </div>
                             <div className="donut-board">
                                 {Object.keys(colorMap).map((color) =>
                                     <div key={`code-${color}`} className="donut-board-tile" onClick={e =>
-                                        addToGuess(e.target.id)
-
-                                    }>{colorMap[color]}
-                                        <img src={donut3} />
+                                        addToGuess(color)
+                                    }>
+                                        {colorMap[color]}
+                                        <img src={require(`./${colorMap[color]}.png`)} />
                                     </div>
                                     // each child in a list should have a unique key prop id={color}
+                                    //require used for static imports .
                                 )}
                             </div>
-                        </div>
-
-                        <div className="krusty-header"></div>
-
-                        <div className="other" style={{ display: showResult ? "block" : "none" }}>
-                            <div className="code">
-                                {randomCode.map((number, idx) =>
-                                    <div key={`code-${idx}`} className="secretColor" id={numberMap[number]}></div>
-                                )}
-                            </div>
-                        </div>
-
-
-                        <div>
-                            <button className="newGame" type="submit" onClick={() => {
-                                fetchData()
-                                reset()
-                                setShowResult(false)
-                            }
-                            }> New Game</button>
-                        </div>
-
-
-                        <div><button className="check" type="submit" onClick={() => {
-
-                            // disabled={data[10 - counter].length < 4 ? "true" : ""}
-                            if (counter > 0) {
-                                numberGuess({ randomCode }.randomCode, { guess }.guess)
-                                decrease()
-                            }
-                            if (counter == 1) {
-                                setShowModal(true)
-                                setShowResult(true)
-                            }
-                            setGuess([])
-                        }
-                        }> Check </button>
                         </div>
 
                         {
                             showWinningModal &&
-                            <div id="modalWrapper" onClick={() => {
+                            <div id="modal-wrapper" onClick={() => {
                                 setShowModal(false)
                                 setShowWinningModal(false)
                                 fetchData()
