@@ -53,6 +53,16 @@
     /* height: 100%; */
 }
 
+.donut-board-row {
+    display: inline-flex;
+    width: 100%;
+}
+
+.donut-board-label {
+    /* position: absolute; */
+    width: 100%;
+}
+
 .donut-board {
     /* display: inline-flex; */
 
@@ -68,9 +78,8 @@
     /* float:right;
     margin-right: -17%; */
     background-color: #333;
-
-
-
+    color: whitesmoke;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
 /* .krusty-header {
@@ -92,14 +101,14 @@
     background-image: url("background.png"); */
 }
 
-#video{
+#video {
     object-fit: cover;
-    position:fixed;
-    z-index:-1;
+    position: fixed;
+    z-index: -1;
     width: 100vw;
-    height:100vh;
-    top:0;
-    left:0;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }
 
 .arcade-container {
@@ -127,14 +136,14 @@
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    background-color:black;
+    background-color: black;
 }
 
 .white-pegs {
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    background-color:white;
+    background-color: white;
 }
 
 .row-tile {
@@ -298,13 +307,13 @@ img {
     left: 50%;
 }
 
-.App-logo {
+.logo {
     pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+    .logo {
+        animation: logo-spin infinite 20s linear;
     }
 }
 
@@ -323,7 +332,7 @@ img {
     color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+@keyframes logo-spin {
     from {
         transform: rotate(0deg);
     }

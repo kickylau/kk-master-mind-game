@@ -1,28 +1,25 @@
 @font-face {
-    font-family: "Simpsons";   /*Can be any text*/
+    font-family: "Simpsons";
+    /*Can be any text*/
     src: local("Simpsonfont"),
-      url("../../fonts/Simpsonfont.ttf") format("truetype");
-  }
-
-
-
+        url("../../fonts/Simpsonfont.ttf") format("truetype");
+}
 
 .App {
     text-align: center;
 }
 
-.App-logo {
+.logo {
     height: 40vmin;
-    pointer-events: none;
+    /* pointer-events: none; */
+    cursor: pointer;
 }
 
-
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
+/* @media (prefers-reduced-motion: no-preference) {
+    .logo {
+        animation: logo-spin infinite 20s linear;
     }
-}
+} */
 
 .App-header {
     background-color: #282c34;
@@ -39,7 +36,7 @@
     color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes logo-spin {
     from {
         transform: rotate(0deg);
     }
@@ -47,40 +44,41 @@
     to {
         transform: rotate(360deg);
     }
-}
+} */
 
-@keyframes blink-animation{
+/* @keyframes blink-animation {
     to {
         visibility: hidden;
     }
-}
+} */
 
 
-#enterGame{
+#enterGame {
     /* font-family: 'Press Start 2P';font-size: 22px; */
     font-family: 'ArcadeClassic', cursive;
-    font-size:32px;
-    background: repeating-linear-gradient(to bottom, #0f0a1e,#0f0a1e 2px,
-    lighten(#0f0a1e, 3%) 2px,
-    lighten(#0f0a1e, 3%) 4px);
-    position:fixed;
-    top:70%;
-    left:0;
-    bottom:0;
-    right:0;
-    height:90px;
-    color:white;
-    width:100%;
+    font-size: 32px;
+    background: repeating-linear-gradient(to bottom, #0f0a1e, #0f0a1e 2px,
+            lighten(#0f0a1e, 3%) 2px,
+            lighten(#0f0a1e, 3%) 4px);
+    position: fixed;
+    top: 70%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 90px;
+    color: white;
+    width: 100%;
     text-align: center;
-    margin:auto;
-    font-size:40px;
+    margin: auto;
+    font-size: 40px;
     line-height: 40px;
     letter-spacing: 5px;
-    text-shadow: -2px 0 0 #fdff2a,  -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
-    animation: blink-animation 1s steps(4,start) infinite;
+    text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+    /* animation: blink-animation 1s steps(4, start) infinite; */
+    cursor: pointer;
 }
 
-#simpson{
+#simpson {
     font-family: "Simpsons";
-    color:rgb(255, 204, 0);
+    color: rgb(255, 204, 0);
 }

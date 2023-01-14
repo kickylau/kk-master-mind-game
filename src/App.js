@@ -14,6 +14,9 @@ import SplashPage from './components/SplashPage/SplashPage';
 function App() {
 
 
+
+
+
   return (
     <BrowserRouter>
       <Routes>

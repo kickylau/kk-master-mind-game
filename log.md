@@ -17,6 +17,16 @@ In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to upd
 
 npm install use-sound
 
+Autoplay Policy Changes no longer allow autoplay without user interaction first.
+
+Muted autoplay is always allowed.
+Autoplay with sound is allowed if:
+User has interacted with the domain (click, tap, etc.).
+On desktop, the user's Media Engagement Index threshold has been crossed, meaning the user has previously played video with sound.
+The user has added the site to their home screen on mobile or installed the PWA on desktop.
+Top frames can delegate autoplay permission to their iframes to allow autoplay with sound.
+The only way to bypass this would be your mouse movement implementation
+
 <Route path="/" component={Home} />
 to
 

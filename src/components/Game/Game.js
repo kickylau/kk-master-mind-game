@@ -17,14 +17,17 @@ function Game() {
     const [guess, setGuess] = useState()
     const [counter, setCounter] = useState(10)
     const isMounted = useRef(false);
-    const [showModal, setShowModal] = useState(false);
+    const [showLosingModal, setShowLosingModal] = useState(false);
     const [showWinningModal, setShowWinningModal] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [showAnswer, setShowAnswer] = useState(false)
     const [pegWhite, setPegWhite] = useState(0)
     const [pegBlack, setPegBlack] = useState(0)
     const [play, { stop, pause }] = useSound(backgroundMusic);
-    const [isPlaying, setIsplaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPausing, setIsPausing] = useState(false);
+    const [isStopping, setIsStopping] = useState(false);
+
 
     //create a function and a button to trigger so that pass data to child
     //create a state to manage the data
@@ -35,17 +38,19 @@ function Game() {
 
 
     const playSong = () => {
-        setIsplaying(true);
+        setIsPlaying(true);
         play()
     }
 
     const stopSong = () => {
-        setIsplaying(false);
+        setIsPlaying(false);
+        setIsStopping(true)
         stop()
     }
 
     const pauseSong = () => {
-        setIsplaying(false);
+        setIsPlaying(false);
+        setIsPausing(true);
         pause()
     }
 
@@ -228,7 +233,10 @@ function Game() {
 
                     <div>
                         <button className="new-game" type="submit" onClick={() => {
-                            if (!isPlaying) playSong()
+                            if (!isPlaying) {
+                                stop()
+                                playSong()
+                            }
                             fetchData()
                             reset()
                             setShowResult(false)
@@ -243,7 +251,7 @@ function Game() {
                             decrease()
                         }
                         if (counter == 1) {
-                            setShowModal(true)
+                            setShowLosingModal(true)
                             setShowResult(true)
                         }
                         setGuess([])
@@ -274,15 +282,18 @@ function Game() {
                             </div>
                             <div className="donut-board">
                                 {Object.keys(colorMap).map((color) =>
+
                                     <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
+                                        if (!isPlaying && !isPausing && !isStopping) playSong()
                                         addToGuess(color)
 
                                     }}>
-                                        {colorMap[color]}
+                                        {/* <p className="donut-board-p"></p> */}
                                         <img src={require(`./${colorMap[color]}.png`)} />
                                     </div>
                                     // each child in a list should have a unique key prop id={color}
                                     //require used for static imports .
+                                    //{colorMap[color]}
                                 )}
                             </div>
                         </div>
@@ -290,26 +301,26 @@ function Game() {
                         {
                             showWinningModal &&
                             <div id="modal-wrapper" onClick={() => {
-                                setShowModal(false)
+                                // setShowModal(false)
                                 setShowWinningModal(false)
                                 fetchData()
                                 reset()
                             }}>
                                 <div id="modal" >
-                                    <img src={logo} className="App-logo" alt="logo" />
+                                    <img src={logo} className="logo" alt="logo" />
                                 </div>
                             </div>
                         }
 
                         {
-                            showModal &&
+                            showLosingModal &&
                             <div id="modalWrapper" onClick={() => {
-                                setShowModal(false)
+                                setShowLosingModal(false)
                                 fetchData()
                                 reset()
                             }}>
                                 <div id="modal" >
-                                    <img src={logo} className="App-logo" alt="logo" />
+                                    <img src={logo} className="logo" alt="logo" />
                                 </div>
                             </div>
                         }
