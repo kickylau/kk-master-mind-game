@@ -1,10 +1,15 @@
 import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import useSound from "use-sound";
-import logo from '../SplashPage/homer.png';
+import winningLogo from '../SplashPage/homer.png';
+import losingLogo from "./doh.png";
 import Row from "./Board/Row/Row.js"
 import backgroundVideo from "./background-video.mp4";
 import backgroundMusic from "./background-music.mp3";
+import doh from "./doh.mp3";
+import woohoo from "./woohoo.mp3";
+import "nes.css/css/nes.min.css";
+import Timer from "./Timer/Timer.js"
 
 
 function Game() {
@@ -19,6 +24,7 @@ function Game() {
     const isMounted = useRef(false);
     const [showLosingModal, setShowLosingModal] = useState(false);
     const [showWinningModal, setShowWinningModal] = useState(false);
+    const [showRulesModal, setShowRulesModal] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [showAnswer, setShowAnswer] = useState(false)
     const [pegWhite, setPegWhite] = useState(0)
@@ -206,99 +212,123 @@ function Game() {
         <>
 
             <div className="container">
+                {/* <Timer/> */}
+                <h1>Result = {randomCode}</h1>
                 <video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
                 <div className="fa-solid fa-circle-pause"
                     onClick={isPlaying ? pauseSong : playSong}></div>
 
-
                 <div className="fa-solid fa-circle-stop"
                     onClick={isPlaying ? stopSong : playSong}></div>
 
+                <button className="nes-btn is-warning" id="rules" onClick={() => {
+                    setShowRulesModal(true)
+                }}>
+                    RULES
+                </button>
 
-                <div className="controls">
-                    <h1>Result = {randomCode}</h1>
-                    <h1>Your Answer:{answer}</h1>
-                    <p> Your Counts Left: {counter}</p>
-                    <p>You Are Guessing: {guess}</p>
+                {
+                    showRulesModal && (
+                        <div id="rules-modal-wrapper" onClick={() => { setShowRulesModal(false) }}>
+                            <div id="rules-modal">
+                                <div className="rules-container">
+                                    <h2>How to play  . .<br></br></h2>
 
-                    <div className="krusty-header"></div>
+                                    1. Select challenge mode by clicking <b><font color="white">"LEVELS"</font></b> button.<br></br>
+                                    <b>"Easy", "Medium", "Hard"</b> each represents rows of <b>4/5/6</b> donuts.<br></br><br></br>
+                                    2. Click each colored donut on the side to create your guess until row is filled.<br></br><br></br>
+                                    3. Then click the <b><font color="white">"GUESS"</font></b> button. You have <b><font color="red">10</font></b> tries.<br></br><br></br>
+                                    4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" src={require(`./bart.png`)} /> <img className="white-pegs" src={require(`./lisa.png`)} /> <br></br><br></br>
+                                    5. <img className="black-pegs" src={require(`./bart.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
+                                    <img className="white-pegs" src={require(`./lisa.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
+                                    6. Use the pegs to guide your next guess. If your guess shows 4/5/6 black bart pegs within 10 tries, you win.<br></br><br></br>
+                                    7. Scores is calculated by timer. Winning with shorter time period and harder challenge mode will have higher scores.<br></br>
+                                    Only winners will have chance to leave their names on the ranking.<br></br><br></br>
+                                    9. To begin a new game click the <b><font color="white">"NEW GAME"</font></b> button.<br></br><br></br>
 
-                    <div className="other" style={{ display: showResult ? "block" : "none" }}>
-                        <div className="code">
-                            {randomCode.map((number, idx) =>
-                                <div key={`code-${idx}`} className="secret-color" id={numberMap[number]}></div>
-                            )}
+                                    ** You can pause/stop background music by clicking the top left buttons **
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
-                    <div>
-                        <button className="new-game" type="submit" onClick={() => {
-                            if (!isPlaying) {
-                                stop()
-                                playSong()
-                            }
-                            fetchData()
-                            reset()
-                            setShowResult(false)
-                        }
-                        }> New Game</button>
-                    </div>
-                    <div><button className="check" type="submit" onClick={() => {
 
-                        //disabled={data[10 - counter]?.length < 4 ? true : ""}
-                        if (counter > 0) {
-                            numberGuess({ randomCode }.randomCode, { guess }.guess)
-                            decrease()
-                        }
-                        if (counter == 1) {
-                            setShowLosingModal(true)
-                            setShowResult(true)
-                        }
-                        setGuess([])
-                    }
-                    }> Check </button>
-                    </div>
-                </div>
                 <div className="arcade-container">
-
 
                     <div className="body">
 
-
                         <div className="game-container">
-                            <div className="game-body">
-                                {[...Array(10)].map((x, idx) =>
-                                    <Row key={`row-${idx}`}
-                                        showAnswer={showAnswer}
-                                        pegWhite={pegWhite}
-                                        pegBlack={pegBlack}
-                                        passDataToRow={data}
-                                        passAnswerToRow={pegData}
-                                        numberMap={numberMap}
-                                        rowIdx={idx}
-                                        sizeLimit={sizeLimit}
-                                        isBlue={10 - counter == idx ? "blue" : ""}
-                                        isGrey={10 - counter > idx ? " grey" : ""}
-                                    />
-                                )}
+
+                            <div className="controls">
+                                <div>
+                                    <button id="new-game" className="nes-btn is-primary" type="submit" onClick={() => {
+                                        if (!isPlaying) {
+                                            stop()
+                                            playSong()
+                                        }
+                                        fetchData()
+                                        reset()
+                                        setShowResult(false)
+                                    }
+                                    }> NEW GAME</button>
+                                </div>
+
+                                <div>
+                                    <button id="guess" className="nes-btn is-success" type="submit" onClick={() => {
+
+                                        //disabled={data[10 - counter]?.length < 4 ? true : ""}
+                                        if (counter > 0) {
+                                            numberGuess({ randomCode }.randomCode, { guess }.guess)
+                                            decrease()
+                                        }
+                                        if (counter == 1) {
+                                            setShowLosingModal(true)
+                                            setShowResult(true)
+                                        }
+                                        setGuess([])
+                                    }
+                                    }> GUESS </button>
+                                </div>
                             </div>
-                            <div className="donut-board">
-                                {Object.keys(colorMap).map((color) =>
 
-                                    <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
-                                        if (!isPlaying && !isPausing && !isStopping) playSong()
-                                        addToGuess(color)
+                            <div className="monitor-container">
+                                <div className="game-body">
+                                    {[...Array(10)].map((x, idx) =>
+                                        <Row key={`row-${idx}`}
+                                            showAnswer={showAnswer}
+                                            pegWhite={pegWhite}
+                                            pegBlack={pegBlack}
+                                            passDataToRow={data}
+                                            passAnswerToRow={pegData}
+                                            numberMap={numberMap}
+                                            rowIdx={idx}
+                                            sizeLimit={sizeLimit}
+                                            isBlue={10 - counter == idx ? "blue" : ""}
+                                            isGrey={10 - counter > idx ? " grey" : ""}
+                                        />
+                                    )}
+                                </div>
 
-                                    }}>
-                                        {/* <p className="donut-board-p"></p> */}
-                                        <img src={require(`./${colorMap[color]}.png`)} />
-                                    </div>
-                                    // each child in a list should have a unique key prop id={color}
-                                    //require used for static imports .
-                                    //{colorMap[color]}
-                                )}
+                                <div className="donut-board">
+                                    {Object.keys(colorMap).map((color) =>
+
+                                        <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
+                                            if (!isPlaying && !isPausing && !isStopping) playSong()
+                                            addToGuess(color)
+
+                                        }}>
+                                            {/* <p className="donut-board-p"></p> */}
+                                            <img src={require(`./${colorMap[color]}.png`)} />
+                                        </div>
+                                        // each child in a list should have a unique key prop id={color}
+                                        //require used for static imports .
+                                        //{colorMap[color]}
+                                    )}
+                                </div>
                             </div>
                         </div>
+
+
 
                         {
                             showWinningModal &&
@@ -309,7 +339,21 @@ function Game() {
                                 reset()
                             }}>
                                 <div id="modal" >
-                                    <img src={logo} className="logo" alt="logo" />
+
+                                    <div className="other" style={{ display: showResult ? "block" : "none" }}>
+                                        <div className="code">
+                                            {randomCode.map((number, idx) =>
+                                                <div key={`code-${idx}`} className="secret-color" id={numberMap[number]}></div>
+                                            )}
+                                        </div>
+                                    </div>
+
+
+
+                                    <audio src={woohoo} autoPlay></audio>
+                                    <div className="modal-text">WOO HOO <br></br> YOU WON !!</div>
+                                    <img src={winningLogo} className="logo" alt="logo" />
+
                                 </div>
                             </div>
                         }
@@ -321,13 +365,33 @@ function Game() {
                                 fetchData()
                                 reset()
                             }}>
-                                <div id="modal" >
-                                    <img src={logo} className="logo" alt="logo" />
+                                <div id="modal">
+
+                                    <div className="other" style={{ display: showResult ? "block" : "none" }}>
+
+                                        <div className="code">
+
+                                            {randomCode.map((number, idx) =>
+                                                <div key={`code-${idx}`} className="secret-color">
+                                                    <img src={require(`./${number}.png`)}></img>
+                                                </div>
+                                            )}
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <audio src={doh} autoPlay></audio>
+                                    <div className="modal-text">D' OH !! <br></br> YOU LOST </div>
+                                    <img src={losingLogo} className="logo" alt="logo" />
                                 </div>
                             </div>
                         }
                     </div>
                 </div>
+
+
             </div>
         </>
     )

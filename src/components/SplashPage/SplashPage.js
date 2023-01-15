@@ -23,7 +23,7 @@ function SplashPage() {
         <>
             <div className="App">
                 <header className="App-header">
-                    <h1 id="simpson">Kicky's THE  SIMPSONS  MASTERMIND</h1>
+                    <h1 id="simpson">Kicky's <br></br> SIMPSONS  MASTERMIND</h1>
                     <img src={logo} className="logo" alt="logo" onClick={routeChange} />
 
                     <div id="enterGame" isHovering={isHovering}
