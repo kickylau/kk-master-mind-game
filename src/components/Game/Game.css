@@ -45,7 +45,7 @@
     /* text-align: left; */
     /* background-position: center 50%;
     /* display:flex; */
-    height: 30vw;
+    height: 28vw;
     width: 35vw;
     /* max-height: 310px; */
     /* min-height: auto; */
@@ -258,8 +258,8 @@
 }
 
 .arcade-container {
-    background-image: url("background-arcade2.png");
-    background-size: 60%;
+    background-image: url("logo2.png");
+    background-size: 58%;
     background-repeat: no-repeat;
     background-position: center 50%;
     /* min-height: 100%; */

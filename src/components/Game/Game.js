@@ -212,8 +212,8 @@ function Game() {
         <>
 
             <div className="container">
-                {/* <Timer/> */}
-                <h1>Result = {randomCode}</h1>
+                <Timer/>
+                {/* <h1>Result = {randomCode}</h1> */}
                 <video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
                 <div className="fa-solid fa-circle-pause"
                     onClick={isPlaying ? pauseSong : playSong}></div>
@@ -254,11 +254,8 @@ function Game() {
 
 
                 <div className="arcade-container">
-
                     <div className="body">
-
                         <div className="game-container">
-
                             <div className="controls">
                                 <div>
                                     <button id="new-game" className="nes-btn is-primary" type="submit" onClick={() => {
@@ -272,10 +269,8 @@ function Game() {
                                     }
                                     }> NEW GAME</button>
                                 </div>
-
                                 <div>
                                     <button id="guess" className="nes-btn is-success" type="submit" onClick={() => {
-
                                         //disabled={data[10 - counter]?.length < 4 ? true : ""}
                                         if (counter > 0) {
                                             numberGuess({ randomCode }.randomCode, { guess }.guess)

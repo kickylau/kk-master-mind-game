@@ -1,36 +1,60 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const Timer = () => {
- const [timer, setTimer] = useState('00:00:00');
+ const [timer, setTimer] = useState(0);
  const [start, setStart] = useState(true);
 
-    // const seconds = ("0" + (Math.floor((timer / 1000) % 60) %60)).slice(-2);
-    // const minutes = ("0" + Math.floor((timer / 1000 / 60) % 60)).slice(-2);
-    // const hours = ("0"+ Math.floor((timer / 1000 / 60 / 60) %60)).slice(-2);
+    const seconds = ("0" + (Math.floor((timer / 1000) % 60) %60)).slice(-2);
+    const minutes = ("0" + Math.floor((timer / 1000 / 60) % 60)).slice(-2);
+    const hours = ("0"+ Math.floor((timer / 1000 / 60 / 60) %60)).slice(-2);
 
-
-    // useEffect(() => {
-    //     let interval = null;
-    //     if (start) {
-    //       interval = setInterval(() => {
-    //       if (timer > 0) {
-    //         setTimer(prevTime => prevTime - 10)
-    //       }
-    //       }, 10)
-    //     } else {
-    //       clearInterval(interval);
-    //     }
-    //     return () => {
-    //       clearInterval(interval)
-    //     }
-    //   }, [start])
-    //const [counter, setCounter] = useState(0);
 
     useEffect(() => {
-      setInterval(() => {
-        setTimer((timer) => timer + 1);
-      }, 1000);
+        let interval = null;
+        if (start) {
+          interval = setInterval(() => {
+          if (timer > 0) {
+            setTimer(prevTime => prevTime - 10)
+          }
+          }, 10)
+        } else {
+          clearInterval(interval);
+        }
+        return () => {
+          clearInterval(interval)
+        }
+      }, [start])
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        startTimeCounter();
+    //   setInterval(() => {
+    //     setTimer((timer) => timer + 1);
+    //   }, 1000);
     }, []);
+
+
+    var startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+    localStorage.setItem("startTime", startTime); // Store it if I want to restart the timer on the next page
+
+    function startTimeCounter() {
+        var now = Math.floor(Date.now() / 1000); // get the time now
+        var diff = now - startTime; // diff in seconds between now and start
+        var m = Math.floor(diff / 60); // get minutes value (quotient of diff)
+        var s = Math.floor(diff % 60); // get seconds value (remainder of diff)
+        m = checkTime(m); // add a leading zero if it's single digit
+        s = checkTime(s); // add a leading zero if it's single digit
+        // document.getElementById("idName").innerHTML = m + ":" + s; // update the element where the timer will appear
+        
+        var t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
+    }
+
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+
+
 
     // const Ref = useRef(null);
 
