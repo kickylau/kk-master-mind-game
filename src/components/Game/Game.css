@@ -209,6 +209,12 @@
 }
 
 .donut-image {
+    width: 4vw;
+    padding:10%;
+}
+
+.row-donut-image {
+
     width: 2vw;
 }
 
@@ -258,11 +264,13 @@
 }
 
 .row {
-    display: flex;
+    /* display: flex; */
     width: 100%;
     height: 100%;
     justify-content: space-between;
     align-items: center;
+    display: grid;
+    grid-template-columns: 5% repeat(6,11%) 25%;
 
 
 }
@@ -284,6 +292,8 @@
     height: 100%;
     float: left;
     text-align: center;
+
+
 }
 
 
