@@ -15,7 +15,7 @@ import Timer from "./Timer/Timer.js"
 function Game() {
 
 
-    const sizeLimit = 6
+    const sizeLimit = 5;
 
     const [randomCode, setRandomCode] = useState([]);
     const [answer, setAnswer] = useState("")
@@ -169,7 +169,7 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        const url = `https://www.random.org/integers/?num=${sizeLimit}&min=1&max=6&col=1&base=10&format=plain&rnd=new`
+        const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
             const response = await fetch(url);
@@ -210,7 +210,7 @@ function Game() {
 
     return (
         <>
-  <h6> {answer} </h6>
+            <h6> {answer} </h6>
             <div className="container">
                 <Timer />
                 <h1>{randomCode}</h1>
