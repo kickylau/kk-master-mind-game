@@ -15,7 +15,7 @@ import Timer from "./Timer/Timer.js"
 function Game() {
 
 
-    const sizeLimit = 4
+    const sizeLimit = 6
 
     const [randomCode, setRandomCode] = useState([]);
     const [answer, setAnswer] = useState("")
@@ -210,10 +210,11 @@ function Game() {
 
     return (
         <>
-
+  <h6> {answer} </h6>
             <div className="container">
-                <Timer/>
-                {/* <h1>Result = {randomCode}</h1> */}
+                <Timer />
+                <h1>{randomCode}</h1>
+
                 <video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
                 <div className="fa-solid fa-circle-pause"
                     onClick={isPlaying ? pauseSong : playSong}></div>
@@ -238,9 +239,9 @@ function Game() {
                                     <b>"Easy", "Medium", "Hard"</b> each represents rows of <b>4/5/6</b> donuts.<br></br><br></br>
                                     2. Click each colored donut on the side to create your guess until row is filled.<br></br><br></br>
                                     3. Then click the <b><font color="white">"GUESS"</font></b> button. You have <b><font color="red">10</font></b> tries.<br></br><br></br>
-                                    4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" src={require(`./bart.png`)} /> <img className="white-pegs" src={require(`./lisa.png`)} /> <br></br><br></br>
-                                    5. <img className="black-pegs" src={require(`./bart.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
-                                    <img className="white-pegs" src={require(`./lisa.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
+                                    4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" src={require(`./bart1.png`)} /> <img className="white-pegs" src={require(`./lisa2.png`)} /> <br></br><br></br>
+                                    5. <img className="black-pegs" src={require(`./bart1.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
+                                    <img className="white-pegs" src={require(`./lisa2.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
                                     6. Use the pegs to guide your next guess. If your guess shows 4/5/6 black bart pegs within 10 tries, you win.<br></br><br></br>
                                     7. Scores is calculated by timer. Winning with shorter time period and harder challenge mode will have higher scores.<br></br>
                                     Only winners will have chance to leave their names on the ranking.<br></br><br></br>
@@ -254,136 +255,135 @@ function Game() {
 
 
                 <div className="arcade-container">
-                    <div className="body">
-                        <div className="game-container">
-                            <div className="controls">
-                                <div>
-                                    <button id="new-game" className="nes-btn is-primary" type="submit" onClick={() => {
-                                        if (!isPlaying) {
-                                            stop()
-                                            playSong()
-                                        }
-                                        fetchData()
-                                        reset()
-                                        setShowResult(false)
-                                    }
-                                    }> NEW GAME</button>
-                                </div>
-                                <div>
-                                    <button id="guess" className="nes-btn is-success" type="submit" onClick={() => {
-                                        //disabled={data[10 - counter]?.length < 4 ? true : ""}
-                                        if (counter > 0) {
-                                            numberGuess({ randomCode }.randomCode, { guess }.guess)
-                                            decrease()
-                                        }
-                                        if (counter == 1) {
-                                            setShowLosingModal(true)
-                                            setShowResult(true)
-                                        }
-                                        setGuess([])
-                                    }
-                                    }> GUESS </button>
-                                </div>
-                            </div>
 
-                            <div className="monitor-container">
-                                <div className="game-body">
-                                    {[...Array(10)].map((x, idx) =>
-                                        <Row key={`row-${idx}`}
-                                            showAnswer={showAnswer}
-                                            pegWhite={pegWhite}
-                                            pegBlack={pegBlack}
-                                            passDataToRow={data}
-                                            passAnswerToRow={pegData}
-                                            numberMap={numberMap}
-                                            rowIdx={idx}
-                                            sizeLimit={sizeLimit}
-                                            isBlue={10 - counter == idx ? "blue" : ""}
-                                            isGrey={10 - counter > idx ? " grey" : ""}
-                                        />
-                                    )}
+
+                    <div className="controls">
+
+                        <button id="new-game" className="nes-btn is-primary" type="submit" onClick={() => {
+                            if (!isPlaying) {
+                                stop()
+                                playSong()
+                            }
+                            fetchData()
+                            reset()
+                            setShowResult(false)
+                        }
+                        }> NEW GAME</button>
+
+
+                        <button id="guess" className="nes-btn is-success" type="submit" onClick={() => {
+                            //disabled={data[10 - counter]?.length < 4 ? true : ""}
+                            if (counter > 0) {
+                                numberGuess({ randomCode }.randomCode, { guess }.guess)
+                                decrease()
+                            }
+                            if (counter == 1) {
+                                setShowLosingModal(true)
+                                setShowResult(true)
+                            }
+                            setGuess([])
+                        }
+                        }> GUESS </button>
+
+                    </div>
+
+                    <div className="monitor-container">
+
+                        <div className="donut-board">
+                            {Object.keys(colorMap).map((color) =>
+
+                                <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
+                                    if (!isPlaying && !isPausing && !isStopping) playSong()
+                                    addToGuess(color)
+
+                                }}>
+                                    <img className="donut-image" src={require(`./${colorMap[color]}.png`)} />
+                                </div>
+                                // each child in a list should have a unique key prop id={color}
+                                //require used for static imports .
+                                //{colorMap[color]}
+                            )}
+                        </div>
+                        <div className="game-body">
+                            {[...Array(10)].map((x, idx) =>
+                                <Row key={`row-${idx}`}
+                                    showAnswer={showAnswer}
+                                    pegWhite={pegWhite}
+                                    pegBlack={pegBlack}
+                                    passDataToRow={data}
+                                    passAnswerToRow={pegData}
+                                    numberMap={numberMap}
+                                    rowIdx={idx}
+                                    sizeLimit={sizeLimit}
+                                    isBlue={10 - counter == idx ? "blue" : ""}
+                                    isGrey={10 - counter > idx ? " grey" : ""}
+                                />
+                            )}
+                        </div>
+                    </div>
+
+
+
+
+                    {
+                        showWinningModal &&
+                        <div id="modal-wrapper" onClick={() => {
+                            // setShowModal(false)
+                            setShowWinningModal(false)
+                            fetchData()
+                            reset()
+                        }}>
+                            <div id="modal" >
+
+                                <div className="other" style={{ display: showResult ? "block" : "none" }}>
+                                    <div className="code">
+                                        {randomCode.map((number, idx) =>
+                                            <div key={`code-${idx}`} className="secret-color" id={numberMap[number]}></div>
+                                        )}
+                                    </div>
                                 </div>
 
-                                <div className="donut-board">
-                                    {Object.keys(colorMap).map((color) =>
 
-                                        <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
-                                            if (!isPlaying && !isPausing && !isStopping) playSong()
-                                            addToGuess(color)
 
-                                        }}>
-                                            {/* <p className="donut-board-p"></p> */}
-                                            <img src={require(`./${colorMap[color]}.png`)} />
-                                        </div>
-                                        // each child in a list should have a unique key prop id={color}
-                                        //require used for static imports .
-                                        //{colorMap[color]}
-                                    )}
-                                </div>
+                                <audio src={woohoo} autoPlay></audio>
+                                <div className="modal-text">WOO HOO <br></br> YOU WON !!</div>
+                                <img src={winningLogo} className="logo" alt="logo" />
+
                             </div>
                         </div>
+                    }
 
+                    {
+                        showLosingModal &&
+                        <div id="modal-wrapper" onClick={() => {
+                            setShowLosingModal(false)
+                            fetchData()
+                            reset()
+                        }}>
+                            <div id="modal">
 
+                                <div className="other" style={{ display: showResult ? "block" : "none" }}>
 
-                        {
-                            showWinningModal &&
-                            <div id="modal-wrapper" onClick={() => {
-                                // setShowModal(false)
-                                setShowWinningModal(false)
-                                fetchData()
-                                reset()
-                            }}>
-                                <div id="modal" >
+                                    <div className="code">
 
-                                    <div className="other" style={{ display: showResult ? "block" : "none" }}>
-                                        <div className="code">
-                                            {randomCode.map((number, idx) =>
-                                                <div key={`code-${idx}`} className="secret-color" id={numberMap[number]}></div>
-                                            )}
-                                        </div>
+                                        {randomCode.map((number, idx) =>
+                                            <div key={`code-${idx}`} className="secret-color">
+                                                <img src={require(`./${number}.png`)}></img>
+                                            </div>
+                                        )}
+
                                     </div>
-
-
-
-                                    <audio src={woohoo} autoPlay></audio>
-                                    <div className="modal-text">WOO HOO <br></br> YOU WON !!</div>
-                                    <img src={winningLogo} className="logo" alt="logo" />
-
                                 </div>
+
+
+
+                                <audio src={doh} autoPlay></audio>
+                                <div className="modal-text">D' OH !! <br></br> YOU LOST </div>
+                                <img src={losingLogo} className="logo" alt="logo" />
                             </div>
-                        }
+                        </div>
+                    }
 
-                        {
-                            showLosingModal &&
-                            <div id="modal-wrapper" onClick={() => {
-                                setShowLosingModal(false)
-                                fetchData()
-                                reset()
-                            }}>
-                                <div id="modal">
-
-                                    <div className="other" style={{ display: showResult ? "block" : "none" }}>
-
-                                        <div className="code">
-
-                                            {randomCode.map((number, idx) =>
-                                                <div key={`code-${idx}`} className="secret-color">
-                                                    <img src={require(`./${number}.png`)}></img>
-                                                </div>
-                                            )}
-
-                                        </div>
-                                    </div>
-
-
-
-                                    <audio src={doh} autoPlay></audio>
-                                    <div className="modal-text">D' OH !! <br></br> YOU LOST </div>
-                                    <img src={losingLogo} className="logo" alt="logo" />
-                                </div>
-                            </div>
-                        }
-                    </div>
                 </div>
 
 
