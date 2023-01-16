@@ -48,11 +48,23 @@
 }
 
 
+.challenge-mode {
+    grid-column: 86/99;
+    grid-row: 50/55;
+    font-size: 1vw;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #rules {
 
     grid-column: 7/15;
-    grid-row:50/55;
-    font-size:1vw;
+    grid-row: 50/55;
+    font-size: 1vw;
     border-radius: 8px;
     height: 100%;
     width: 100%;
@@ -87,7 +99,7 @@
 }
 
 
-.timer{
+.timer {
     font-size: 1vw;
     grid-column: 90/96;
     grid-row: 2/4;
@@ -98,8 +110,8 @@
     justify-content: center;
 }
 
-.fa-circle-pause{
-    font-size: 1vw;
+.fa-circle-pause {
+    font-size: 2vw;
     grid-column: 2/3;
     grid-row: 2/4;
     height: 100%;
@@ -107,9 +119,9 @@
 
 }
 
-.fa-circle-stop{
-    font-size: 1vw;
-    grid-column: 3/4;
+.fa-circle-stop {
+    font-size: 2vw;
+    grid-column: 4/5;
     grid-row: 2/4;
     height: 100%;
     width: 100%;

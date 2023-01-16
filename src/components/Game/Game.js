@@ -10,15 +10,16 @@ import doh from "./doh.mp3";
 import woohoo from "./woohoo.mp3";
 import "nes.css/css/nes.min.css";
 import Timer from "./Timer/Timer.js"
+import ChallengeMode from "./ChallengeMode/ChallengeMode";
 
 
 function Game() {
 
 
-    const sizeLimit = 5;
+
 
     const [randomCode, setRandomCode] = useState([]);
-    const [answer, setAnswer] = useState("")
+    // const [answer, setAnswer] = useState("")
     const [guess, setGuess] = useState()
     const [counter, setCounter] = useState(10)
     const isMounted = useRef(false);
@@ -33,6 +34,9 @@ function Game() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPausing, setIsPausing] = useState(false);
     const [isStopping, setIsStopping] = useState(false);
+    const [sizeLimit, setSizeLimit] = useState(4);
+    const [startTimer, setStartTimer] = useState(false);
+    const [pauseTimer, setPauseTimer] = useState(false);
 
 
     //create a function and a button to trigger so that pass data to child
@@ -82,14 +86,21 @@ function Game() {
         setCounter(counter => counter - 1)
     }
 
+    //const alertFn = () => { alert("hi") }
+
     //reset counter
     const reset = () => {
+        console.log("reset! sizeLimit", sizeLimit)
+        fetchData()
+        setStartTimer(false)
+        setPauseTimer(false)
         setCounter(10)
         setGuess([])
-        setAnswer("")
+        // setAnswer("")
         setShowResult(false)
         setData(new Array(10).fill([]))
         setPegData(new Array(10).fill([]))
+
     }
 
     //create map color vs. number
@@ -117,6 +128,8 @@ function Game() {
 
     //function to enter guess
     function addToGuess(color) {
+        setStartTimer(true)
+        // console.log(sizeLimit)
         //console.log("curr guess initially", { guess })
         //console.log("choosing ", color)
         let newGuess;
@@ -145,7 +158,7 @@ function Game() {
         }
 
         for (let i = 0; i < guess.length; i++) {
-            if (guess[i] == code[i]) {
+            if (guess[i] === code[i]) {
                 correctPosAndColor++
             }
             if (guess[i] in map && map[guess[i]] > 0) {
@@ -154,28 +167,31 @@ function Game() {
             }
         }
         correctColorWrongPos = correctColorWrongPos - correctPosAndColor
-        let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
-        setAnswer(res)
+        //let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
+        // setAnswer(res)
         setShowAnswer(true)
         passAnswerToRow([correctPosAndColor, correctColorWrongPos])
 
-        if (correctPosAndColor == sizeLimit) {
+        if (correctPosAndColor === sizeLimit) {
             setShowWinningModal(true)
             setShowResult(true)
+            setStartTimer(false)
+            setPauseTimer(true)
         }
-        return res
+        //return res
     }
 
 
     //fetch random number API
     const fetchData = async () => {
+        console.log("fetchData sizeLimit: ", sizeLimit)
         const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
             const response = await fetch(url);
             const data = await response.text()
             //randomCode = data.split("\n")
-            // console.log(randomCode)
+            //console.log(data.split("\n"))
             // console.log(answer)
             setRandomCode(data.split("\n").filter(e => e.length > 0).map(e => parseInt(e)))  //to only extract the 4 random number without empty string at the end of the array
             //console.log("i fire here")
@@ -195,9 +211,9 @@ function Game() {
 
 
     //??are those below necessary?? any way to simplify?
-    useEffect(() => {
-        setAnswer()
-    }, [])
+    // useEffect(() => {
+    //     setAnswer()
+    // }, [])
 
     useEffect(() => {
         setGuess([])
@@ -208,14 +224,21 @@ function Game() {
     }, [])
 
 
+    //console.log("is pausing,", isPausing)
+
+
     return (
         <>
-            <h6> {answer} </h6>
+        {/* <h1>{randomCode}</h1> */}
+            {/* <h6> {answer} </h6> */}
             <div className="container">
-                <Timer />
-                {/* <h1>{randomCode}</h1> */}
+                <Timer
+                    startTimer={startTimer}
+                    pauseTimer={pauseTimer}
+                />
 
-                <video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
+
+                < video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
                 <div className="fa-solid fa-circle-pause"
                     onClick={isPlaying ? pauseSong : playSong}></div>
 
@@ -239,9 +262,9 @@ function Game() {
                                     <b>"Easy", "Medium", "Hard"</b> each represents rows of <b>4/5/6</b> donuts.<br></br><br></br>
                                     2. Click each colored donut on the side to create your guess until row is filled.<br></br><br></br>
                                     3. Then click the <b><font color="white">"GUESS"</font></b> button. You have <b><font color="red">10</font></b> tries.<br></br><br></br>
-                                    4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" src={require(`./bart1.png`)} /> <img className="white-pegs" src={require(`./lisa2.png`)} /> <br></br><br></br>
-                                    5. <img className="black-pegs" src={require(`./bart1.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
-                                    <img className="white-pegs" src={require(`./lisa2.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
+                                    4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" alt="bart" src={require(`./bart1.png`)} /> <img className="white-pegs" alt="lisat" src={require(`./lisa2.png`)} /> <br></br><br></br>
+                                    5. <img className="black-pegs" alt="bart" src={require(`./bart1.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
+                                    <img className="white-pegs" alt="lisa" src={require(`./lisa2.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
                                     6. Use the pegs to guide your next guess. If your guess shows 4/5/6 black bart pegs within 10 tries, you win.<br></br><br></br>
                                     7. Scores is calculated by timer. Winning with shorter time period and harder challenge mode will have higher scores.<br></br>
                                     Only winners will have chance to leave their names on the ranking.<br></br><br></br>
@@ -253,6 +276,11 @@ function Game() {
                         </div>
                     )}
 
+                <ChallengeMode
+                    setSizeLimit={setSizeLimit}
+                    reset={reset}
+                />
+
 
                 <div className="arcade-container">
 
@@ -260,26 +288,34 @@ function Game() {
                     <div className="controls">
 
                         <button id="new-game" className="nes-btn is-primary" type="submit" onClick={() => {
-                            if (!isPlaying) {
-                                stop()
-                                playSong()
+                            if (!isPlaying && isPausing) {
+                                pause()
+                                // playSong()
                             }
-                            fetchData()
+
+
+
+                            // fetchData()
                             reset()
                             setShowResult(false)
                         }
                         }> NEW GAME</button>
 
 
-                        <button id="guess" className="nes-btn is-success" type="submit" onClick={() => {
-                            //disabled={data[10 - counter]?.length < 4 ? true : ""}
+                        <button id="guess" className="nes-btn is-success" type="submit" disabled={data[10 - counter]?.length < sizeLimit ? true : ""} onClick={() => {
+
+                            //how to add a toggle pop up modal when disable is true to remind user?
+                            //if(disabled)
+
                             if (counter > 0) {
                                 numberGuess({ randomCode }.randomCode, { guess }.guess)
                                 decrease()
                             }
-                            if (counter == 1) {
+                            if (counter === 1) {
+                                setStartTimer(false)
                                 setShowLosingModal(true)
                                 setShowResult(true)
+                                setPauseTimer(true)
                             }
                             setGuess([])
                         }
@@ -297,7 +333,7 @@ function Game() {
                                     addToGuess(color)
 
                                 }}>
-                                    <img className="donut-image" src={require(`./${colorMap[color]}.png`)} />
+                                    <img className="donut-image" alt="donuts" src={require(`./${colorMap[color]}.png`)} />
                                 </div>
                                 // each child in a list should have a unique key prop id={color}
                                 //require used for static imports .
@@ -315,7 +351,7 @@ function Game() {
                                     numberMap={numberMap}
                                     rowIdx={idx}
                                     sizeLimit={sizeLimit}
-                                    isBlue={10 - counter == idx ? "blue" : ""}
+                                    isBlue={10 - counter === idx ? "blue" : ""}
                                     isGrey={10 - counter > idx ? " grey" : ""}
                                 />
                             )}
@@ -330,7 +366,7 @@ function Game() {
                         <div id="modal-wrapper" onClick={() => {
                             // setShowModal(false)
                             setShowWinningModal(false)
-                            fetchData()
+                            // fetchData()
                             reset()
                         }}>
                             <div id="modal" >
@@ -368,7 +404,7 @@ function Game() {
 
                                         {randomCode.map((number, idx) =>
                                             <div key={`code-${idx}`} className="secret-color">
-                                                <img src={require(`./${number}.png`)}></img>
+                                                <img alt="answer" src={require(`./${number}.png`)}></img>
                                             </div>
                                         )}
 
