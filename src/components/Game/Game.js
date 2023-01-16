@@ -213,7 +213,7 @@ function Game() {
             <h6> {answer} </h6>
             <div className="container">
                 <Timer />
-                <h1>{randomCode}</h1>
+                {/* <h1>{randomCode}</h1> */}
 
                 <video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
                 <div className="fa-solid fa-circle-pause"
