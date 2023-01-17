@@ -89,7 +89,7 @@ function Game() {
 
     //reset counter
     const reset = () => {
-        //console.log("reset! sizeLimit is: ", sizeLimit)
+        console.log("reset! sizeLimit is: ", sizeLimit)
 
         setStartTimer(false)
         setPauseTimer(false)
@@ -195,7 +195,7 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        //console.log("fetchData sizeLimit: ", sizeLimit)
+        console.log("fetchData sizeLimit: ", sizeLimit)
         const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
@@ -258,7 +258,7 @@ function Game() {
 
     return (
         <>
-            {/* <h1>{randomCode}</h1> */}
+            <h1>{randomCode}</h1>
             {/* <h6> {answer} </h6> */}
             {/* <h6> {guess} </h6> */}
             <div className="container">
