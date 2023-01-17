@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey }) {
+function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey, isRed,setGuess }) {
 
     const pegDivs = [];
 
@@ -18,18 +18,27 @@ function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey
 
     }
 
+
+
+
+
     return (
         <>
 
             <div className={`row-${sizeLimit}`}>
                 <div className={`fa-solid fa-angles-right ${isBlue} ${isGrey}`}></div>
+
                 {[...Array(sizeLimit)].map((x, idx) =>
                     <div className="row-tile" key={`row-${rowIdx}-${idx}`}>
                         {idx in passDataToRow[rowIdx] ? <img className="row-donut-image" src={require(`../../../../assets/img/${passDataToRow[rowIdx][idx]}.png`)} /> : <img className="row-donut-image empty-donut" src={require(`../../../../assets/img/empty-donut2.png`)} />}
                     </div>)}
+
+
+                    <div className={`fa-solid fa-xmark ${isRed}`}></div>
                 <div className={`pegs-${sizeLimit}`}>
                     {pegDivs}
                 </div>
+
             </div>
 
         </>

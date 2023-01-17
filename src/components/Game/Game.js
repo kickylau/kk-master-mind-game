@@ -44,6 +44,7 @@ function Game() {
     //create a state to manage the data
     const [data, setData] = useState(new Array(10).fill([]))
     const [pegData, setPegData] = useState(new Array(10).fill([]))
+    //const [clear, setClear] = useState(false);
 
 
     const playSong = () => {
@@ -90,7 +91,7 @@ function Game() {
     //reset counter
     const reset = () => {
         console.log("reset! sizeLimit", sizeLimit)
-        fetchData()
+
         setStartTimer(false)
         setPauseTimer(false)
         setCounter(10)
@@ -99,7 +100,12 @@ function Game() {
         setShowResult(false)
         setData(new Array(10).fill([]))
         setPegData(new Array(10).fill([]))
+        fetchData()
+    }
 
+    const resetWithSizeLimit = (_sizeLimit) => {
+        setSizeLimit(_sizeLimit)
+        reset()
     }
 
     //create map color vs. number
@@ -135,8 +141,12 @@ function Game() {
         if (counter > 0) {
             let num = colorMap[color]
             newGuess = { guess }.guess.concat(num)
+            // console.log(setClear,setGuess)
+            // if (setClear) setGuess([])
+            // console.log(setClear,setGuess)
             if (newGuess.length > sizeLimit) newGuess.splice(0, 1)
             setGuess(newGuess)
+
         }
         //pass data to row
         passDataToRow(newGuess)
@@ -225,18 +235,15 @@ function Game() {
 
     //console.log("is pausing,", isPausing)
 
-
     return (
         <>
-
             <h1>{randomCode}</h1>
-            {/* <h6> {answer} </h6> */}
+            <h6> {answer} </h6>
             <div className="container">
                 <Timer
                     startTimer={startTimer}
                     pauseTimer={pauseTimer}
                 />
-
 
                 < video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
                 <div className="fa-solid fa-circle-pause"
@@ -257,32 +264,33 @@ function Game() {
                         <div id="rules-modal-wrapper" onClick={() => { setShowRulesModal(false) }}>
                             <div id="rules-modal">
                                 <div className="rules-container">
-                                    <h2>How to play...<br></br></h2>
+                                    <h2>How to play... <br /><br /></h2>
 
-                                    1. Select challenge mode with the <b><font color="blue">LEVEL</font></b> selector.<br></br>
-                                    <b>"Easy" = 4 donuts <br />
-                                        "Medium" = 5 donuts <br />
-                                        "Hard" = 6 donuts
+                                    1. Select challenge mode with the <b><font color="blue">LEVEL</font></b> selector.<br />
+                                    <b>"Easy" = 4 donuts, <br />
+                                        "Medium" = 5 donuts, <br />
+                                        "Hard" = 6 donuts.<br />
                                     </b>
                                     <br /><br />
                                     2. Click each colored donut on the side to create your guess until the row is filled.
+                                    <br /> To delete, click red cross <b><font color="red">X</font></b> to clear your guess and re-fill.
                                     <br /><br />
                                     3. Then click the <b><font color="blue">GUESS</font></b> button. You have <b><font color="red">10</font></b> tries.
-                                    <br></br><br></br>
+                                    <br /><br />
                                     4. Each guess may show Bart peg(s) <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart1.png`)} /> and/or Lisa peg(s) <img className="white-pegs" alt="lisat" src={require(`../../assets/img/lisa2.png`)} /> .
-                                    <br></br><br></br>
+                                    <br /><br />
                                     5. <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart1.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
-                                    <br></br>
+                                    <br />
                                     <img className="white-pegs" alt="lisa" src={require(`../../assets/img/lisa2.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
-                                    <br></br><br></br>
+                                    <br /><br />
                                     6. Use the pegs to guide your next guess. If your guess has donuts with all the right colors and positions within 10 tries, you <b><font color="red">WIN!</font>
-                                    </b><br></br><br></br>
+                                    </b> <br /><br />
                                     7. Your score is based on the time elapsed. Solving the donut code faster and on a harder challenge mode will result in higher scores.
-                                    <br></br>
+                                    <br />
                                     Only winners will have the chance to leave their names on the leaderboard.
-                                    <br></br><br></br>
+                                    <br /><br />
                                     9. To begin a new game click the <b><font color="blue">NEW GAME</font></b> button.
-                                    <br></br><br></br>
+                                    <br /><br />
 
                                     ** You can pause/stop the background music by clicking the control buttons on the top left **
                                 </div>
@@ -291,14 +299,13 @@ function Game() {
                     )}
 
                 <ChallengeMode
-                    setSizeLimit={setSizeLimit}
-                    reset={reset}
-                    play2={play2}
+                    resetWithSizeLimit={resetWithSizeLimit}
+                // setSizeLimit={setSizeLimit}
+                // reset={reset}
+                // play2={play2}
                 />
 
-
                 <div className="arcade-container">
-
 
                     <div className="controls">
 
@@ -332,14 +339,12 @@ function Game() {
                             }
                             play2()
                             setGuess([])
-
                         }
                         }> GUESS </button>
 
                     </div>
 
                     <div className="monitor-container">
-
                         <div className="donut-board">
                             {Object.keys(colorMap).map((color) =>
 
@@ -356,6 +361,7 @@ function Game() {
                                 //{colorMap[color]}
                             )}
                         </div>
+
                         <div className="game-body">
 
                             {[...Array(10)].map((x, idx) =>
@@ -370,13 +376,12 @@ function Game() {
                                     sizeLimit={sizeLimit}
                                     isBlue={10 - counter === idx ? "blue" : ""}
                                     isGrey={10 - counter > idx ? " grey" : ""}
+                                    isRed={10 - counter === idx ? "red" : ""}
+                                    setGuess={setGuess}
                                 />
                             )}
                         </div>
                     </div>
-
-
-
 
                     {
                         showWinningModal &&
@@ -397,8 +402,6 @@ function Game() {
                                         )}
                                     </div>
                                 </div>
-
-
 
                                 <audio src={wooHoo} autoPlay></audio>
                                 <div className="results-modal-text">WOO HOO <br></br> YOU WON !!</div>
