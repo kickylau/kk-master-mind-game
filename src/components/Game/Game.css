@@ -134,7 +134,7 @@ img {
     grid-template-columns: repeat(100, 1%);
     grid-row: 5/95;
     grid-column: 20/80;
-    background-image: url("../../assets/img/logo2.png");
+    background-image: url("../../assets/img/logo6.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -191,8 +191,8 @@ img {
     border-radius: 8px;
     height: 100%;
     width: 100%;
-    grid-row: 20/82;
-    grid-column: 23/80;
+    grid-row: 22/82;
+    grid-column: 22/80;
     overflow: auto;
     -ms-overflow-style: none;
     /* IE and Edge */

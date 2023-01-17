@@ -258,9 +258,9 @@ function Game() {
 
     return (
         <>
-            <h1>{randomCode}</h1>
+            {/* <h1>{randomCode}</h1> */}
             {/* <h6> {answer} </h6> */}
-            <h6> {guess} </h6>
+            {/* <h6> {guess} </h6> */}
             <div className="container">
                 <Timer
                     startTimer={startTimer}
@@ -299,11 +299,11 @@ function Game() {
                                     <br /><br />
                                     3. Then click the <b><font color="blue">GUESS</font></b> button. You have <b><font color="red">10</font></b> tries.
                                     <br /><br />
-                                    4. Each guess may show Bart peg(s) <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart1.png`)} /> and/or Lisa peg(s) <img className="white-pegs" alt="lisat" src={require(`../../assets/img/lisa2.png`)} /> .
+                                    4. Each guess may show Bart peg(s) <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart.png`)} /> and/or Lisa peg(s) <img className="white-pegs" alt="lisat" src={require(`../../assets/img/lisa.png`)} /> .
                                     <br /><br />
-                                    5. <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart1.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
+                                    5. <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
                                     <br />
-                                    <img className="white-pegs" alt="lisa" src={require(`../../assets/img/lisa2.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
+                                    <img className="white-pegs" alt="lisa" src={require(`../../assets/img/lisa.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
                                     <br /><br />
                                     6. Use the pegs to guide your next guess. If your guess has donuts with all the right colors and positions within 10 tries, you <b><font color="red">WIN!</font>
                                     </b> <br /><br />

@@ -6,14 +6,13 @@ function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey
 
     if (passAnswerToRow[rowIdx]) {
         for (let i = 0; i < passAnswerToRow[rowIdx][0]; i++) {
-
             pegDivs.push(<div className="black-pegs" key={`blacks-${i}`} >
-                <img src={require(`../../../../assets/img/bart1.png`)} />
+                <img src={require(`../../../../assets/img/bart.png`)} />
             </div>)
         }
         for (let i = 0; i < passAnswerToRow[rowIdx][1]; i++) {
             pegDivs.push(<div className="white-pegs" key={`whites-${i}`}>
-                <img src={require(`../../../../assets/img/lisa2.png`)} />
+                <img src={require(`../../../../assets/img/lisa.png`)} />
             </div>)
         }
 
@@ -31,7 +30,7 @@ function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey
 
                 {[...Array(sizeLimit)].map((x, idx) =>
                     <div className="row-tile" key={`row-${rowIdx}-${idx}`}>
-                        {idx in passDataToRow[rowIdx] ? <img className="row-donut-image" src={require(`../../../../assets/img/${passDataToRow[rowIdx][idx]}.png`)} /> : <img className="row-donut-image empty-donut" src={require(`../../../../assets/img/empty-donut2.png`)} />}
+                        {idx in passDataToRow[rowIdx] ? <img className="row-donut-image" src={require(`../../../../assets/img/${passDataToRow[rowIdx][idx]}.png`)} /> : <img className="row-donut-image empty-donut" src={require(`../../../../assets/img/empty-donut.png`)} />}
                     </div>)}
 
                 <div className={`fa-solid fa-xmark ${isRed}`} onClick={() => {
