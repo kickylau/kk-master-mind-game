@@ -8,11 +8,12 @@ const Timer = ({ startTimer, pauseTimer }) => {
   //console.log("actual time:", Date.now())
 
   useEffect(() => {
+    
     const interval = setInterval(() => {
       //console.log("startTimer", startTimer, " pauseTimer", pauseTimer)
       if (startTimer) {
-        let timeString = secondsToHms(timer)
-        setTimerDisplay(timeString)
+        // let timeString = secondsToHms(timer)
+        // setTimerDisplay(timeString)
         setTimer(timer + 1)
       } else if (pauseTimer) {
         return
@@ -26,6 +27,11 @@ const Timer = ({ startTimer, pauseTimer }) => {
       clearInterval(interval)
     }
   })
+
+  useEffect(()=>{
+    let timeString = secondsToHms(timer)
+    setTimerDisplay(timeString)
+  },[timer])
 
   function secondsToHms(d) {
     d = Number(d);

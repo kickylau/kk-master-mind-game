@@ -85,11 +85,9 @@ function Game() {
         setCounter(counter => counter - 1)
     }
 
-    //const alertFn = () => { alert("hi") }
 
     //reset counter
     const reset = () => {
-        //console.log("reset! sizeLimit is: ", sizeLimit)
 
         setStartTimer(false)
         setPauseTimer(false)
@@ -101,12 +99,6 @@ function Game() {
         setPegData(new Array(10).fill([]))
     }
 
-    // const resetWithSizeLimit = (_sizeLimit) => {
-    //     console.log("reset with size limit! sizeLimit: ", sizeLimit, " change to: ", _sizeLimit)
-    //     setSizeLimit(prevSizeLimit => (_sizeLimit))
-    //     console.log("part 2 sizeLimit: ", sizeLimit)
-    //     reset()
-    // }
 
     //create map color vs. number
     const colorMap = {
