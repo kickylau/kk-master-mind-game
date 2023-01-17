@@ -186,7 +186,6 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        //console.log("fetchData sizeLimit: ", sizeLimit)
         const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
