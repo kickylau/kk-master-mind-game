@@ -1,4 +1,4 @@
-import "./splashPage.css"
+import "./SplashPage.css"
 import logo from "../../assets/img/logo.png";
 import "../../assets/fonts/Simpsonfont.ttf";
 import enterSound from "../../assets/audioAndVideo/enterSound.mp3";

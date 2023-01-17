@@ -1,4 +1,4 @@
-import "./game.css"
+import "./Game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import useSound from "use-sound";
 import winningLogo from "../../assets/img/wooHoo.png";
