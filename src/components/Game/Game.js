@@ -246,8 +246,8 @@ function Game() {
 
     //if the sizelimit changes fetch the data, only run if size limit changes .
     useEffect(() => {
-      fetchData()
-     }, [sizeLimit])   //its also showing sync update of size limti
+        fetchData()
+    }, [sizeLimit])   //its also showing sync update of size limti
 
     // useEffect(() => {
     //     const newlimit = sizeLimit
@@ -260,10 +260,14 @@ function Game() {
 
     return (
         <>
+
             {/* <h1>{randomCode}</h1> */}
             {/* <h6> {answer} </h6> */}
             {/* <h6> {guess} </h6> */}
             <div className="container">
+                <div id="social-media-1" className="nes-icon github is-medium" onClick={() => window.open('https://kickylau.github.io/', '_blank')}></div>
+                <div id="social-media-2" className="nes-icon linkedin is-medium" onClick={() => window.open(' https://www.linkedin.com/in/kickyliu/', '_blank')}> </div>
+                <div id="social-media-3" className="nes-icon instagram is-medium" onClick={() => window.open('https://www.instagram.com/kickylau/', '_blank')}> </div>
                 <Timer
                     startTimer={startTimer}
                     pauseTimer={pauseTimer}

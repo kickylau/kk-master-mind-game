@@ -126,6 +126,22 @@ img {
     max-height: 100%; */
 }
 
+
+#social-media-1{
+    grid-row: 90/95;
+    grid-column:2/4;
+}
+
+#social-media-2{
+    grid-row: 90/95;
+    grid-column:5/7;
+}
+
+#social-media-3{
+    grid-row: 90/95;
+    grid-column:8/10;
+}
+
 .arcade-container {
     display: grid;
     width: 100%;
