@@ -85,11 +85,9 @@ function Game() {
         setCounter(counter => counter - 1)
     }
 
-    //const alertFn = () => { alert("hi") }
 
     //reset counter
     const reset = () => {
-        //console.log("reset! sizeLimit is: ", sizeLimit)
 
         setStartTimer(false)
         setPauseTimer(false)
@@ -101,12 +99,6 @@ function Game() {
         setPegData(new Array(10).fill([]))
     }
 
-    // const resetWithSizeLimit = (_sizeLimit) => {
-    //     console.log("reset with size limit! sizeLimit: ", sizeLimit, " change to: ", _sizeLimit)
-    //     setSizeLimit(prevSizeLimit => (_sizeLimit))
-    //     console.log("part 2 sizeLimit: ", sizeLimit)
-    //     reset()
-    // }
 
     //create map color vs. number
     const colorMap = {
@@ -194,7 +186,6 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        //console.log("fetchData sizeLimit: ", sizeLimit)
         const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
