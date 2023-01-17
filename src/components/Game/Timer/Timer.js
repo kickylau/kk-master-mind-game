@@ -8,7 +8,7 @@ const Timer = ({ startTimer, pauseTimer }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("startTimer", startTimer, " pauseTimer", pauseTimer)
+      //console.log("startTimer", startTimer, " pauseTimer", pauseTimer)
       if (startTimer) {
         let timeString = secondsToHms(timer)
         setTimerDisplay(timeString)
@@ -41,7 +41,6 @@ const Timer = ({ startTimer, pauseTimer }) => {
 
   return (
     <div className="timer">{timerDisplay}</div>
-
   );
 };
 

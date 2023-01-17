@@ -1,15 +1,15 @@
 import "./game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import useSound from "use-sound";
-import winningLogo from '../SplashPage/homer.png';
-import losingLogo from "./doh.png";
+import winningLogo from "../../assets/img/wooHoo.png";
+import losingLogo from "../../assets/img/doh.png";
 import Row from "./Board/Row/Row.js"
-import backgroundVideo from "./backgroundVideo.mp4";
-import backgroundMusic from "./backgroundMusic.mp3";
-import click from "./click.mp3";
-import doh from "./doh.mp3";
-import wooHoo from "./wooHoo.mp3";
-import donutClick from "./donutClick.mp3";
+import backgroundVideo from "../../assets/audioAndVideo/backgroundVideo.mp4";
+import backgroundMusic from "../../assets/audioAndVideo/backgroundMusic.mp3";
+import click from "../../assets/audioAndVideo/click.mp3";
+import doh from "../../assets/audioAndVideo/doh.mp3";
+import wooHoo from "../../assets/audioAndVideo/wooHoo.mp3";
+import donutClick from "../../assets/audioAndVideo/donutClick.mp3";
 import "nes.css/css/nes.min.css";
 import Timer from "./Timer/Timer.js"
 import ChallengeMode from "./ChallengeMode/ChallengeMode";
@@ -18,10 +18,8 @@ import ChallengeMode from "./ChallengeMode/ChallengeMode";
 function Game() {
 
 
-
-
     const [randomCode, setRandomCode] = useState([]);
-    // const [answer, setAnswer] = useState("")
+    const [answer, setAnswer] = useState("")
     const [guess, setGuess] = useState()
     const [counter, setCounter] = useState(10)
     const isMounted = useRef(false);
@@ -41,14 +39,10 @@ function Game() {
     const [sizeLimit, setSizeLimit] = useState(4);
     const [startTimer, setStartTimer] = useState(false);
     const [pauseTimer, setPauseTimer] = useState(false);
-
-
     //create a function and a button to trigger so that pass data to child
     //create a state to manage the data
-
     const [data, setData] = useState(new Array(10).fill([]))
     const [pegData, setPegData] = useState(new Array(10).fill([]))
-
 
 
     const playSong = () => {
@@ -100,7 +94,7 @@ function Game() {
         setPauseTimer(false)
         setCounter(10)
         setGuess([])
-        // setAnswer("")
+        setAnswer("")
         setShowResult(false)
         setData(new Array(10).fill([]))
         setPegData(new Array(10).fill([]))
@@ -171,8 +165,8 @@ function Game() {
             }
         }
         correctColorWrongPos = correctColorWrongPos - correctPosAndColor
-        //let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
-        // setAnswer(res)
+        let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
+        setAnswer(res)
         setShowAnswer(true)
         passAnswerToRow([correctPosAndColor, correctColorWrongPos])
 
@@ -182,7 +176,7 @@ function Game() {
             setStartTimer(false)
             setPauseTimer(true)
         }
-        //return res
+        return res
     }
 
 
@@ -215,9 +209,9 @@ function Game() {
 
 
     //??are those below necessary?? any way to simplify?
-    // useEffect(() => {
-    //     setAnswer()
-    // }, [])
+    useEffect(() => {
+        setAnswer()
+    }, [])
 
     useEffect(() => {
         setGuess([])
@@ -234,7 +228,7 @@ function Game() {
     return (
         <>
 
-        {/* <h1>{randomCode}</h1> */}
+            <h1>{randomCode}</h1>
             {/* <h6> {answer} </h6> */}
             <div className="container">
                 <Timer
@@ -262,21 +256,34 @@ function Game() {
                         <div id="rules-modal-wrapper" onClick={() => { setShowRulesModal(false) }}>
                             <div id="rules-modal">
                                 <div className="rules-container">
-                                    <h2>How to play  . .<br></br></h2>
+                                    <h2>How to play...<br></br></h2>
 
-                                    1. Select challenge mode by clicking <b><font color="white">"LEVEL"</font></b> button.<br></br>
-                                    <b>"Easy", "Medium", "Hard"</b> each represents rows of <b>4/5/6</b> donuts.<br></br><br></br>
-                                    2. Click each colored donut on the side to create your guess until row is filled.<br></br><br></br>
-                                    3. Then click the <b><font color="white">"GUESS"</font></b> button. You have <b><font color="red">10</font></b> tries.<br></br><br></br>
-                                    4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" alt="bart" src={require(`./bart1.png`)} /> <img className="white-pegs" alt="lisat" src={require(`./lisa2.png`)} /> <br></br><br></br>
-                                    5. <img className="black-pegs" alt="bart" src={require(`./bart1.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
-                                    <img className="white-pegs" alt="lisa" src={require(`./lisa2.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
-                                    6. Use the pegs to guide your next guess. If your guess shows 4/5/6 black bart pegs within 10 tries, you  <b><font color="red">WIN!</font></b><br></br><br></br>
-                                    7. Scores is calculated by timer. Winning with shorter time period and harder challenge mode will have higher scores.<br></br>
-                                    Only winners will have chance to leave their names on the ranking.<br></br><br></br>
-                                    9. To begin a new game click the <b><font color="white">"NEW GAME"</font></b> button.<br></br><br></br>
+                                    1. Select challenge mode with the <b><font color="blue">LEVEL</font></b> selector.<br></br>
+                                    <b>"Easy" = 4 donuts <br />
+                                        "Medium" = 5 donuts <br />
+                                        "Hard" = 6 donuts
+                                    </b>
+                                    <br /><br />
+                                    2. Click each colored donut on the side to create your guess until the row is filled.
+                                    <br /><br />
+                                    3. Then click the <b><font color="blue">GUESS</font></b> button. You have <b><font color="red">10</font></b> tries.
+                                    <br></br><br></br>
+                                    4. Each guess may show Bart peg(s) <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart1.png`)} /> and/or Lisa peg(s) <img className="white-pegs" alt="lisat" src={require(`../../assets/img/lisa2.png`)} /> .
+                                    <br></br><br></br>
+                                    5. <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart1.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
+                                    <br></br>
+                                    <img className="white-pegs" alt="lisa" src={require(`../../assets/img/lisa2.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
+                                    <br></br><br></br>
+                                    6. Use the pegs to guide your next guess. If your guess has donuts with all the right colors and positions within 10 tries, you <b><font color="red">WIN!</font>
+                                    </b><br></br><br></br>
+                                    7. Your score is based on the time elapsed. Solving the donut code faster and on a harder challenge mode will result in higher scores.
+                                    <br></br>
+                                    Only winners will have the chance to leave their names on the leaderboard.
+                                    <br></br><br></br>
+                                    9. To begin a new game click the <b><font color="blue">NEW GAME</font></b> button.
+                                    <br></br><br></br>
 
-                                    ** You can pause/stop background music by clicking the top left buttons **
+                                    ** You can pause/stop the background music by clicking the control buttons on the top left **
                                 </div>
                             </div>
                         </div>
@@ -336,13 +343,13 @@ function Game() {
                         <div className="donut-board">
                             {Object.keys(colorMap).map((color) =>
 
-                                <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
+                                <div key={`code-${color}`} onClick={(e) => {
                                     if (!isPlaying && !isPausing && !isStopping) playSong()
                                     addToGuess(color)
                                     play3()
 
                                 }}>
-                                    <img className="donut-image" alt="donuts" src={require(`./${colorMap[color]}.png`)} />
+                                    <img className="donut-image" alt="donuts" src={require(`../../assets/img/${colorMap[color]}.png`)} />
                                 </div>
                                 // each child in a list should have a unique key prop id={color}
                                 //require used for static imports .
@@ -350,6 +357,7 @@ function Game() {
                             )}
                         </div>
                         <div className="game-body">
+
                             {[...Array(10)].map((x, idx) =>
                                 <Row key={`row-${idx}`}
                                     showAnswer={showAnswer}
@@ -380,10 +388,12 @@ function Game() {
                         }}>
                             <div id="modal" >
 
-                                <div className="other" style={{ display: showResult ? "block" : "none" }}>
-                                    <div className="code">
+                                <div style={{ display: showResult ? "block" : "none" }}>
+                                    <div className="results-container">
                                         {randomCode.map((number, idx) =>
-                                            <div key={`code-${idx}`} className="secret-color" id={numberMap[number]}></div>
+                                            <div key={`code-${idx}`}>
+                                                <img alt="answer" src={require(`../../assets/img/${number}.png`)}></img>
+                                            </div>
                                         )}
                                     </div>
                                 </div>
@@ -391,7 +401,7 @@ function Game() {
 
 
                                 <audio src={wooHoo} autoPlay></audio>
-                                <div className="modal-text">WOO HOO <br></br> YOU WON !!</div>
+                                <div className="results-modal-text">WOO HOO <br></br> YOU WON !!</div>
                                 <img src={winningLogo} className="logo" alt="logo" />
 
                             </div>
@@ -407,13 +417,12 @@ function Game() {
                         }}>
                             <div id="modal">
 
-                                <div className="other" style={{ display: showResult ? "block" : "none" }}>
+                                <div className="results" style={{ display: showResult ? "block" : "none" }}>
 
-                                    <div className="code">
-
+                                    <div className="results-container">
                                         {randomCode.map((number, idx) =>
-                                            <div key={`code-${idx}`} className="secret-color">
-                                                <img alt="answer" src={require(`./${number}.png`)}></img>
+                                            <div key={`code-${idx}`}>
+                                                <img alt="answer" src={require(`../../assets/img/${number}.png`)}></img>
                                             </div>
                                         )}
 
@@ -423,7 +432,7 @@ function Game() {
 
 
                                 <audio src={doh} autoPlay></audio>
-                                <div className="modal-text">D' OH !! <br></br> YOU LOST </div>
+                                <div className="results-modal-text">D' OH !! <br></br> YOU LOST </div>
                                 <img src={losingLogo} className="logo" alt="logo" />
                             </div>
                         </div>
