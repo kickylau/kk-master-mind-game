@@ -89,7 +89,7 @@ function Game() {
 
     //reset counter
     const reset = () => {
-        console.log("reset! sizeLimit is: ", sizeLimit)
+        //console.log("reset! sizeLimit is: ", sizeLimit)
 
         setStartTimer(false)
         setPauseTimer(false)
@@ -99,7 +99,6 @@ function Game() {
         setShowResult(false)
         setData(new Array(10).fill([]))
         setPegData(new Array(10).fill([]))
-        fetchData()
     }
 
     // const resetWithSizeLimit = (_sizeLimit) => {
@@ -195,7 +194,7 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        console.log("fetchData sizeLimit: ", sizeLimit)
+        //console.log("fetchData sizeLimit: ", sizeLimit)
         const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
@@ -238,14 +237,17 @@ function Game() {
         setSizeLimit(4)
     }, [])
 
+
+
     // useEffect(() => {
     //    setSizeLimit(4)
     // }, [])
     // console.log("size limit", sizeLimit)  //its showing sync upate of size limit
 
-    // useEffect(() => {
-    //    console.log(sizeLimit)
-    //  }, [sizeLimit])   //its also showing sync update of size limti
+    //if the sizelimit changes fetch the data, only run if size limit changes .
+    useEffect(() => {
+      fetchData()
+     }, [sizeLimit])   //its also showing sync update of size limti
 
     // useEffect(() => {
     //     const newlimit = sizeLimit
@@ -338,7 +340,7 @@ function Game() {
                             }
 
                             play2()
-                            // fetchData()
+                            fetchData()
                             reset()
                             setShowResult(false)
                         }
@@ -410,7 +412,7 @@ function Game() {
                         <div id="modal-wrapper" onClick={() => {
                             // setShowModal(false)
                             setShowWinningModal(false)
-                            // fetchData()
+                            fetchData()
                             reset()
                         }}>
                             <div id="modal" >

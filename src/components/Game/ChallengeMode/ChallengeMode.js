@@ -3,6 +3,8 @@ import React, { useState } from 'react'
  function ChallengeMode({setSizeLimit,reset,play2}) {
 //function ChallengeMode({ resetWithSizeLimit }) {
 
+
+
     return (
         <>
             <div className="challenge-mode">
