@@ -245,8 +245,8 @@ img {
 
 .donut-image {
 
-    width: 4vw;
-    padding: 10%;
+    width: 3vw;
+    /* padding: 10%; */
 }
 
 .donut-image:hover {
