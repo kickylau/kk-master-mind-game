@@ -13,7 +13,6 @@ import donutClick from "../../assets/audioAndVideo/donutClick.mp3";
 import "nes.css/css/nes.min.css";
 import Timer from "./Timer/Timer.js"
 import ChallengeMode from "./ChallengeMode/ChallengeMode";
-// import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 
 function Game() {
@@ -21,7 +20,7 @@ function Game() {
 
     const [randomCode, setRandomCode] = useState([]);
     const [answer, setAnswer] = useState("")
-    const [guess, setGuess] = useState()
+    const [guess, setGuess] = useState([])
     const [counter, setCounter] = useState(10)
     const isMounted = useRef(false);
     const [showLosingModal, setShowLosingModal] = useState(false);
@@ -90,7 +89,7 @@ function Game() {
 
     //reset counter
     const reset = () => {
-        console.log("reset! sizeLimit", sizeLimit)
+        //console.log("reset! sizeLimit is: ", sizeLimit)
 
         setStartTimer(false)
         setPauseTimer(false)
@@ -103,10 +102,12 @@ function Game() {
         fetchData()
     }
 
-    const resetWithSizeLimit = (_sizeLimit) => {
-        setSizeLimit(_sizeLimit)
-        reset()
-    }
+    // const resetWithSizeLimit = (_sizeLimit) => {
+    //     console.log("reset with size limit! sizeLimit: ", sizeLimit, " change to: ", _sizeLimit)
+    //     setSizeLimit(prevSizeLimit => (_sizeLimit))
+    //     console.log("part 2 sizeLimit: ", sizeLimit)
+    //     reset()
+    // }
 
     //create map color vs. number
     const colorMap = {
@@ -144,9 +145,10 @@ function Game() {
             // console.log(setClear,setGuess)
             // if (setClear) setGuess([])
             // console.log(setClear,setGuess)
-            if (newGuess.length > sizeLimit) newGuess.splice(0, 1)
-            setGuess(newGuess)
-
+            if (newGuess.length <= sizeLimit) {
+                // newGuess.splice(0, 1)
+                setGuess(newGuess)
+            }
         }
         //pass data to row
         passDataToRow(newGuess)
@@ -193,7 +195,7 @@ function Game() {
 
     //fetch random number API
     const fetchData = async () => {
-        console.log("fetchData sizeLimit: ", sizeLimit)
+        //console.log("fetchData sizeLimit: ", sizeLimit)
         const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
 
         try {
@@ -232,13 +234,33 @@ function Game() {
         setShowResult()
     }, [])
 
+    useEffect(() => {
+        setSizeLimit(4)
+    }, [])
 
-    //console.log("is pausing,", isPausing)
+    // useEffect(() => {
+    //    setSizeLimit(4)
+    // }, [])
+    // console.log("size limit", sizeLimit)  //its showing sync upate of size limit
+
+    // useEffect(() => {
+    //    console.log(sizeLimit)
+    //  }, [sizeLimit])   //its also showing sync update of size limti
+
+    // useEffect(() => {
+    //     const newlimit = sizeLimit
+    //     console.log(newlimit)
+    //     setSizeLimit(newlimit)
+    //   }, [])     //not showing
+
+
+
 
     return (
         <>
             <h1>{randomCode}</h1>
-            <h6> {answer} </h6>
+            {/* <h6> {answer} </h6> */}
+            <h6> {guess} </h6>
             <div className="container">
                 <Timer
                     startTimer={startTimer}
@@ -299,10 +321,10 @@ function Game() {
                     )}
 
                 <ChallengeMode
-                    resetWithSizeLimit={resetWithSizeLimit}
-                // setSizeLimit={setSizeLimit}
-                // reset={reset}
-                // play2={play2}
+                    // resetWithSizeLimit={resetWithSizeLimit}
+                    setSizeLimit={setSizeLimit}
+                    reset={reset}
+                    play2={play2}
                 />
 
                 <div className="arcade-container">

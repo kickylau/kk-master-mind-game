@@ -13,14 +13,25 @@
 
 
 .splash-header {
-    background-color: #282c34;
-    min-height: 100vh;
+    background-image: url("../../assets/img/splash.png");
+    background-repeat: no-repeat;
+    /* background-color: #282c34; */
+    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    /* color: white; */
+    /* object-fit: cover; */
+    position: fixed;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-size: 100% 100%;
+
 }
 
 .logo {
@@ -61,7 +72,7 @@
             lighten(#0f0a1e, 3%) 2px,
             lighten(#0f0a1e, 3%) 4px);
     position: fixed;
-    top: 85%;
+    top: 80%;
     left: 0;
     bottom: 0;
     right: 0;
