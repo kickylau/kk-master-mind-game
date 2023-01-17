@@ -111,7 +111,7 @@ function Game() {
     //create map color vs. number
     const colorMap = {
         "blue": 0,
-        "orange": 1,
+        "red": 1,
         "purple": 2,
         "yellow": 3,
         "green": 4,
@@ -122,7 +122,7 @@ function Game() {
 
     const numberMap = {
         0: "blue",
-        1: "orange",
+        1: "red",
         2: "purple",
         3: "yellow",
         4: "green",
@@ -300,7 +300,7 @@ function Game() {
                                         "Hard" = 6 donuts.<br />
                                     </b>
                                     <br /><br />
-                                    2. Click each colored donut on the side to create your guess until the row is filled.
+                                    2. Click the donut palette with 8 colors on the side to create your guess until the row is filled.
                                     <br /> To delete, click red cross <b><font color="red">X</font></b> to clear your guess and re-fill.
                                     <br /><br />
                                     3. Then click the <b><font color="blue">GUESS</font></b> button. You have <b><font color="red">10</font></b> tries.
@@ -316,7 +316,7 @@ function Game() {
                                     {/* 7. Your score is based on the time elapsed. Solving the donut code faster and on a harder challenge mode will result in higher scores. */}
 
                                     {/* Only winners will have the chance to leave their names on the leaderboard. */}
-                                    
+
                                     7. To begin a new game click the <b><font color="blue">NEW GAME</font></b> button.
                                     <br /><br />
 
