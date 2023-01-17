@@ -52,6 +52,7 @@
     align-items: center;
     justify-content: center;
     border-image-repeat: stretch;
+    opacity: 100%;
 
 }
 
@@ -160,6 +161,7 @@ img {
     align-items: center;
     justify-content: center;
     border-image-repeat: stretch;
+    opacity: 100%;
 }
 
 #guess {
@@ -173,6 +175,7 @@ img {
     align-items: center;
     justify-content: center;
     border-image-repeat: stretch;
+    opacity: 100%;
 }
 
 
@@ -420,6 +423,9 @@ img {
     text-align: center;
 }
 
+.empty-donut {
+    opacity: 40%;
+}
 
 .row-donut-image {
     width: 2vw;

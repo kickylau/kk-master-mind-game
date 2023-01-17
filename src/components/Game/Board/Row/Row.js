@@ -25,7 +25,7 @@ function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey
                 <div className={`fa-solid fa-angles-right ${isBlue} ${isGrey}`}></div>
                 {[...Array(sizeLimit)].map((x, idx) =>
                     <div className="row-tile" key={`row-${rowIdx}-${idx}`}>
-                        {idx in passDataToRow[rowIdx] ? <img className="row-donut-image" src={require(`../../../../assets/img/${passDataToRow[rowIdx][idx]}.png`)} /> : ""}
+                        {idx in passDataToRow[rowIdx] ? <img className="row-donut-image" src={require(`../../../../assets/img/${passDataToRow[rowIdx][idx]}.png`)} /> : <img className="row-donut-image empty-donut" src={require(`../../../../assets/img/empty-donut2.png`)} />}
                     </div>)}
                 <div className={`pegs-${sizeLimit}`}>
                     {pegDivs}

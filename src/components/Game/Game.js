@@ -13,6 +13,7 @@ import donutClick from "../../assets/audioAndVideo/donutClick.mp3";
 import "nes.css/css/nes.min.css";
 import Timer from "./Timer/Timer.js"
 import ChallengeMode from "./ChallengeMode/ChallengeMode";
+// import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 
 function Game() {
@@ -314,8 +315,7 @@ function Game() {
                         }
                         }> NEW GAME</button>
 
-
-                        <button id="guess" className="nes-btn is-success" type="submit" disabled={data[10 - counter]?.length < sizeLimit ? true : ""} onClick={() => {
+                        <button id="guess" className={data[10 - counter]?.length < sizeLimit ? "nes-btn is-disabled" : "nes-btn is-success"} type="submit" disabled={data[10 - counter]?.length < sizeLimit ? true : ""} onClick={() => {
 
                             //how to add a toggle pop up modal when disable is true to remind user?
                             //if(disabled)
