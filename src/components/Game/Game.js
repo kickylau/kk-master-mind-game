@@ -1,13 +1,15 @@
-import "./Game.css"
+import "./game.css"
 import React, { useEffect, useState, useRef } from 'react'
 import useSound from "use-sound";
 import winningLogo from '../SplashPage/homer.png';
 import losingLogo from "./doh.png";
 import Row from "./Board/Row/Row.js"
-import backgroundVideo from "./background-video.mp4";
-import backgroundMusic from "./background-music.mp3";
+import backgroundVideo from "./backgroundVideo.mp4";
+import backgroundMusic from "./backgroundMusic.mp3";
+import click from "./click.mp3";
 import doh from "./doh.mp3";
-import woohoo from "./woohoo.mp3";
+import wooHoo from "./wooHoo.mp3";
+import donutClick from "./donutClick.mp3";
 import "nes.css/css/nes.min.css";
 import Timer from "./Timer/Timer.js"
 import ChallengeMode from "./ChallengeMode/ChallengeMode";
@@ -31,6 +33,8 @@ function Game() {
     const [pegWhite, setPegWhite] = useState(0)
     const [pegBlack, setPegBlack] = useState(0)
     const [play, { stop, pause }] = useSound(backgroundMusic);
+    const [play2] = useSound(click);
+    const [play3] = useSound(donutClick);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPausing, setIsPausing] = useState(false);
     const [isStopping, setIsStopping] = useState(false);
@@ -229,6 +233,7 @@ function Game() {
 
     return (
         <>
+
         {/* <h1>{randomCode}</h1> */}
             {/* <h6> {answer} </h6> */}
             <div className="container">
@@ -247,6 +252,7 @@ function Game() {
 
                 <button className="nes-btn is-warning" id="rules" onClick={() => {
                     setShowRulesModal(true)
+                    play2()
                 }}>
                     RULES
                 </button>
@@ -258,14 +264,14 @@ function Game() {
                                 <div className="rules-container">
                                     <h2>How to play  . .<br></br></h2>
 
-                                    1. Select challenge mode by clicking <b><font color="white">"LEVELS"</font></b> button.<br></br>
+                                    1. Select challenge mode by clicking <b><font color="white">"LEVEL"</font></b> button.<br></br>
                                     <b>"Easy", "Medium", "Hard"</b> each represents rows of <b>4/5/6</b> donuts.<br></br><br></br>
                                     2. Click each colored donut on the side to create your guess until row is filled.<br></br><br></br>
                                     3. Then click the <b><font color="white">"GUESS"</font></b> button. You have <b><font color="red">10</font></b> tries.<br></br><br></br>
                                     4. Each guess shows black color peg with bart or/and white color peg with lisa.<img className="black-pegs" alt="bart" src={require(`./bart1.png`)} /> <img className="white-pegs" alt="lisat" src={require(`./lisa2.png`)} /> <br></br><br></br>
                                     5. <img className="black-pegs" alt="bart" src={require(`./bart1.png`)} /> A black color bart peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">RIGHT</font></b> position.<br></br>
                                     <img className="white-pegs" alt="lisa" src={require(`./lisa2.png`)} /> A white color lisa peg indicates one of your donuts is the <b><font color="red">RIGHT</font></b> color in the <b><font color="red">WRONG</font></b> position.<br></br><br></br>
-                                    6. Use the pegs to guide your next guess. If your guess shows 4/5/6 black bart pegs within 10 tries, you win.<br></br><br></br>
+                                    6. Use the pegs to guide your next guess. If your guess shows 4/5/6 black bart pegs within 10 tries, you  <b><font color="red">WIN!</font></b><br></br><br></br>
                                     7. Scores is calculated by timer. Winning with shorter time period and harder challenge mode will have higher scores.<br></br>
                                     Only winners will have chance to leave their names on the ranking.<br></br><br></br>
                                     9. To begin a new game click the <b><font color="white">"NEW GAME"</font></b> button.<br></br><br></br>
@@ -279,6 +285,7 @@ function Game() {
                 <ChallengeMode
                     setSizeLimit={setSizeLimit}
                     reset={reset}
+                    play2={play2}
                 />
 
 
@@ -293,8 +300,7 @@ function Game() {
                                 // playSong()
                             }
 
-
-
+                            play2()
                             // fetchData()
                             reset()
                             setShowResult(false)
@@ -317,7 +323,9 @@ function Game() {
                                 setShowResult(true)
                                 setPauseTimer(true)
                             }
+                            play2()
                             setGuess([])
+
                         }
                         }> GUESS </button>
 
@@ -331,6 +339,7 @@ function Game() {
                                 <div key={`code-${color}`} className="donut-board-tile" onClick={(e) => {
                                     if (!isPlaying && !isPausing && !isStopping) playSong()
                                     addToGuess(color)
+                                    play3()
 
                                 }}>
                                     <img className="donut-image" alt="donuts" src={require(`./${colorMap[color]}.png`)} />
@@ -381,7 +390,7 @@ function Game() {
 
 
 
-                                <audio src={woohoo} autoPlay></audio>
+                                <audio src={wooHoo} autoPlay></audio>
                                 <div className="modal-text">WOO HOO <br></br> YOU WON !!</div>
                                 <img src={winningLogo} className="logo" alt="logo" />
 

@@ -16,25 +16,17 @@
 
 
 
+
 .monitor-container {
-    /* overflow: scroll; */
-    /* box-shadow: rgb(0 0 0 /40%) 0px 3px 16px 3px;
-    border: 5px solid green; */
-    /* transform: translate(-50%, -50%); */
-    /* top: 50%; */
     display: grid;
     grid-template-columns: repeat(10, 10%);
     grid-template-rows: repeat(10, 10%);
-
     background-color: #333;
-
     border-radius: 8px;
-
     height: 100%;
     width: 100%;
     grid-row: 20/82;
     grid-column: 23/80;
-    /* display: flex; */
     overflow: auto;
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -49,7 +41,7 @@
 
 
 .challenge-mode {
-    grid-column: 86/99;
+    grid-column: 86/98;
     grid-row: 50/55;
     font-size: 1vw;
     border-radius: 8px;
@@ -58,6 +50,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+
+}
+
+
+
+#error_select{
+    width: 100%;
+    font-size:1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#error_select:hover{
+box-shadow: inset -4px -4px rgb(239, 118, 118);
 }
 
 #rules {
@@ -71,6 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-image-repeat: stretch;
 
 }
 
@@ -84,6 +92,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-image-repeat: stretch;
 }
 
 #guess {
@@ -96,6 +105,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-image-repeat: stretch;
 }
 
 
@@ -132,7 +142,6 @@
 
 .rules-container {
     background-color: rgb(255, 217, 15);
-    margin-top: -20%;
     height: 50vh;
     width: 18vw;
     position: relative;
@@ -152,7 +161,6 @@
 /* Track */
 .rules-container::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px rgb(255, 217, 15);
-
     background-color: rgb(255, 217, 15);
 }
 
@@ -172,40 +180,31 @@
 }
 
 
-.rules-modal {
-    height: auto;
-    width: 240px;
-    background-color: rgba(255, 255, 255);
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.2);
-    padding: 20px 10px;
-    text-align: left;
-    color: white;
+#rules-modal {
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 #rules-modal-wrapper {
-
     z-index: 999;
     position: fixed;
     padding: 0;
     margin: 0;
-
-    top: 50%;
+    top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-    /* background: rgba(255, 255, 255, 0.5); */
-
-
-
 }
 
 
+#error_select{
+    border-image-repeat: stretch;
+
+}
 
 .game-body {
     grid-row: 1/11;
@@ -236,9 +235,18 @@
     grid-row: 1/11;
 }
 
+/* .donut-board:hover{
+    transform: scale(1.5)
+} */
+
 .donut-image {
+
     width: 4vw;
     padding: 10%;
+}
+
+.donut-image:hover{
+    transform: scale(1.5);
 }
 
 .row-donut-image {
@@ -246,18 +254,7 @@
     width: 2vw;
 }
 
-/* .krusty-header {
-    background-image: url("header.png");
-    background-position: 50% 45%;
-    background-repeat: no-repeat;
-    background-size: 55%;
-    position: relative;
-    top:3%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height:7vw;
-    width: 40%;
-} */
+
 
 .container {
     display: grid;
@@ -286,8 +283,7 @@
     background-image: url("logo2.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    /* background-position: center 50%; */
-    /* position: relative; */
+
 
 }
 
@@ -337,7 +333,6 @@
 .row-tile {
     width: 100%;
     height: 100%;
-    /* float: left; */
     text-align: center;
 
 
@@ -347,33 +342,25 @@
     display: grid;
     height: 100%;
     width: 100%;
-    /* float: right; */
-    /* margin-bottom: 10px; */
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: repeat(2, 50%);
-    /* grid-auto-rows: minmax(50%, 50%) */
+
 }
 
 .pegs-5 {
     display: grid;
     height: 100%;
     width: 100%;
-    /* float: right; */
-    /* margin-bottom: 10px; */
     grid-template-columns: repeat(3, 33%);
     grid-template-rows: repeat(2, 50%);
-    /* grid-auto-rows: minmax(50%, 50%) */
 }
 
 .pegs-6 {
     display: grid;
     height: 100%;
     width: 100%;
-    /* float: right; */
-    /* margin-bottom: 10px; */
     grid-template-columns: repeat(3, 33%);
     grid-template-rows: repeat(2, 50%);
-    /* grid-auto-rows: minmax(50%, 50%) */
 }
 
 
@@ -382,16 +369,10 @@ img {
     object-fit: contain;
     width: 100%;
     height: 100%;
-
-
 }
 
 
 
-.secret-color {
-    /* background-color: black; */
-
-}
 
 .code {
     margin: 0 auto;
@@ -423,24 +404,18 @@ img {
     opacity: 1;
 }
 
-/* .other {
-    /* display: inline-block;
-    /* margin:0 auto;
-    /* margin-left: 100px;
-} */
+
 
 #blue {
     margin: -1px 4px 0 0;
     background-image: url("0.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
 
 }
 
 #orange {
     margin: -1px 4px 0 0;
     background-size: 100% 100%;
-    /* border: 1px solid white; */
     background-image: url("1.png");
 
 }
@@ -449,7 +424,6 @@ img {
     margin: -1px 4px 0 0;
     background-image: url("2.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
 
 }
 
@@ -457,7 +431,7 @@ img {
     margin: -1px 4px 0 0;
     background-image: url("3.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
+
 
 }
 
@@ -465,7 +439,7 @@ img {
     margin: -1px 4px 0 0;
     background-image: url("4.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
+
 
 }
 
@@ -473,7 +447,7 @@ img {
     margin: -1px 4px 0 0;
     background-image: url("5.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
+
 
 }
 
@@ -481,7 +455,7 @@ img {
     margin: -1px 4px 0 0;
     background-image: url("6.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
+
 
 }
 
@@ -489,7 +463,6 @@ img {
     margin: -1px 4px 0 0;
     background-image: url("7.png");
     background-size: 100% 100%;
-    /* border: 1px solid white; */
 
 }
 
@@ -506,7 +479,6 @@ img {
 
 .fa-angles-right {
     padding-left: 0.8em;
-    /* padding-right:0.5em; */
     font-size: 0.8em;
     color: white;
 }
@@ -532,10 +504,8 @@ img {
     position: fixed;
     padding: 0;
     margin: 0;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
@@ -547,7 +517,6 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     width: 100%;
     text-align: center;
 }

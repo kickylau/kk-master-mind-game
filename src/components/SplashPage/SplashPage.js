@@ -1,12 +1,11 @@
-import "./SplashPage.css"
+import "./splashPage.css"
 import logo from "./logo.png";
 import "../../fonts/Simpsonfont.ttf";
-import backgroundMusic from "./background-music.mp3";
+import backgroundMusic from "./backgroundMusic.mp3";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
-import { Button } from 'react-bootstrap';
-import enterSound from "./enter-sound.mp3";
+import enterSound from "./enterSound.mp3";
 
 function SplashPage() {
     const [play, { stop }] = useSound(enterSound);
@@ -26,7 +25,7 @@ function SplashPage() {
                     <h1 id="simpson">Kicky's <br></br> SIMPSONS  MASTERMIND</h1>
                     <img src={logo} className="logo" alt="logo" onClick={routeChange} />
 
-                    <div id="enterGame" isHovering={isHovering}
+                    <div id="enterGame"
                         onMouseEnter={() => {
                             setIsHovering(true);
                             play()
