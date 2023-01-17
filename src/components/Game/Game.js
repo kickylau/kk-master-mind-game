@@ -311,7 +311,7 @@ function Game() {
                                     <br />
                                     Only winners will have the chance to leave their names on the leaderboard.
                                     <br /><br />
-                                    9. To begin a new game click the <b><font color="blue">NEW GAME</font></b> button.
+                                    8. To begin a new game click the <b><font color="blue">NEW GAME</font></b> button.
                                     <br /><br />
 
                                     ** You can pause/stop the background music by clicking the control buttons on the top left **

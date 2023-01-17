@@ -5,6 +5,7 @@ const Timer = ({ startTimer, pauseTimer }) => {
   const [timer, setTimer] = useState(0);
   const [timerDisplay, setTimerDisplay] = useState(initialTime);
 
+  //console.log("actual time:", Date.now())
 
   useEffect(() => {
     const interval = setInterval(() => {
