@@ -1,477 +1,316 @@
-import "./Game.css"
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
-import winningLogo from "../../assets/img/wooHoo.png";
-import losingLogo from "../../assets/img/doh.png";
-import Row from "./Board/Row/Row.js"
-import backgroundVideo from "../../assets/audioAndVideo/backgroundVideo.mp4";
-import backgroundMusic from "../../assets/audioAndVideo/backgroundMusic.mp3";
-import click from "../../assets/audioAndVideo/click.mp3";
-import doh from "../../assets/audioAndVideo/doh.mp3";
-import wooHoo from "../../assets/audioAndVideo/wooHoo.mp3";
-import donutClick from "../../assets/audioAndVideo/donutClick.mp3";
+import "./Game.css";
 import "nes.css/css/nes.min.css";
-import Timer from "./Timer/Timer.js"
+import backgroundMusic from "../../assets/audioAndVideo/backgroundMusic.mp3";
+import backgroundVideo from "../../assets/audioAndVideo/backgroundVideo.mp4";
+import click from "../../assets/audioAndVideo/click.mp3";
+import donutClick from "../../assets/audioAndVideo/donutClick.mp3";
+import Timer from "./Timer/Timer";
 import ChallengeMode from "./ChallengeMode/ChallengeMode";
-
+import Rules from "./Rules/Rules";
+import DonutBoard from "./Board/DonutBoard";
+import NewGame from "./Controls/NewGame";
+import Guess from "./Controls/Guess";
+import Row from "./Board/Row";
+import ResultModal from "./ResultModal/ResultModal";
+import Music from "./Music/Music";
 
 function Game() {
+  const [randomCode, setRandomCode] = useState([]);
+  const [guess, setGuess] = useState([]);
+  const [counter, setCounter] = useState(10);
+  const isMounted = useRef(false);
+  const [showLosingModal, setShowLosingModal] = useState(false);
+  const [showWinningModal, setShowWinningModal] = useState(false);
+  const [showRulesModal, setShowRulesModal] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [play, { stop, pause }] = useSound(backgroundMusic);
+  const [playClick] = useSound(click);
+  const [playDonutClick] = useSound(donutClick);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPausing, setIsPausing] = useState(false);
+  const [isStopping, setIsStopping] = useState(false);
+  const [sizeLimit, setSizeLimit] = useState(4);
+  const [startTimer, setStartTimer] = useState(false);
+  const [pauseTimer, setPauseTimer] = useState(false);
+  const [data, setData] = useState(new Array(10).fill([]));
+  const [pegData, setPegData] = useState(new Array(10).fill([]));
 
+  //fetch random number API
+  const fetchData = async () => {
+    const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`;
 
-    const [randomCode, setRandomCode] = useState([]);
-    const [answer, setAnswer] = useState("")
-    const [guess, setGuess] = useState([])
-    const [counter, setCounter] = useState(10)
-    const isMounted = useRef(false);
-    const [showLosingModal, setShowLosingModal] = useState(false);
-    const [showWinningModal, setShowWinningModal] = useState(false);
-    const [showRulesModal, setShowRulesModal] = useState(false);
-    const [showResult, setShowResult] = useState(false);
-    const [showAnswer, setShowAnswer] = useState(false)
-    const [pegWhite, setPegWhite] = useState(0)
-    const [pegBlack, setPegBlack] = useState(0)
-    const [play, { stop, pause }] = useSound(backgroundMusic);
-    const [play2] = useSound(click);
-    const [play3] = useSound(donutClick);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [isPausing, setIsPausing] = useState(false);
-    const [isStopping, setIsStopping] = useState(false);
-    const [sizeLimit, setSizeLimit] = useState(4);
-    const [startTimer, setStartTimer] = useState(false);
-    const [pauseTimer, setPauseTimer] = useState(false);
-    //create a function and a button to trigger so that pass data to child
-    //create a state to manage the data
-    const [data, setData] = useState(new Array(10).fill([]))
-    const [pegData, setPegData] = useState(new Array(10).fill([]))
-    //const [clear, setClear] = useState(false);
+    try {
+      const response = await fetch(url);
+      const data = await response.text();
+      setRandomCode(
+        data
+          .split("\n")
+          .filter((e) => e.length > 0)
+          .map((e) => parseInt(e))
+      );
+      //to only extract the 4 random number without empty string at the end of the array
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
+  //create map color vs. number
+  const colorMap = {
+    blue: 0,
+    red: 1,
+    purple: 2,
+    yellow: 3,
+    green: 4,
+    pink: 5,
+    caremel: 6,
+    brown: 7,
+  };
 
-    const playSong = () => {
-        setIsPlaying(true);
-        play()
+  //enter current guess
+  const addToGuess = (color) => {
+    setStartTimer(true);
+    let newGuess;
+    if (counter > 0) {
+      let num = colorMap[color];
+      newGuess = { guess }.guess.concat(num);
+      if (newGuess.length <= sizeLimit) {
+        setGuess(newGuess);
+      }
+    }
+    passDataToRow(newGuess);
+    return newGuess;
+  };
+
+  //match the current guess vs. actual result
+  const numberGuess = (code, guess) => {
+    let correctPosAndColor = 0;
+    let correctColorWrongPos = 0;
+    let map = {};
+    for (let num of code) {
+      if (map[num] != null) map[num]++;
+      else map[num] = 1;
     }
 
-    const stopSong = () => {
-        setIsPlaying(false);
-        setIsStopping(true)
-        stop()
+    for (let i = 0; i < guess.length; i++) {
+      if (guess[i] === code[i]) {
+        correctPosAndColor++;
+      }
+      if (guess[i] in map && map[guess[i]] > 0) {
+        correctColorWrongPos++;
+        map[guess[i]]--;
+      }
     }
+    correctColorWrongPos = correctColorWrongPos - correctPosAndColor;
+    passAnswerToRow([correctPosAndColor, correctColorWrongPos]);
 
-    const pauseSong = () => {
-        setIsPlaying(false);
-        setIsPausing(true);
-        pause()
+    if (correctPosAndColor === sizeLimit) {
+      setShowWinningModal(true);
+      setShowResult(true);
+      setStartTimer(false);
+      setPauseTimer(true);
+    } else if (counter === 1) {
+      setStartTimer(false);
+      setShowLosingModal(true);
+      setShowResult(true);
+      setPauseTimer(true);
     }
-
-
-    const passDataToRow = (guessArray) => {
-        // console.log("guessArray", guessArray)
-        // console.log("data", data)
-        // let currBoardGuesses = [...{data}]
-        //[[y,y,y,y],[r,r,r,r]]
-        data[10 - counter] = guessArray
-        //console.log("newData", data)
-
-    }
-
-    const passAnswerToRow = (pegArray) => {
-        pegData[10 - counter] = pegArray
-        // console.log("pegArray", pegArray)
-    }
-
-
-    //decrease counter
-    const decrease = () => {
-        setCounter(counter => counter - 1)
-    }
-
-
-    //reset counter
-    const reset = () => {
-
-        setStartTimer(false)
-        setPauseTimer(false)
-        setCounter(10)
-        setGuess([])
-        setAnswer("")
-        setShowResult(false)
-        setData(new Array(10).fill([]))
-        setPegData(new Array(10).fill([]))
-    }
-
-
-    //create map color vs. number
-    const colorMap = {
-        "blue": 0,
-        "red": 1,
-        "purple": 2,
-        "yellow": 3,
-        "green": 4,
-        "pink": 5,
-        "caremel": 6,
-        "brown": 7
-    }
-
-    const numberMap = {
-        0: "blue",
-        1: "red",
-        2: "purple",
-        3: "yellow",
-        4: "green",
-        5: "pink",
-        6: "caramel",
-        7: "brown"
-    }
-
-    //function to enter guess
-    function addToGuess(color) {
-        setStartTimer(true)
-        // console.log(sizeLimit)
-        //console.log("curr guess initially", { guess })
-        //console.log("choosing ", color)
-        let newGuess;
-        if (counter > 0) {
-            let num = colorMap[color]
-            newGuess = { guess }.guess.concat(num)
-            // console.log(setClear,setGuess)
-            // if (setClear) setGuess([])
-            // console.log(setClear,setGuess)
-            if (newGuess.length <= sizeLimit) {
-                // newGuess.splice(0, 1)
-                setGuess(newGuess)
-            }
-        }
-        //pass data to row
-        passDataToRow(newGuess)
-        return newGuess;
-    }
-
-
-
-    //function to match the guess vs. result
-    function numberGuess(code, guess) {
-        //console.log({ randomCode }.randomCode)
-        let correctPosAndColor = 0;
-        let correctColorWrongPos = 0;
-        let map = {};
-        for (let num of code) {
-            if (map[num] != null) map[num]++
-            else map[num] = 1
-        }
-
-        for (let i = 0; i < guess.length; i++) {
-            if (guess[i] === code[i]) {
-                correctPosAndColor++
-            }
-            if (guess[i] in map && map[guess[i]] > 0) {
-                correctColorWrongPos++
-                map[guess[i]]--
-            }
-        }
-        correctColorWrongPos = correctColorWrongPos - correctPosAndColor
-        let res = "You have " + correctPosAndColor + " blacks and " + correctColorWrongPos + " whites."
-        setAnswer(res)
-        setShowAnswer(true)
-        passAnswerToRow([correctPosAndColor, correctColorWrongPos])
-
-        if (correctPosAndColor === sizeLimit) {
-            setShowWinningModal(true)
-            setShowResult(true)
-            setStartTimer(false)
-            setPauseTimer(true)
-        } else if (counter == 1) {
-            setStartTimer(false)
-            setShowLosingModal(true)
-            setShowResult(true)
-            setPauseTimer(true)
-        }
-        return res
-    }
-
-
-    //fetch random number API
-    const fetchData = async () => {
-        const url = `https://www.random.org/integers/?num=${sizeLimit}&min=0&max=7&col=1&base=10&format=plain&rnd=new`
-
-        try {
-            const response = await fetch(url);
-            const data = await response.text()
-            //randomCode = data.split("\n")
-            //console.log(data.split("\n"))
-            // console.log(answer)
-            setRandomCode(data.split("\n").filter(e => e.length > 0).map(e => parseInt(e)))  //to only extract the 4 random number without empty string at the end of the array
-            //console.log("i fire here")
-        } catch (error) {
-            console.log("error", error);
-        }
-    }
-
-    //to only fire result once
-    useEffect(() => {
-        if (isMounted.current) return;
-        isMounted.current = true;
-        fetchData();
-        //console.log("i fire once ")
-        //return ()=> setRandomCode().abort()
-    }, [])
-
-
-    //??are those below necessary?? any way to simplify?
-    useEffect(() => {
-        setAnswer()
-    }, [])
-
-    useEffect(() => {
-        setGuess([])
-    }, [])
-
-    useEffect(() => {
-        setShowResult()
-    }, [])
-
-    useEffect(() => {
-        setSizeLimit(4)
-    }, [])
-
-
-
-    // useEffect(() => {
-    //    setSizeLimit(4)
-    // }, [])
-    // console.log("size limit", sizeLimit)  //its showing sync upate of size limit
-
-    //if the sizelimit changes fetch the data, only run if size limit changes .
-    useEffect(() => {
-        fetchData()
-    }, [sizeLimit])   //its also showing sync update of size limti
-
-    // useEffect(() => {
-    //     const newlimit = sizeLimit
-    //     console.log(newlimit)
-    //     setSizeLimit(newlimit)
-    //   }, [])     //not showing
-
-
-
-
-    return (
-        <>
-
-            {/* <h1>{randomCode}</h1> */}
-            {/* <h6> {answer} </h6> */}
-            {/* <h6> {guess} </h6> */}
-            <div className="container">
-                <div id="social-media-1" className="nes-icon github is-medium" onClick={() => window.open('https://kickylau.github.io/', '_blank')}></div>
-                <div id="social-media-2" className="nes-icon linkedin is-medium" onClick={() => window.open(' https://www.linkedin.com/in/kickyliu/', '_blank')}> </div>
-                <div id="social-media-3" className="nes-icon instagram is-medium" onClick={() => window.open('https://www.instagram.com/kickylau/', '_blank')}> </div>
-                <Timer
-                    startTimer={startTimer}
-                    pauseTimer={pauseTimer}
-                />
-
-                < video autoPlay muted loop id="video"><source src={backgroundVideo} type="video/mp4" /></video>
-                <div className="fa-solid fa-circle-pause"
-                    onClick={isPlaying ? pauseSong : playSong}></div>
-
-                <div className="fa-solid fa-circle-stop"
-                    onClick={isPlaying ? stopSong : playSong}></div>
-
-                <button className="nes-btn is-warning" id="rules" onClick={() => {
-                    setShowRulesModal(true)
-                    play2()
-                }}>
-                    RULES
-                </button>
-
-                {
-                    showRulesModal && (
-                        <div id="rules-modal-wrapper" onClick={() => { setShowRulesModal(false) }}>
-                            <div id="rules-modal">
-                                <div className="rules-container">
-                                    <h2>How to play... <br /><br /></h2>
-
-                                    1. Select challenge mode with the <b><font color="blue">LEVEL</font></b> selector.<br />
-                                    <b>"Easy" = 4 donuts, <br />
-                                        "Medium" = 5 donuts, <br />
-                                        "Hard" = 6 donuts.
-                                    </b>
-                                    <br /><br />
-                                    2. Click the donut palette with 8 colors by the side to create your guess until the row is filled.
-                                    <br /> To delete, click red cross <b><font color="red">X</font></b> to clear your guess and re-fill.
-                                    <br /><br />
-                                    3. Then click the <b><font color="blue">GUESS</font></b> button. You have <b><font color="red">10</font></b> tries.
-                                    <br /><br />
-                                    4. Each guess may show Bart peg(s)  <img alt="bart" style={{ width: "1vw", height: "2vh" }} src={require(`../../assets/img/bart.png`)} /> and/or Lisa peg(s) <img style={{ width: "1vw", height: "2vh" }} alt="lisat" src={require(`../../assets/img/lisa.png`)} />  .
-                                    <br /><br />
-                                    5. <img alt="bart" style={{ width: "1vw", height: "2vh" }} src={require(`../../assets/img/bart.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
-                                    <br />
-                                    <img style={{ width: "1vw", height: "2vh" }} alt="lisa" src={require(`../../assets/img/lisa.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
-                                    <br /><br />
-                                    6. Use the pegs to guide your next guess. If your guess has donuts with all the right colors and positions within 10 tries, you <b><font color="red">WIN!</font>
-                                    </b> <br /><br />
-                                    {/* 7. Your score is based on the time elapsed. Solving the donut code faster and on a harder challenge mode will result in higher scores. */}
-
-                                    {/* Only winners will have the chance to leave their names on the leaderboard. */}
-
-                                    7. To begin a new game click the <b><font color="blue">NEW GAME</font></b> button.
-                                    <br /><br />
-
-                                    ** You can pause/stop the background music by clicking the control buttons on the top left **
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                <ChallengeMode
-                    // resetWithSizeLimit={resetWithSizeLimit}
-                    setSizeLimit={setSizeLimit}
-                    reset={reset}
-                    play2={play2}
-                />
-
-                <div className="arcade-container">
-
-                    <div className="controls">
-
-                        <button id="new-game" className="nes-btn is-primary" type="submit" onClick={() => {
-                            if (!isPlaying && isPausing) {
-                                pause()
-                                // playSong()
-                            }
-
-                            play2()
-                            fetchData()
-                            reset()
-                            setShowResult(false)
-                        }
-                        }> NEW GAME</button>
-
-                        <button id="guess" className={data[10 - counter]?.length < sizeLimit ? "nes-btn is-disabled" : "nes-btn is-success"} type="submit" disabled={data[10 - counter]?.length < sizeLimit ? true : ""} onClick={() => {
-
-                            //how to add a toggle pop up modal when disable is true to remind user?
-                            //if(disabled)
-
-                            if (counter > 0) {
-                                numberGuess({ randomCode }.randomCode, { guess }.guess)
-                                decrease()
-                            }
-                            // if (counter === 1 && ) {
-                            //     setStartTimer(false)
-                            //     setShowLosingModal(true)
-                            //     setShowResult(true)
-                            //     setPauseTimer(true)
-                            // }
-                            play2()
-                            setGuess([])
-                        }
-                        }> GUESS </button>
-
-                    </div>
-
-                    <div className="monitor-container">
-                        <div className="donut-board">
-                            {Object.keys(colorMap).map((color) =>
-
-                                <div key={`code-${color}`} onClick={(e) => {
-                                    if (!isPlaying && !isPausing && !isStopping) playSong()
-                                    addToGuess(color)
-                                    play3()
-
-                                }}>
-                                    <img className="donut-image" alt="donuts" src={require(`../../assets/img/${colorMap[color]}.png`)} />
-
-                                </div>
-                                // each child in a list should have a unique key prop id={color}
-                                //require used for static imports .
-                                //{colorMap[color]}
-                            )}
-                        </div>
-
-                        <div className="game-body">
-
-                            {[...Array(10)].map((x, idx) =>
-                                <Row key={`row-${idx}`}
-                                    showAnswer={showAnswer}
-                                    pegWhite={pegWhite}
-                                    pegBlack={pegBlack}
-                                    passDataToRow={data}
-                                    passAnswerToRow={pegData}
-                                    numberMap={numberMap}
-                                    rowIdx={idx}
-                                    sizeLimit={sizeLimit}
-                                    isBlue={10 - counter === idx ? "blue" : ""}
-                                    isGrey={10 - counter > idx ? " grey" : ""}
-                                    isRed={10 - counter === idx ? "red" : ""}
-                                    setGuess={setGuess}
-                                />
-                            )}
-                        </div>
-                    </div>
-
-                    {
-                        showWinningModal &&
-                        <div id="modal-wrapper" onClick={() => {
-                            // setShowModal(false)
-                            setShowWinningModal(false)
-                            fetchData()
-                            reset()
-                        }}>
-                            <div id="modal" >
-
-                                <div style={{ display: showResult ? "block" : "none" }}>
-                                    <div className="results-container">
-                                        {randomCode.map((number, idx) =>
-                                            <div key={`code-${idx}`}>
-                                                <img alt="answer" src={require(`../../assets/img/${number}.png`)}></img>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <audio src={wooHoo} autoPlay></audio>
-                                <div className="results-modal-text">WOO HOO <br></br> YOU WON !!</div>
-                                <img src={winningLogo} className="logo" alt="logo" />
-
-                            </div>
-                        </div>
-                    }
-
-                    {
-                        showLosingModal &&
-                        <div id="modal-wrapper" onClick={() => {
-                            setShowLosingModal(false)
-                            fetchData()
-                            reset()
-                        }}>
-                            <div id="modal">
-
-                                <div className="results" style={{ display: showResult ? "block" : "none" }}>
-
-                                    <div className="results-container">
-                                        {randomCode.map((number, idx) =>
-                                            <div key={`code-${idx}`}>
-                                                <img alt="answer" src={require(`../../assets/img/${number}.png`)}></img>
-                                            </div>
-                                        )}
-
-                                    </div>
-                                </div>
-
-
-
-                                <audio src={doh} autoPlay></audio>
-                                <div className="results-modal-text">D' OH !! <br></br> GAME OVER </div>
-                                <img src={losingLogo} className="logo" alt="logo" />
-                            </div>
-                        </div>
-                    }
-
-                </div>
-
-
+  };
+
+  //pass donuts to row
+  const passDataToRow = (guessArray) => {
+    data[10 - counter] = guessArray;
+  };
+
+  //pass pegs to row
+  const passAnswerToRow = (pegArray) => {
+    pegData[10 - counter] = pegArray;
+  };
+
+  //decrease counts
+  const decrease = () => {
+    setCounter((counter) => counter - 1);
+  };
+
+  //reset game
+  const reset = () => {
+    setStartTimer(false);
+    setPauseTimer(false);
+    setCounter(10);
+    setGuess([]);
+    setShowResult(false);
+    setData(new Array(10).fill([]));
+    setPegData(new Array(10).fill([]));
+  };
+
+  //music functions
+  const playSong = () => {
+    setIsPlaying(true);
+    play();
+  };
+
+  const stopSong = () => {
+    setIsPlaying(false);
+    setIsStopping(true);
+    stop();
+  };
+
+  const pauseSong = () => {
+    setIsPlaying(false);
+    setIsPausing(true);
+    pause();
+  };
+
+  useEffect(() => {
+    setGuess([]);
+  }, []);
+
+  useEffect(() => {
+    setShowResult();
+  }, []);
+
+  useEffect(() => {
+    setSizeLimit(4);
+  }, []);
+
+  //if the sizelimit changes fetch the data, only run if size limit changes
+  useEffect(() => {
+    fetchData();
+  }, [sizeLimit]); //its also showing sync update of size limit
+
+  //to only fire the fetch result once for react strict mode. (doesnt matter once deployed to heroku)
+  useEffect(() => {
+    if (isMounted.current) return;
+    isMounted.current = true;
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <video autoPlay muted loop id="video">
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
+
+      <div className="container">
+        <div
+          id="social-media-1"
+          className="nes-icon github is-medium"
+          onClick={() => window.open("https://kickylau.github.io/", "_blank")}
+        ></div>
+        <div
+          id="social-media-2"
+          className="nes-icon linkedin is-medium"
+          onClick={() =>
+            window.open(" https://www.linkedin.com/in/kickyliu/", "_blank")
+          }
+        >
+
+        </div>
+        <div
+          id="social-media-3"
+          className="nes-icon instagram is-medium"
+          onClick={() =>
+            window.open("https://www.instagram.com/kickylau/", "_blank")
+          }
+        >
+
+        </div>
+
+        <div className="timer">
+          <Timer startTimer={startTimer} pauseTimer={pauseTimer} />
+        </div>
+
+        <Music
+          isPlaying={isPlaying}
+          pauseSong={pauseSong}
+          playSong={playSong}
+          stopSong={stopSong}
+        />
+
+        <Rules
+          setShowRulesModal={setShowRulesModal}
+          showRulesModal={showRulesModal}
+          playClick={playClick}
+        />
+
+        <div className="challenge-mode">
+          <ChallengeMode
+            setSizeLimit={setSizeLimit}
+            reset={reset}
+            playClick={playClick}
+          />
+        </div>
+
+        <div className="arcade-container">
+          <div className="controls">
+            <NewGame
+              isPlaying={isPlaying}
+              isPausing={isPausing}
+              pause={pause}
+              playClick={playClick}
+              fetchData={fetchData}
+              reset={reset}
+              setShowResult={setShowResult}
+            />
+
+            <Guess
+              data={data}
+              counter={counter}
+              sizeLimit={sizeLimit}
+              playClick={playClick}
+              guess={guess}
+              setGuess={setGuess}
+              numberGuess={numberGuess}
+              randomCode={randomCode}
+              decrease={decrease}
+            />
+          </div>
+
+          <div className="monitor-container">
+            <div className="donut-board">
+              <DonutBoard
+                colorMap={colorMap}
+                isPlaying={isPlaying}
+                isPausing={isPausing}
+                isStopping={isStopping}
+                playSong={playSong}
+                playDonutClick={playDonutClick}
+                addToGuess={addToGuess}
+              />
             </div>
-        </>
-    )
+
+            <div className="game-body">
+              {[...Array(10)].map((x, idx) => (
+                <Row
+                  key={`row-${idx}`}
+                  passDataToRow={data}
+                  passAnswerToRow={pegData}
+                  rowIdx={idx}
+                  sizeLimit={sizeLimit}
+                  isBlue={10 - counter === idx ? "blue" : ""}
+                  isGrey={10 - counter > idx ? " grey" : ""}
+                  isRed={10 - counter === idx ? "red" : ""}
+                  setGuess={setGuess}
+                />
+              ))}
+            </div>
+          </div>
+
+          <ResultModal
+            showWinningModal={showWinningModal}
+            setShowWinningModal={setShowWinningModal}
+            showLosingModal={showLosingModal}
+            setShowLosingModal={setShowLosingModal}
+            fetchData={fetchData}
+            reset={reset}
+            showResult={showResult}
+            randomCode={randomCode}
+          />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Game;
