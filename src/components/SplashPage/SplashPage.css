@@ -103,7 +103,7 @@
     line-height: 40px;
     letter-spacing: 0.125em;
     text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
-    animation-duration: 0.01s;
+    animation-duration: 0.0001s;
     animation-name: textflicker;
     animation-iteration-count: infinite;
     animation-direction: alternate;

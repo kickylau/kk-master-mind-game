@@ -309,7 +309,7 @@ img {
     bottom: 0;
     right: 0;
     height: 90px;
-    color: white;
+    color: black;
     width: 100%;
     text-align: center;
     margin: auto;
@@ -385,15 +385,17 @@ img {
 /* child component Row css (in order) */
 
 .black-pegs {
-    width: 2vh;
-    height: 1vw;
+    margin-top: -5%;
+    width: 3.3vh;
+    height: 1.2vw;
     /* max-width: 100%;
     max-height: 100%; */
 }
 
 .white-pegs {
-    width: 2vh;
-    height: 1vw;
+    margin-top: -5%;
+    width: 3.3vh;
+    height: 1.2vw;
 }
 
 .row-4 {
@@ -402,7 +404,7 @@ img {
     justify-content: space-between;
     align-items: center;
     display: grid;
-    grid-template-columns: 5% repeat(4, 17.5%) 5% 20%;
+    grid-template-columns: 5% repeat(4, 18%) 3% 20%;
 }
 
 .row-5 {
@@ -411,7 +413,7 @@ img {
     justify-content: space-between;
     align-items: center;
     display: grid;
-    grid-template-columns: 5% repeat(5, 14%) 5% 20%;
+    grid-template-columns: 5% repeat(5, 14.4%) 3% 20%;
 }
 
 .row-6 {
@@ -420,7 +422,7 @@ img {
     justify-content: space-between;
     align-items: center;
     display: grid;
-    grid-template-columns: 5% repeat(6, 11.66%) 5% 20%;
+    grid-template-columns: 5% repeat(6, 12%) 3% 20%;
 }
 
 .fa-angles-right {
@@ -454,7 +456,7 @@ img {
 }
 
 .row-donut-image {
-    width: 2vw;
+    width: 2.5vw;
 }
 
 

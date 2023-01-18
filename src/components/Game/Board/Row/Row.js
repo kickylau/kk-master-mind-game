@@ -10,7 +10,7 @@ function Row({ passDataToRow, rowIdx, passAnswerToRow, sizeLimit, isBlue, isGrey
                 <img src={require(`../../../../assets/img/bart.png`)} />
             </div>)
         }
-        for (let i = 0; i < passAnswerToRow[rowIdx][1]; i++) {
+         for (let i = 0; i < passAnswerToRow[rowIdx][1]; i++) {
             pegDivs.push(<div className="white-pegs" key={`whites-${i}`}>
                 <img src={require(`../../../../assets/img/lisa.png`)} />
             </div>)

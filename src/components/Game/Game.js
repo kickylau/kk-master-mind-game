@@ -454,7 +454,7 @@ function Game() {
 
 
                                 <audio src={doh} autoPlay></audio>
-                                <div className="results-modal-text">D' OH !! <br></br> YOU LOST </div>
+                                <div className="results-modal-text">D' OH !! <br></br> GAME OVER </div>
                                 <img src={losingLogo} className="logo" alt="logo" />
                             </div>
                         </div>
