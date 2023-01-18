@@ -22,7 +22,7 @@ function SplashPage() {
         <>
             <div className="splash-container">
                 <header className="splash-header">
-                    <h1 id="simpson"  onClick={routeChange}>Kicky's <br></br> SIMPSONS  MASTERMIND</h1>
+                    <h1 id="simpson"  onClick={routeChange}>Kicky's <br></br><br></br> SIMPSONS  MASTERMIND</h1>
                     <img src={logo} className="logo" alt="logo" onClick={routeChange} />
 
                     <div id="enterGame"
