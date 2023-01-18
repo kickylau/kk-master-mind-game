@@ -62,7 +62,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games, I would like to bring this board game to a more interative and immersive way for users to explore with. It's a leisure simple game that you will never get bored with. 
+Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games, I would like to bring this board game in a more interative and immersive way for users to explore. It's a leisure simple game that you will never get bored with. 
 
 
 
@@ -72,8 +72,8 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 * Donut Palette to choose the guess.
 * Different challenge mode with empty donuts on each row to indicate the level.
 * Bart and Lisa pegs to guide the next guess.
-* Different arrow colors to indicate the past, current, and left guesses. 
-* Clear current guess and disable submitting function for better user experience.
+* Different arrow colors to indicate the current, and left guesses. 
+* Clear current guess option and disable submitting function for better user experience.
 * Timer to keep track of each game.
 
 
@@ -105,7 +105,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 </br>
 
-* User can start the game by choosing the 8 colored donut palette on the left side of the arcade game container. Once game started, the timer would start counting. Bart and Lisa peg(s) would guide user's next guess during the game.
+* User can start the game by choosing colored donut palette on the left side of the arcade game container. Once game started, the timer would start counting. Bart and Lisa peg(s) would guide user's next guess during the game.
 <img alt="mode" src="https://user-images.githubusercontent.com/94200416/213115147-c2ca84ae-cdd9-4677-aca9-1dc61a3f1cd9.gif">
 
 
@@ -123,7 +123,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 </br>
 
-* Background theme music will auto play while game started, user can choose "Pause" or "Stop".
+* Background theme music will auto play once game started, user can choose "Pause" or "Stop".
 <img alt="music" src="https://user-images.githubusercontent.com/94200416/213117834-e0db697d-1a2a-41e2-be79-6d83f15e9d3d.gif">
 
 </br>
@@ -133,52 +133,31 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 
 
+## requirements
+
+node ^5.0.0
+npm ^3.0.0
+
 ## setup
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/kickylau/DOPER.git
+   git clone https://github.com/kickylau/kk-master-mind-game.git
    ```
 
 2. Install dependencies
+ ```bash
+npm install
+```
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your development environment
-
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+3. Running the Project
+ ```bash
+npm start
+```
 
 ***
 
-
-
-
 <br>
-
-
-
 
 
 
@@ -191,10 +170,8 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 Kicky Liu - [GitHub](https://github.com/kickylau)
 
+Project Repo Link: [https://github.com/kickylau/kk-master-mind-game](https://github.com/kickylau/kk-master-mind-game)
 
-
-Project Repo Link: [https://github.com/kickylau/DOPER/](https://github.com/kickylau/DOPER/)
-
-Project Link: [https://doper-kk.herokuapp.com/](https://doper-kk.herokuapp.com/)
+Project Link: [https://mastermind-kk.herokuapp.com/](https://mastermind-kk.herokuapp.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
