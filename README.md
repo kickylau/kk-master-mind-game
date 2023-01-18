@@ -2,12 +2,12 @@
 
 This is a classic code-breaking board game with the Simpsons theme in 90s arcade game style. Fun for friends and family to play with!
 
-</br></br>
+</br>
 
 ## Application Architecture
 
 Built with React frontend using JavsScript language, deployed to Heroku.
-</br></br>
+</br>
 
 
 ## Technologies used
