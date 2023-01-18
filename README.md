@@ -46,11 +46,11 @@ Built with React frontend using JavsScript language, deployed to Heroku.
       <ul>
         <li><a href="#key-features">Key Features</a></li>
       </ul>
-      <ul>
-        <li><a href="#code-structure">Code Structure</a></li>
+        <ul>
+        <li><a href="#thought-process">Thought Process</a></li>
       </ul>
       <ul>
-        <li><a href="#thought-process">Thought Process</a></li>
+        <li><a href="#code-structure">Code Structure</a></li>
       </ul>
     </li>
    <li><a href="#usage">Usage</a></li>
@@ -94,6 +94,35 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 </br>
 
 
+**Thought Process**
+
+Before building this game I have actually not heard of it before. So in order to better understing this, I played a couple online mastermind games to get hands on quickly. Through observation and personal user experience, there are some user interface flaws that could be improved. 
+
+* Guidelines
+   1. Guidelines are too complicated to understand which could lower users interest in the first case. 
+   2. The rules section is not visible or convenient enough for users to review frequently, especially for a first-time player that doesn't remeber the rules. Users have to keep back and forth scorlling down or opening other pages to check it.
+
+* Game Board Desgin 
+   1. In terms of selecting pegs (or numbers) it's unclear for users whether to click the empty row to fill the pegs, or to drag from the available peg board to the row, or to click on them to select.
+   2. In terms of re-selecting pegs, its also unclear whether to re-select all over again or just the single one. Some of the designs have "delete" options which is a plus. 
+
+* Overall Interface Design
+   1. Most of the online mastermind games follow the similar basic board structure with colored pegs + black/white pegs. The game board size is as big as iphone screen with simple design. Outside of the game board is almost plain text without too much user interactions. 
+
+
+Therefore, a simple but interactive game that is friendly to first-time player, rules are well explained and easy to look up, eyecatching game interface design came up to my mind. 
+
+Considering the scale and structure of the game, I decided to not use backend to store data or Redux to manage actions. This is a pure frontend using React with JavaScript language. 
+
+Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a Simpsons fan, I decided to build this game in 90s Arcade Game style with the Simpsons theme. The game design captured the inspiration from every pieces of the Simpsons - classic theme song as background music, blue sky as animation background, iconic Homer expression whenever users win or lose, donuts to represent colored pegs, Bart and Lisa representing traditional black/white pegs. The fonts are using pixel style, as well as the arcade game machine to wrap the game board. Major color selections are Simpsons yellow, blue, red, green. 
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
+
+
+
 **Code Structure**
 
 ```
@@ -133,28 +162,10 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 ```
 
-
-
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 </br>
 
-
-
-**Key Features**
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-</br>
-
-
-
-**Key Features**
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-</br>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
