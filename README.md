@@ -7,19 +7,17 @@ This is a classic code-breaking board game with the Simpsons theme in 90s arcade
 ## Application Architecture
 
 Built with React frontend using JavsScript language, deployed to Heroku.
+
 </br>
 
 
 ## Technologies used
 
 ### Frontend
-
 * React
 * JavaScript
 * HTML
 * CSS
-
-
 
 <div id="top"></div>
 
@@ -39,7 +37,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
   </p>
 </div>
 
-
+</br>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -56,7 +54,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
   </ol>
 </details>
 
-
+</br>
 
 
 <!-- ABOUT THE PROJECT -->
@@ -67,6 +65,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 
 **Key Features**
+
 * Classic Simpsons theme with sounds and animations.
 * Easy rules as guideline.
 * Donut Palette to choose the guess.
@@ -79,7 +78,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
+</br>
 
 
 
@@ -93,26 +92,26 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 </br>
 
 
-
 * Once entered, user would be directed to the main game page. User can click the "Rules" button to checkout the rules.
 <img alt="rules" src="https://user-images.githubusercontent.com/94200416/213113883-480c48b5-f4ea-4520-91e6-9267d76da9a3.gif">
 
-
 </br>
+
 
 * User can select 3 different challenge mode with the "Level" button.
 <img alt="rules" src="https://user-images.githubusercontent.com/94200416/213116397-dda47b02-ac09-451d-9b4b-fef9b2d126be.gif">
 
 </br>
 
+
 * User can start the game by choosing colored donut palette on the left side of the arcade game container. Once game started, the timer would start counting. Bart and Lisa peg(s) would guide user's next guess during the game.
 <img alt="mode" src="https://user-images.githubusercontent.com/94200416/213115147-c2ca84ae-cdd9-4677-aca9-1dc61a3f1cd9.gif">
 
-
 </br>
+
+
 * User can also clear the current guess by clicking the "Delete" button.
 <img alt="clear" src="https://user-images.githubusercontent.com/94200416/213116745-dd2887ab-ee51-42d2-9d4c-89c03961a617.gif">
-
 
 </br>
 
@@ -123,6 +122,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 </br>
 
+
 * Background theme music will auto play once game started, user can choose "Pause" or "Stop".
 <img alt="music" src="https://user-images.githubusercontent.com/94200416/213117834-e0db697d-1a2a-41e2-be79-6d83f15e9d3d.gif">
 
@@ -132,26 +132,27 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 
 
+## Requirements
 
-## requirements
+* node ^5.0.0
+* npm ^3.0.0
 
-node ^5.0.0
-npm ^3.0.0
+</br>
 
-## setup
+## Setup
 1. Clone this repository (only this branch)
 
-   ```bash
-   git clone https://github.com/kickylau/kk-master-mind-game.git
-   ```
+```bash
+git clone https://github.com/kickylau/kk-master-mind-game.git
+```
 
 2. Install dependencies
- ```bash
+```bash
 npm install
 ```
 
 3. Running the Project
- ```bash
+```bash
 npm start
 ```
 
@@ -161,12 +162,8 @@ npm start
 
 
 
-
-
-
 <!-- CONTACT -->
 ## Contact
-
 
 Kicky Liu - [GitHub](https://github.com/kickylau)
 
