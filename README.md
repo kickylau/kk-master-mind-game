@@ -1,4 +1,4 @@
-## Welcome to Kicky's Simpson MasterMind !
+## Welcome To Kicky's Simpson MasterMind !
 
 This is a classic code-breaking board game with the Simpsons theme in 90s arcade game style. Fun for friends and family to play with!
 
@@ -11,7 +11,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
 </br>
 
 
-## Technologies used
+## Technologies Used
 
 ### Frontend
 * React
@@ -31,9 +31,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
 <h3 align="center"> Kicky's MasterMind  </h3>
 
   <p align="center">
-    <br />
     <a href="https://mastermind-kk.herokuapp.com/"><strong>Explore the website »</strong></a>
-    <br />
   </p>
 </div>
 
@@ -48,8 +46,23 @@ Built with React frontend using JavsScript language, deployed to Heroku.
       <ul>
         <li><a href="#key-features">Key Features</a></li>
       </ul>
+      <ul>
+        <li><a href="#code-structure">Code Structure</a></li>
+      </ul>
+      <ul>
+        <li><a href="#thought-process">Thought Process</a></li>
+      </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+   <li><a href="#usage">Usage</a></li>
+   <li><a href="#extensions">Extensions</a></li>
+      <ul>
+        <li><a href="#implemented-extensions">Implemented Extensions</a></li>
+      </ul>
+      <ul>
+        <li><a href="#attempted-extensions">Attempted Extensions</a></li>
+      </ul>
+    <li><a href="#contact">Requirements</a></li>
+    <li><a href="#contact">Setup</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -131,7 +144,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
+<!-- Requirements -->
 ## Requirements
 
 * node ^15.0.0
@@ -139,6 +152,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 </br>
 
+<!-- Setup -->
 ## Setup
 1. Clone this repository (only this branch)
 
