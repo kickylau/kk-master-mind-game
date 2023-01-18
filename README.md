@@ -76,7 +76,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
 Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games, I would like to bring this board game in a more interative and immersive way for users to explore. It's a leisure simple game that you will never get bored with. 
 
 
-
+<!-- Key Features -->
 **Key Features**
 
 * Classic Simpsons theme with sounds and animations.
@@ -93,7 +93,7 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 </br>
 
-
+<!-- Thought Process -->
 **Thought Process**
 
 Before building this game I have actually not heard of it before. So in order to better understing this, I played a couple online mastermind games to get hands on quickly. Through observation and personal user experience, there are some user interface flaws that could be improved. 
@@ -122,7 +122,7 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 </br>
 
 
-
+<!-- Code Structure -->
 **Code Structure**
 
 ```
@@ -210,6 +210,34 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 
 * Background theme music will auto play once game started, user can choose "Pause" or "Stop".
 <img alt="music" src="https://user-images.githubusercontent.com/94200416/213117834-e0db697d-1a2a-41e2-be79-6d83f15e9d3d.gif">
+
+</br>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- Extensions -->
+**Extensions**
+
+* Implemented Extensions 
+   1. A "difficulty level" with three modes - "Easy" with 4 donuts, "Medum" with 5 and "Hard" with 6.
+   2. All graphical components are added with animations, sounds, hover effects, and consistent style. 
+   3. Numbers/Pegs are changed into distinct colorful donuts.
+   4. A timer for the entire game. 
+   5. A "Rules" pop-up modal that is convinient for first-time player to reach. 
+   6. A music player for users to play/pause/stop. 
+   7. A "delete" option when users need to re-select the current guess.
+   8. A disabled submit function when users did not fill the entire row.  
+   9. A splash page. 
+
+
+* Attempted Extension 
+   1. Able to pick a player among the Simpsons family to start the game.
+   2. Scores calculation and accumulation for each game. 
+   3. Public Leaderboard with players own name and scores that is powered by google firebase.
+   4. Multi players instead of one player vs. computer. 
+   5. A.I computer auto play (?)
+   6. Support to give hints. 
+
 
 </br>
 
