@@ -293,7 +293,7 @@ function Game() {
                                     1. Select challenge mode with the <b><font color="blue">LEVEL</font></b> selector.<br />
                                     <b>"Easy" = 4 donuts, <br />
                                         "Medium" = 5 donuts, <br />
-                                        "Hard" = 6 donuts.<br />
+                                        "Hard" = 6 donuts.
                                     </b>
                                     <br /><br />
                                     2. Click the donut palette with 8 colors by the side to create your guess until the row is filled.
