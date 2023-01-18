@@ -179,6 +179,11 @@ function Game() {
             setShowResult(true)
             setStartTimer(false)
             setPauseTimer(true)
+        } else if (counter == 1) {
+            setStartTimer(false)
+            setShowLosingModal(true)
+            setShowResult(true)
+            setPauseTimer(true)
         }
         return res
     }
@@ -252,7 +257,7 @@ function Game() {
     return (
         <>
 
-            {/* <h1>{randomCode}</h1> */}
+            <h1>{randomCode}</h1>
             {/* <h6> {answer} </h6> */}
             {/* <h6> {guess} </h6> */}
             <div className="container">
@@ -291,16 +296,16 @@ function Game() {
                                         "Hard" = 6 donuts.<br />
                                     </b>
                                     <br /><br />
-                                    2. Click the donut palette with 8 colors on the side to create your guess until the row is filled.
+                                    2. Click the donut palette with 8 colors by the side to create your guess until the row is filled.
                                     <br /> To delete, click red cross <b><font color="red">X</font></b> to clear your guess and re-fill.
                                     <br /><br />
                                     3. Then click the <b><font color="blue">GUESS</font></b> button. You have <b><font color="red">10</font></b> tries.
                                     <br /><br />
-                                    4. Each guess may show Bart peg(s) <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart.png`)} /> and/or Lisa peg(s) <img className="white-pegs" alt="lisat" src={require(`../../assets/img/lisa.png`)} /> .
+                                    4. Each guess may show Bart peg(s)  <img alt="bart" style={{ width: "1vw", height: "2vh" }} src={require(`../../assets/img/bart.png`)} /> and/or Lisa peg(s) <img style={{ width: "1vw", height: "2vh" }} alt="lisat" src={require(`../../assets/img/lisa.png`)} />  .
                                     <br /><br />
-                                    5. <img className="black-pegs" alt="bart" src={require(`../../assets/img/bart.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
+                                    5. <img alt="bart" style={{ width: "1vw", height: "2vh" }} src={require(`../../assets/img/bart.png`)} /> A Bart peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="green">CORRECT</font></b> position.
                                     <br />
-                                    <img className="white-pegs" alt="lisa" src={require(`../../assets/img/lisa.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
+                                    <img style={{ width: "1vw", height: "2vh" }} alt="lisa" src={require(`../../assets/img/lisa.png`)} /> A Lisa peg indicates one of your donuts is the <b><font color="green">CORRECT</font></b> color with the <b><font color="red">WRONG</font></b> position.
                                     <br /><br />
                                     6. Use the pegs to guide your next guess. If your guess has donuts with all the right colors and positions within 10 tries, you <b><font color="red">WIN!</font>
                                     </b> <br /><br />
@@ -350,12 +355,12 @@ function Game() {
                                 numberGuess({ randomCode }.randomCode, { guess }.guess)
                                 decrease()
                             }
-                            if (counter === 1) {
-                                setStartTimer(false)
-                                setShowLosingModal(true)
-                                setShowResult(true)
-                                setPauseTimer(true)
-                            }
+                            // if (counter === 1 && ) {
+                            //     setStartTimer(false)
+                            //     setShowLosingModal(true)
+                            //     setShowResult(true)
+                            //     setPauseTimer(true)
+                            // }
                             play2()
                             setGuess([])
                         }
@@ -374,6 +379,7 @@ function Game() {
 
                                 }}>
                                     <img className="donut-image" alt="donuts" src={require(`../../assets/img/${colorMap[color]}.png`)} />
+
                                 </div>
                                 // each child in a list should have a unique key prop id={color}
                                 //require used for static imports .
