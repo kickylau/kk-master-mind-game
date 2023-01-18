@@ -38,7 +38,7 @@ function Rules({ setShowRulesModal, showRulesModal, playClick }) {
               </b>
               <br />
               <br />
-              2. Click the donut palette with <b><font color="red"> 8 </font></b> colors by the side to create your guess until the row is filled.
+              2. Click and choose from the donut palette with <b><font color="red"> 8 </font></b> colors by the side to create your guess until the row is filled.
               <br />
               To delete, click red cross <b><font color="red"> X </font></b> to clear your guess and re-fill.
               <br />
