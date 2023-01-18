@@ -67,12 +67,12 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 **Key Features**
 
 * Classic Simpsons theme with sounds and animations.
-* Easy rules as guideline.
+* Easy access to guideline.
 * Donut Palette to choose the guess.
-* Different challenge mode with empty donuts on each row to indicate the level.
+* Different challenge mode.
 * Bart and Lisa pegs to guide the next guess.
-* Different arrow colors to indicate the current, and left guesses. 
-* Clear current guess option and disable submitting function for better user experience.
+* Arrows to indicate the current and left guesses. 
+* Delete option and disabled submitting function for better user experience. (?)
 * Timer to keep track of each game.
 
 
