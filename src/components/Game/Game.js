@@ -257,7 +257,7 @@ function Game() {
     return (
         <>
 
-            <h1>{randomCode}</h1>
+            {/* <h1>{randomCode}</h1> */}
             {/* <h6> {answer} </h6> */}
             {/* <h6> {guess} </h6> */}
             <div className="container">
