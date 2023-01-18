@@ -94,6 +94,67 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 </br>
 
 
+**Code Structure**
+
+```
+└── src
+    ├── assets
+    │   ├── audioAndVideo
+    │   ├── fonts
+    │   ├── img
+    |
+    ├── components
+    |   ├── Game
+    |       ├── Board
+    |           ├── DonutBoard
+    |           ├── Row
+    |       ├── ChallengeMode
+    |           ├── ChallengeMode.js
+    |       ├── Controls
+    |           ├── Guess
+    |           ├── NewGame
+    |       ├── Music
+    |           ├── Music.js
+    |       ├── ResultModal
+    |           ├── ResultModal.js
+    |       ├── Rules
+    |           ├── Rules.js
+    |       ├── Timer
+    |           ├── Timer.js
+    |       ├── Game.css
+    |       ├── Game.js
+    |
+    |   │── SplashPage
+    |       ├── SplashPage.css
+    |       ├── SplashPage.js
+    |
+    |── App.js
+    |── index.js
+
+```
+
+
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
+
+
+
+**Key Features**
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
+
+
+
+**Key Features**
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
