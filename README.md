@@ -134,8 +134,8 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 
 ## Requirements
 
-* node ^5.0.0
-* npm ^3.0.0
+* node ^15.0.0
+* npm ^8.0.0
 
 </br>
 
