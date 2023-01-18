@@ -150,7 +150,7 @@ img {
     grid-template-columns: repeat(100, 1%);
     grid-row: 5/95;
     grid-column: 20/80;
-    background-image: url("../../assets/img/logo6.png");
+    background-image: url("../../assets/img/logo12.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
