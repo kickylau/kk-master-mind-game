@@ -171,44 +171,44 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 ## Usage
 
 
-* User would be brought to the splash page where user can enter through title, logo and "Enter Game" button. 
+* User is directed to the splash page where they can enter the game through the title, logo, and "Enter Game" button. 
 <img alt="enter-game" src="https://user-images.githubusercontent.com/94200416/213113062-f1891603-433a-4cba-8f09-a0a7ec3fbd66.gif">
 
 </br>
 
 
-* Once entered, user would be directed to the main game page. User can click the "Rules" button to checkout the rules.
+* Once entered, user is directed to the main game page. User can click the "RULES" button to check out the rules.
 <img alt="rules" src="https://user-images.githubusercontent.com/94200416/213113883-480c48b5-f4ea-4520-91e6-9267d76da9a3.gif">
 
 </br>
 
 
-* User can select 3 different challenge mode with the "Level" button.
+* User can select 3 different challenge modes with the "LEVEL" button.
 <img alt="rules" src="https://user-images.githubusercontent.com/94200416/213116397-dda47b02-ac09-451d-9b4b-fef9b2d126be.gif">
 
 </br>
 
 
-* User can start the game by choosing colored donut palette on the left side of the arcade game container. Once game started, the timer would start counting. Bart and Lisa peg(s) would guide user's next guess during the game.
+* User can start the game by choosing colored donuts from the palette on the left side of the arcade game container. Once the game starts, the timer also starts counting. Bart and Lisa peg(s) reveal information on how many donuts are in the correct position and/or color.
 <img alt="mode" src="https://user-images.githubusercontent.com/94200416/213115147-c2ca84ae-cdd9-4677-aca9-1dc61a3f1cd9.gif">
 
 </br>
 
 
-* User can also clear the current guess by clicking the "Delete" button.
+* User can also clear the current guess by clicking the red "X" button.
 <img alt="clear" src="https://user-images.githubusercontent.com/94200416/213116745-dd2887ab-ee51-42d2-9d4c-89c03961a617.gif">
 
 </br>
 
 
-* A Simpson sound and animation effect with the donut result would show up after the win and lose.
+* After winning or losing the game, a Simpsons sound and animation effect appears with correct donut result.
 <img alt="win" src="https://user-images.githubusercontent.com/94200416/213117236-9b395811-7e81-419b-ba44-ceb8153af38b.gif">
 <img alt="lose" src="https://user-images.githubusercontent.com/94200416/213117538-1734ea0b-28b4-44c3-b97c-ce647821ac88.gif">
 
 </br>
 
 
-* Background theme music will auto play once game started, user can choose "Pause" or "Stop".
+* Background theme music auto plays once the game has started, and user can choose to "Pause" or "Stop" the music.
 <img alt="music" src="https://user-images.githubusercontent.com/94200416/213117834-e0db697d-1a2a-41e2-be79-6d83f15e9d3d.gif">
 
 </br>
@@ -219,24 +219,24 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 **Extensions**
 
 * Implemented Extensions 
-   1. A "difficulty level" with three modes - "Easy" with 4 donuts, "Medum" with 5 and "Hard" with 6.
-   2. All graphical components are added with animations, sounds, hover effects, and consistent style. 
+   1. A "difficulty level" with three modes - "Easy" with 4 donuts, "Medum" with 5 donuts, and "Hard" with 6 donuts.
+   2. Graphical components are enhanced with animations, sounds, hover effects, and consistent theming styles. 
    3. Numbers/Pegs are changed into distinct colorful donuts.
-   4. A timer for the entire game. 
-   5. A "Rules" pop-up modal that is convinient for first-time player to reach. 
-   6. A music player for users to play/pause/stop. 
-   7. A "delete" option when users need to re-select the current guess.
-   8. A disabled submit function when users did not fill the entire row.  
-   9. A splash page. 
+   4. A timer for the time elapsed in each game. 
+   5. A "Rules" pop-up modal that is convenient for first-time players to access. 
+   6. A music player with controls for users to play/pause/stop the music. 
+   7. A "delete" option when users need to re-select the current donut guess.
+   8. A disabled guess submission button when users did not fill out the entire donut guess row.
+   9. A splash page.
 
 
-* Attempted Extension ? Future? 
-   1. Able to pick a player among the Simpsons family to start the game.
-   2. Scores calculation and accumulation for each game. 
-   3. Public Leaderboard with players own name and scores that is powered by google firebase.
-   4. Multi players instead of one player vs. computer. 
-   5. A.I computer auto play (?)
-   6. Support to give hints. 
+* Future TODO Extensions
+   1. Ability to pick a character amongst The Simpsons family to start the game.
+   2. Way to calculate the final game score. 
+   3. Public Leaderboard rankings with the player's name and score that is powered by Google Firebase in the backend.
+   4. Multiplayer mode instead of one player vs. computer.
+   5. Support to reveal hints to the player.
+   6. A.I computer auto play to help with guesses.
 
 
 </br>
@@ -247,7 +247,7 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 <!-- Requirements -->
 ## Requirements
 
-* node ^15.0.0
+* node ^16.0.0
 * npm ^8.0.0
 
 </br>
