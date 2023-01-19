@@ -4,20 +4,6 @@ This is a classic code-breaking board game with The Simpsons theme in a 90's arc
 
 </br>
 
-## Application Architecture
-
-Built with the React frontend framework using JavaScript, and deployed onto Heroku for hosting.
-
-</br>
-
-
-## Technologies Used
-
-### Frontend
-* React.js
-* JavaScript
-* HTML
-* CSS
 
 <div id="top"></div>
 
@@ -43,6 +29,12 @@ Built with the React frontend framework using JavaScript, and deployed onto Hero
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#application-architecture">Application Architecture</a></li>
+      </ul>
+      <ul>
+        <li><a href="#technologies-used">Technologies Used</a></li>
+      </ul>
       <ul>
         <li><a href="#key-features">Key Features</a></li>
       </ul>
@@ -74,6 +66,31 @@ Built with the React frontend framework using JavaScript, and deployed onto Hero
 ## About The Project
 
 I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wanted to bring this flavor to the Mastermind board game in an interative and immersive way for users to have fun. It's a simple game that you will never get bored with. 
+
+
+
+<!-- Application Architecture -->
+**Application Architecture
+
+* Built with the React frontend framework using JavaScript, and deployed onto Heroku for hosting.
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
+
+<!-- Technologies Used -->
+**Technologies Used
+
+* Frontend
+  React.js
+  JavaScript
+  HTML
+  CSS
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
 
 
 <!-- Key Features -->
