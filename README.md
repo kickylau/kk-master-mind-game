@@ -70,7 +70,7 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 </br>
 
 <!-- Application Architecture -->
-**Application Architecture**
+# Application Architecture
 
 * Built with the React frontend framework using JavaScript, and deployed onto Heroku for hosting.
 
@@ -80,7 +80,7 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 </br>
 
 <!-- Technologies Used -->
-**Technologies Used**
+# Technologies Used**
 
 * Frontend
   - React.js
@@ -94,7 +94,7 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 
 
 <!-- Key Features -->
-**Key Features**
+# Key Features
 
 * Classic The Simpsons theme with sound and animated components.
 * Easy to read rules section.
@@ -111,7 +111,7 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 </br>
 
 <!-- Thought Process -->
-## Thought Process**
+# Thought Process
 
 Before starting this project, I actually never heard about the Mastermind game before. In order to better understand how it worked, I played many online Mastermind games to get hands-on experience and quickly familiarize myself. Whilst playing these various Mastermind versions, I observed some user interface elements that could be improved when developing my own version.
 
@@ -140,7 +140,7 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 
 
 <!-- Code Structure -->
-## Code Structure**
+# Code Structure
 
 ```
 └── src
@@ -235,7 +235,7 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 <!-- Extensions -->
 ## Extensions
 
-* Implemented Extensions 
+# Implemented Extensions 
    - A "difficulty level" with three modes - "Easy" with 4 donuts, "Medum" with 5 donuts, and "Hard" with 6 donuts.
    - Graphical components are enhanced with animations, sounds, hover effects, and consistent theming styles. 
    - Numbers/Pegs are changed into distinct colorful donuts.
@@ -247,7 +247,7 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
    - A splash page.
 
 
-* Future TODO Extensions
+# Future TODO Extensions
    - Ability to pick a character amongst The Simpsons family to start the game.
    - Way to calculate the final game score. 
    - Public Leaderboard rankings with the player's name and score that is powered by Google Firebase in the backend.
