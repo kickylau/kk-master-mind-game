@@ -51,10 +51,10 @@ This is a classic code-breaking board game with The Simpsons theme in a 90's arc
         <li><a href="#implemented-extensions">Implemented Extensions</a></li>
       </ul>
       <ul>
-        <li><a href="#attempted-extensions">Attempted Extensions</a></li>
+        <li><a href="#future-TODO-extensions">Future TODO Extensions</a></li>
       </ul>
-    <li><a href="#contact">Requirements</a></li>
-    <li><a href="#contact">Setup</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#setup">Setup</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
