@@ -67,6 +67,8 @@ This is a classic code-breaking board game with The Simpsons theme in a 90's arc
 
 I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wanted to bring this flavor to the Mastermind board game in an interative and immersive way for users to have fun. It's a simple game that you will never get bored with. 
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 </br>
 
 <!-- Application Architecture -->
@@ -246,6 +248,9 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
    - A disabled guess submission button when users did not fill out the entire donut guess row.
    - A splash page.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
 
 ## Future TODO Extensions
    - Ability to pick a character amongst The Simpsons family to start the game.
