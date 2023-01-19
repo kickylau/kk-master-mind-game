@@ -1,4 +1,4 @@
-## Welcome To Kicky's The Simpsons MasterMind!
+## Welcome To Kicky's The Simpsons Mastermind!
 
 This is a classic code-breaking board game with The Simpsons theme in a 90's arcade game style. Fun for friends and family to play with!
 
@@ -28,7 +28,7 @@ Built with the React frontend framework using JavaScript, and deployed onto Hero
 <img height="50" height="50" alt="logo" src="https://user-images.githubusercontent.com/94200416/213108684-2c6f743e-2f1b-42d3-ade8-ab2ed7ddd52a.png">
   </a>
 
-<h3 align="center"> Kicky's MasterMind  </h3>
+<h3 align="center"> Kicky's Mastermind  </h3>
 
   <p align="center">
     <a href="https://mastermind-kk.herokuapp.com/"><strong>Explore the website »</strong></a>
@@ -73,20 +73,20 @@ Built with the React frontend framework using JavaScript, and deployed onto Hero
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games, I would like to bring this board game in a more interative and immersive way for users to explore. It's a leisure simple game that you will never get bored with. 
+I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wanted to bring this flavor to the Mastermind board game in an interative and immersive way for users to have fun. It's a simple game that you will never get bored with. 
 
 
 <!-- Key Features -->
 **Key Features**
 
-* Classic Simpsons theme with sounds and animations.
-* Easy access to guideline.
-* Donut Palette to choose the guess.
-* Different challenge mode.
-* Bart and Lisa pegs to guide the next guess.
-* Arrows to indicate the current and left guesses. 
-* Delete option and disabled submitting function for better user experience. (?)
-* Timer to keep track of each game.
+* Classic The Simpsons theme with sound and animated components.
+* Easy to read rules section.
+* Donut Palette to guess the Mastermind code.
+* Additional challenge modes for higher difficulty.
+* Bart and Lisa pegs to represent when a guess has the correct position and color.
+* Arrows to indicate the current turn and number of turns remaining. 
+* Buttons to clear the code guess and disabled submitting a guess when there aren't enough donuts in the guess.
+* Timer to keep track of the time elapsed for each game.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -96,18 +96,18 @@ Growing up in the 90s, as a huge fan of the Simpsons and all other arcade games,
 <!-- Thought Process -->
 **Thought Process**
 
-Before building this game I have actually not heard of it before. So in order to better understing this, I played a couple online mastermind games to get hands on quickly. Through observation and personal user experience, there are some user interface flaws that could be improved. 
+Before starting this project, I actually never heard about the Mastermind game before. In order to better understand how it worked, I played many online Mastermind games to get hands-on experience and quickly familiarize myself. Whilst playing these various Mastermind versions, I observed some user interface elements that could be improved when developing my own version.
 
-* Guidelines
-   1. Guidelines are too complicated to understand which could lower users interest in the first case. 
-   2. The rules section is not visible or convenient enough for users to review frequently, especially for a first-time player that doesn't remeber the rules. Users have to keep back and forth scorlling down or opening other pages to check it.
+* Rules
+   1. Rules are too complicated to understand which could create a barrier of entry for first-time users. 
+   2. The rules section is not visible or convenient enough for users to review frequently, especially for a first-time player who doesn't remember the rules. Users have to keep flipping back and forth, scrolling down, or opening other pages to check them.
 
-* Game Board Desgin 
-   1. In terms of selecting pegs (or numbers) it's unclear for users whether to click the empty row to fill the pegs, or to drag from the available peg board to the row, or to click on them to select.
-   2. In terms of re-selecting pegs, its also unclear whether to re-select all over again or just the single one. Some of the designs have "delete" options which is a plus. 
+* Game Board Design 
+   1. In terms of selecting pegs (or numbers) it's unclear whether users should click the empty row to fill the pegs, or to drag from the available peg board to the row, or to click the pegs to select them.
+   2. In terms of re-selecting pegs, it was sometimes also unclear whether to re-select all over again or just a single one. Some of the designs have "delete" options which is a plus. 
 
 * Overall Interface Design
-   1. Most of the online mastermind games follow the similar basic board structure with colored pegs + black/white pegs. The game board size is as big as iphone screen with simple design. Outside of the game board is almost plain text without too much user interactions. 
+   1. Most of the online Mastermind games follow a similar basic board structure with colored pegs and black/white pegs. The game board size is as big as an iPhone screen with simple design. Outside of the game board is almost plain text without too much user interactions. 
 
 
 Therefore, a simple but interactive game that is friendly to first-time player, rules are well explained and easy to look up, eyecatching game interface design came up to my mind. 
