@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import useSound from "use-sound";
 import "./Game.css";
 import "nes.css/css/nes.min.css";
@@ -20,7 +20,6 @@ function Game() {
   const [randomCode, setRandomCode] = useState([]);
   const [guess, setGuess] = useState([]);
   const [counter, setCounter] = useState(10);
-  const isMounted = useRef(false);
   const [showLosingModal, setShowLosingModal] = useState(false);
   const [showWinningModal, setShowWinningModal] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
@@ -44,13 +43,14 @@ function Game() {
     try {
       const response = await fetch(url);
       const data = await response.text();
-      setRandomCode(
-        data
-          .split("\n")
-          .filter((e) => e.length > 0)
-          .map((e) => parseInt(e))
-      );
-      //to only extract the 4 random number without empty string at the end of the array
+
+      let randomCode = data
+        .split("\n")
+        .filter((e) => e.length > 0)
+        //this way to only extract the 4 random number without empty string at the end of the array
+        .map((e) => parseInt(e))
+      //console.log("Random code: ", randomCode); //for debug purpose
+      setRandomCode(randomCode);
     } catch (error) {
       console.log("error", error);
     }
@@ -142,7 +142,8 @@ function Game() {
     setShowResult(false);
     setData(new Array(10).fill([]));
     setPegData(new Array(10).fill([]));
-  };
+  }
+    ;
 
   //music functions
   const playSong = () => {
@@ -170,21 +171,10 @@ function Game() {
     setShowResult();
   }, []);
 
-  useEffect(() => {
-    setSizeLimit(4);
-  }, []);
-
   //if the sizelimit changes fetch the data, only run if size limit changes
   useEffect(() => {
     fetchData();
   }, [sizeLimit]); //its also showing sync update of size limit
-
-  //to only fire the fetch result once for react strict mode. (doesnt matter once deployed to heroku)
-  useEffect(() => {
-    if (isMounted.current) return;
-    isMounted.current = true;
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -214,11 +204,12 @@ function Game() {
             window.open("https://www.instagram.com/kickylau/", "_blank")
           }
         >
-
         </div>
 
         <div className="timer">
-          <Timer startTimer={startTimer} pauseTimer={pauseTimer} />
+          <Timer
+          startTimer={startTimer} pauseTimer={pauseTimer}
+          />
         </div>
 
         <Music
