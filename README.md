@@ -107,14 +107,14 @@ Before starting this project, I actually never heard about the Mastermind game b
    2. In terms of re-selecting pegs, it was sometimes also unclear whether to re-select all over again or just a single one. Some of the designs have "delete" options which is a plus. 
 
 * Overall Interface Design
-   1. Most of the online Mastermind games follow a similar basic board structure with colored pegs and black/white pegs. The game board size is as big as an iPhone screen with simple design. Outside of the game board is almost plain text without too much user interactions. 
+   1. Most of the online Mastermind games follow a similar basic board structure with colored pegs and black/white pegs, with pretty basic and simple designs. The outside of the game board itself was often mostly plain text without too much user interaction. 
 
 
 Therefore, a simple but interactive game that is friendly to first-time player, rules are well explained and easy to look up, eyecatching game interface design came up to my mind. 
 
-Considering the scale and structure of the game, I decided to not use backend to store data or Redux to manage the states. This is a pure frontend using React with JavaScript language. 
+Considering the scale and structure of the game, I decided to not use backend to store data or Redux to manage the state. This is a purely frontend application using React with JavaScript language. 
 
-Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a Simpsons fan, I decided to build this game in 90s Arcade Game style with the Simpsons theme. The game design captured the inspiration from every pieces of the Simpsons - classic theme song as background music, blue sky as animation background, iconic Homer expression whenever users win or lose, donuts to represent colored pegs, Bart and Lisa representing traditional black/white pegs. The fonts are using pixel style, as well as the arcade game machine to wrap the game board. Major color selections are Simpsons yellow, blue, red, green. 
+Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a Simpsons fan, I decided to build this game in 90's Arcade Game style with The Simpsons theme. The game design captured the inspiration from every piece of the Simpsons - classic theme song as background music, blue sky as the animation background, an iconic Homer expression whenever users win or lose, donuts to represent colored pegs, and Bart and Lisa representing traditional black/white pegs. The fonts use a retro pixelated style, and there is a arcade game machine backdrop to wrap around the game board. Major color selections fit with the Simpsons theme colors of yellow, blue, red, green. 
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
