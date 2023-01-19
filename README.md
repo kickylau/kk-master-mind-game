@@ -1,12 +1,12 @@
-## Welcome To Kicky's Simpson MasterMind !
+## Welcome To Kicky's The Simpsons MasterMind!
 
-This is a classic code-breaking board game with the Simpsons theme in 90s arcade game style. Fun for friends and family to play with!
+This is a classic code-breaking board game with The Simpsons theme in a 90's arcade game style. Fun for friends and family to play with!
 
 </br>
 
 ## Application Architecture
 
-Built with React frontend using JavsScript language, deployed to Heroku.
+Built with the React frontend framework using JavaScript, and deployed onto Heroku for hosting.
 
 </br>
 
@@ -14,7 +14,7 @@ Built with React frontend using JavsScript language, deployed to Heroku.
 ## Technologies Used
 
 ### Frontend
-* React
+* React.js
 * JavaScript
 * HTML
 * CSS
