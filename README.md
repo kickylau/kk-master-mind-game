@@ -70,7 +70,7 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 
 
 <!-- Application Architecture -->
-**Application Architecture
+**Application Architecture**
 
 * Built with the React frontend framework using JavaScript, and deployed onto Heroku for hosting.
 
@@ -80,13 +80,13 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 </br>
 
 <!-- Technologies Used -->
-**Technologies Used
+**Technologies Used**
 
 * Frontend
-  React.js
-  JavaScript
-  HTML
-  CSS
+  - React.js
+  - JavaScript
+  - HTML
+  - CSS
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
