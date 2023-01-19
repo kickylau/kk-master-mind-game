@@ -1,4 +1,4 @@
-## Welcome To Kicky's The Simpsons Mastermind!
+## Welcome To Kicky's The Simpsons MasterMind!
 
 This is a classic code-breaking board game with The Simpsons theme in a 90's arcade game style. Fun for friends and family to play with!
 
@@ -14,7 +14,7 @@ This is a classic code-breaking board game with The Simpsons theme in a 90's arc
 <img height="50" height="50" alt="logo" src="https://user-images.githubusercontent.com/94200416/213108684-2c6f743e-2f1b-42d3-ade8-ab2ed7ddd52a.png">
   </a>
 
-<h3 align="center"> Kicky's Mastermind  </h3>
+<h3 align="center"> Kicky's MasterMind  </h3>
 
   <p align="center">
     <a href="https://mastermind-kk.herokuapp.com/"><strong>Explore the website »</strong></a>
@@ -67,7 +67,7 @@ This is a classic code-breaking board game with The Simpsons theme in a 90's arc
 
 I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wanted to bring this flavor to the Mastermind board game in an interative and immersive way for users to have fun. It's a simple game that you will never get bored with. 
 
-
+</br>
 
 <!-- Application Architecture -->
 **Application Architecture**
@@ -100,9 +100,9 @@ I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wa
 * Easy to read rules section.
 * Donut Palette to guess the Mastermind code.
 * Additional challenge modes for higher difficulty.
-* Bart and Lisa pegs to represent when a guess has the correct position and color.
+* Bart and Lisa pegs to represent when a guess has the correct color and/or position.
 * Arrows to indicate the current turn and number of turns remaining. 
-* Buttons to clear the code guess and disabled submitting a guess when there aren't enough donuts in the guess.
+* Buttons to clear the code guess and disable submitting a guess when there aren't enough donuts in the guess.
 * Timer to keep track of the time elapsed for each game.
 
 
@@ -124,14 +124,14 @@ Before starting this project, I actually never heard about the Mastermind game b
    2. In terms of re-selecting pegs, it was sometimes also unclear whether to re-select all over again or just a single one. Some of the designs have "delete" options which is a plus. 
 
 * Overall Interface Design
-   1. Most of the online Mastermind games follow a similar basic board structure with colored pegs and black/white pegs, with pretty basic and simple designs. The outside of the game board itself was often mostly plain text without too much user interaction. 
+   1. Most of the online Mastermind games follow a similar basic board structure with colored pegs and black/white pegs, with simple designs. The outside of the game board itself was often mostly plain text without too much user interaction. 
 
 
 Therefore, a simple but interactive game that is friendly to first-time player, rules are well explained and easy to look up, eyecatching game interface design came up to my mind. 
 
 Considering the scale and structure of the game, I decided to not use backend to store data or Redux to manage the state. This is a purely frontend application using React with JavaScript language. 
 
-Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a Simpsons fan, I decided to build this game in 90's Arcade Game style with The Simpsons theme. The game design captured the inspiration from every piece of the Simpsons - classic theme song as background music, blue sky as the animation background, an iconic Homer expression whenever users win or lose, donuts to represent colored pegs, and Bart and Lisa representing traditional black/white pegs. The fonts use a retro pixelated style, and there is a arcade game machine backdrop to wrap around the game board. Major color selections fit with the Simpsons theme colors of yellow, blue, red, green. 
+Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a Simpsons fan, I decided to build this game in 90's Arcade Game style with The Simpsons theme. The game design captured the inspiration from every piece of the Simpsons - classic theme song as background music, blue sky as the animation background, an iconic Homer expression whenever users win or lose, donuts to represent colored pegs, and Bart & Lisa to represent traditional black/white pegs. The fonts use a retro pixelated style, and there is a arcade game machine backdrop to wrap around the game board. Major color selections fit with the Simpsons theme colors of yellow, blue, red, green. 
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -236,24 +236,24 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 **Extensions**
 
 * Implemented Extensions 
-   1. A "difficulty level" with three modes - "Easy" with 4 donuts, "Medum" with 5 donuts, and "Hard" with 6 donuts.
-   2. Graphical components are enhanced with animations, sounds, hover effects, and consistent theming styles. 
-   3. Numbers/Pegs are changed into distinct colorful donuts.
-   4. A timer for the time elapsed in each game. 
-   5. A "Rules" pop-up modal that is convenient for first-time players to access. 
-   6. A music player with controls for users to play/pause/stop the music. 
-   7. A "delete" option when users need to re-select the current donut guess.
-   8. A disabled guess submission button when users did not fill out the entire donut guess row.
-   9. A splash page.
+   - A "difficulty level" with three modes - "Easy" with 4 donuts, "Medum" with 5 donuts, and "Hard" with 6 donuts.
+   - Graphical components are enhanced with animations, sounds, hover effects, and consistent theming styles. 
+   - Numbers/Pegs are changed into distinct colorful donuts.
+   - A timer for the time elapsed in each game. 
+   - A "Rules" pop-up modal that is convenient for first-time players to access. 
+   - A music player with controls for users to play/pause/stop the music. 
+   - A "delete" option when users need to re-select the current donut guess.
+   - A disabled guess submission button when users did not fill out the entire donut guess row.
+   - A splash page.
 
 
 * Future TODO Extensions
-   1. Ability to pick a character amongst The Simpsons family to start the game.
-   2. Way to calculate the final game score. 
-   3. Public Leaderboard rankings with the player's name and score that is powered by Google Firebase in the backend.
-   4. Multiplayer mode instead of one player vs. computer.
-   5. Support to reveal hints to the player.
-   6. A.I computer auto play to help with guesses.
+   - Ability to pick a character amongst The Simpsons family to start the game.
+   - Way to calculate the final game score. 
+   - Public Leaderboard rankings with the player's name and score that is powered by Google Firebase in the backend.
+   - Multiplayer mode instead of one player vs. computer.
+   - Support to reveal hints to the player.
+   - A.I computer auto play to help with guesses.
 
 
 </br>
