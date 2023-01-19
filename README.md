@@ -267,6 +267,9 @@ Growing up in 90s, I am still obsessed with arcade games in the malls. Also as a
 * node ^16.0.0
 * npm ^8.0.0
 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 </br>
 
 <!-- Setup -->
@@ -294,7 +297,9 @@ http://localhost:3000/
 
 ***
 
-<br>
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+</br>
 
 
 
