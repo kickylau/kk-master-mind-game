@@ -24,6 +24,7 @@ function NewGame({
           fetchData();
           reset();
           setShowResult(false);
+
         }}
       >
         NEW GAME

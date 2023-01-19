@@ -23,7 +23,7 @@ function Rules({ setShowRulesModal, showRulesModal, playClick }) {
           <div id="rules-modal">
             <div className="rules-container">
               <h2>
-                How To Play . .
+                How To Play
               </h2>
               <br />
               ** The goal of this game is to guess all donuts in the<b><font color="green"> CORRECT ORDER </font></b>with the<b><font color="green"> CORRECT COLOR </font></b>within<b><font color="red"> 10 </font></b>tries **
@@ -38,12 +38,11 @@ function Rules({ setShowRulesModal, showRulesModal, playClick }) {
               </b>
               <br />
               <br />
-              2. Click and choose from the donut palette with <b><font color="red"> 8 </font></b> colors by the side to create your guess until the row is filled.
+              2. Click and choose a donut from the left hand panel to create your guess until the row is filled.
+              <br />
+              Once the row is complete, click the <b><font color="blue"> GUESS </font></b> button.
               <br />
               To delete, click red cross <b><font color="red"> X </font></b> to clear your guess and re-fill.
-              <br />
-              <br />
-              3. Then click the <b><font color="blue"> GUESS </font></b> button. You have <b><font color="red"> 10 </font></b> tries.
               <br />
               <br />
               4. Each guess may show Bart peg(s) <img
@@ -70,10 +69,10 @@ function Rules({ setShowRulesModal, showRulesModal, playClick }) {
               /> A Lisa peg indicates one of your donuts is the <b><font color="green"> CORRECT </font></b> color with the <b><font color="red"> WRONG </font></b> position.
               <br />
               <br />
-              6. Use the pegs to guide your next guess. If your guess has donuts with all the right colors and positions within 10 tries, you <b><font color="red"> WIN! </font></b>
+              6. Use the pegs to guide your next guess. Multiple Bart and/or Lisa peg(s) indicate you are getting closer!
               <br />
               <br />
-              7. To begin a new game click the <b><font color="blue"> NEW GAME </font></b> button.
+              7. To start a new game click the <b><font color="blue"> NEW GAME </font></b> button.
               <br />
               <br />
               8. The timer on the top right keeps track of how long you take to solve each game.

@@ -2,25 +2,28 @@ import React, { useState, useEffect } from "react";
 
 function Timer({ startTimer, pauseTimer }) {
   const initialTime = "00:00:00";
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(false);
   const [timerDisplay, setTimerDisplay] = useState(initialTime);
-
-  //console.log("actual time:", Date.now())
+  const [startTime, setStartTime] = useState()
 
   useEffect(() => {
     const interval = setInterval(() => {
-      //console.log("startTimer", startTimer, " pauseTimer", pauseTimer)
+      if (!timer && startTimer) {
+        setTimer(true)
+        setStartTime(Date.now())
+      }
       if (startTimer) {
-        // let timeString = secondsToHms(timer)
-        // setTimerDisplay(timeString)
-        setTimer(timer + 1);
+        let seconds = Math.floor((Date.now() - startTime) / 1000)
+        let timeString = secondsToHms(seconds)
+        setTimerDisplay(timeString)
       } else if (pauseTimer) {
         return;
-      } else {
-        setTimer(0);
+      } else { //stop timer and reset it
+        clearInterval(interval);
+        setTimer(false);
         setTimerDisplay(initialTime);
       }
-    }, 1000);
+    }, 100);
 
     return () => {
       clearInterval(interval);
@@ -46,6 +49,7 @@ function Timer({ startTimer, pauseTimer }) {
   }
 
   return <div className="timer">{timerDisplay}</div>;
+
 }
 
 export default Timer;
