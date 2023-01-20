@@ -68,7 +68,7 @@ This is a classic code-breaking board game with The Simpsons theme in a 90's arc
 <!-- ABOUT THE PROJECT -->
 # About The Project
 
-I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wanted to bring this flavor to the Mastermind board game in an interative and immersive way for users to have fun. It's a simple game that you will never get bored with. 
+I grew up in the 90s as a huge fan of The Simpsons as well as arcade games. I wanted to bring this flavor to the Mastermind board game in an interactive and immersive way for users to have fun. It's a simple game that you will never get bored with. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
